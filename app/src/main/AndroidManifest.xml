@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.suomate.dabaiserver">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- NoHttp -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name=".base.application.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.TestDataActivity" />
+        <activity android:name=".activity.LoadAndRefreshActivity" />
+        <activity android:name=".activity.configsetting.IntelligentHostActivity" />
+        <activity android:name=".activity.configsetting.EnvironmentalBoxActivity" />
+        <activity android:name=".activity.configsetting.AirConditionActivity" />
+        <activity android:name=".activity.configsetting.MonitorMoudleActivity" />
+        <activity android:name=".activity.configsetting.CameraActivity" />
+        <activity android:name=".activity.configsetting.DeviceListActivity" />
+        <activity android:name=".activity.configsetting.ConfigSingleDeviceActivity" />
+        <activity android:name=".activity.configsetting.ConfigAddDeviceActivity" />
+        <activity android:name=".activity.configsetting.AreaSelectListActivity" />
+        <activity android:name=".activity.configsetting.ClassifyDeviceListActivity" />
+        <activity android:name=".activity.configsetting.NominateActivity" />
+        <activity android:name=".activity.configsetting.EditNameActivity" />
+        <activity android:name=".activity.configsetting.DeviceSelectListActivity"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:id="@+id/layout_single_title_bg"
+                android:layout_height="48dp"
+                android:background="@color/black">
+    <ImageView
+        android:id="@+id/image_btn_go_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:src="@mipmap/icon_back"
+        android:padding="10dp" />
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/image_btn_go_back"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="@dimen/tool_bar_image_btn_go_back_margin_left"-->
+            <!--android:layout_marginRight="@dimen/tool_bar_image_btn_go_back_margin_left"-->
+            <!--android:background="@drawable/go_back_selector"/>-->
+    <!--</RelativeLayout>-->
+    <TextView
+
+        android:id="@+id/text_tool_bar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/white"/>
+
+    <ImageView
+        android:id="@+id/image_tool_bar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <ImageView
+        android:id="@+id/image_btn_right_icon_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="14dp"/>
+
+    <ImageView
+        android:id="@+id/image_btn_right_icon_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/image_btn_right_icon_1"/>
+    <TextView
+        android:layout_centerVertical="true"
+        android:layout_marginRight="14dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/text_tool_bar_right_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"/>
+</RelativeLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/background_theme"
+    android:layout_height="50dp">
+<TextView
+    android:id="@+id/port_tv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="1"
+    android:textSize="16sp"
+    android:textColor="@color/white"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="10dp" />
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_toRightOf="@id/port_tv"
+        android:layout_centerVertical="true"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:background="@color/blue_btn"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_icon"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:text="+"
+        android:textColor="@color/white"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/icon_switch_open"/>
+    <include layout="@layout/item_line"/>
+
+</RelativeLayout>
