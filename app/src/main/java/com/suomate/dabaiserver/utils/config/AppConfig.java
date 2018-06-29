@@ -44,7 +44,13 @@ public class AppConfig {
     public String getString(String key, String defValue) {
         return preferences.getString(key, defValue);
     }
-
+    /**
+     * 现获取登录id
+     * @return
+     */
+    public String getGuid(){
+        return getString("guid",null).equals("")?"123456975":getString("guid",null);
+    }
     public void putBoolean(String key, boolean value) {
         preferences.edit().putBoolean(key, value).apply();
     }

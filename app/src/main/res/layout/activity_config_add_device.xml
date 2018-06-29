@@ -66,7 +66,7 @@
         android:background="@color/grey_line"
         android:layout_height="0.5dp"/>
     <RelativeLayout
-        android:id="@+id/rl_icon_select"
+        android:id="@+id/rl_icon"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <TextView
@@ -74,14 +74,16 @@
             android:text="图标"
             />
         <ImageView
+            android:id="@+id/device_icon_iv"
             android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/icon_moren"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/icon_moren"
             />
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:background="@color/grey_line"
@@ -94,6 +96,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="15dp"
         android:textColor="@color/white"
-        android:background="@drawable/save_btn_selector"
+        android:background="@drawable/save_shape"
         android:text="下一步" />
 </LinearLayout>

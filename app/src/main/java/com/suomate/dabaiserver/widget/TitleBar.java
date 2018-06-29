@@ -52,7 +52,6 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
         int rightIcon = ta.getResourceId(R.styleable.TitleBar_rightIcon,R.mipmap.btn_tupian_tianjia);
         tvRightText.setText(rightText);
         ivRightIcon.setImageResource(rightIcon);
-//
         int titleTextColor = ta.getColor(R.styleable.TitleBar_titleColor, getResources().getColor(R.color.white));
         boolean hasIvTitle = ta.getBoolean(R.styleable.TitleBar_hasIvTitle, false);
         boolean hasRightIcon=ta.getBoolean(R.styleable.TitleBar_hasRightIcon,false);

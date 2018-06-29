@@ -13,7 +13,6 @@ import com.suomate.dabaiserver.base.activity.BaseActivity;
 import com.suomate.dabaiserver.bean.ClassifyListBean;
 import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.utils.UrlUtils;
-import com.suomate.dabaiserver.utils.config.AppConfig;
 import com.suomate.dabaiserver.utils.config.ContentConfig;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
 import com.suomate.dabaiserver.widget.TitleBar;
@@ -52,7 +51,7 @@ public class ClassifyDeviceListActivity extends BaseActivity {
 
     private void requestData() {
         AbstractRequest request = buildRequest(UrlUtils.CLASSIFY_LIST, ContentConfig.LIST_TYPE, RequestMethod.GET, ClassifyListBean.DataBean.class);
-        request.add("guid", AppConfig.getInstance().getString("guid", ""));
+        request.add("guid",getGuid());
         executeNetwork(1, holdonMsg, request);
     }
 
@@ -62,7 +61,7 @@ public class ClassifyDeviceListActivity extends BaseActivity {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Intent intent = getIntent();
                 intent.putExtra("classifyName", list.get(position).getClassify_name());
-                intent.putExtra("classifyId", list.get(position).getClassify_id());
+                intent.putExtra("classifyId", list.get(position).getClassify_id()+"");
                 setResult(RESULT_OK, intent);
                 finish();
             }

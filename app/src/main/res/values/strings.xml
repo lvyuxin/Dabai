@@ -5,6 +5,7 @@
     <string name="custorm_name">自定义</string>
     <string name="no_network">请手动打开网络</string>
     <string name="classify">类别列表</string>
+    <string name="icon">选择图片</string>
     <string name="area">区域列表</string>
     <string name="nominate">命名</string>
     <string name="save_sucess">保存成功</string>

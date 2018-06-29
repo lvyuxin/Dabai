@@ -51,7 +51,6 @@ public class ConfigFragment extends BaseFragment {
     private List<ReadJson.OtherdeviceBean.CameraBean> cameraBeanList = new ArrayList<>();
     private List<ConfigSettingBean> list = new ArrayList<>();
     private ConfigSettingAdapter adapter;
-
     @Override
     protected int bindLayout() {
         return R.layout.fragment_config;
@@ -124,7 +123,6 @@ public class ConfigFragment extends BaseFragment {
                             bundle.putInt("type",6);
                             startActivity(DeviceListActivity.class, bundle);
                         }
-
                         break;
                     case 7:
                         bundle.putSerializable("environmentBoxList", (Serializable) environmentBoxList);
@@ -165,7 +163,7 @@ public class ConfigFragment extends BaseFragment {
     private void requestData() {
         AbstractRequest request = buildRequest(UrlUtils.GET_READJSON, ContentConfig.STRING_TYPE, RequestMethod.GET, null);
         request.add("jsonname", "data.json");
-        request.add("guid", "123456975");
+        request.add("guid",getGuid());
         executeNetwork(1, "请稍后", request);
     }
 
@@ -245,8 +243,14 @@ public class ConfigFragment extends BaseFragment {
     }
 
     private void classifyThirdPartyDevice(ReadJson.OtherdeviceBean threeParty) {
-        cameraBeanList.addAll(threeParty.getCamera());
-        airConditionerBeanList.addAll(threeParty.getAir_conditioner().getList());
+        if (threeParty.getCamera()!=null) {
+            cameraBeanList.addAll(threeParty.getCamera());
+        }
+
+        if (threeParty.getAir_conditioner()!=null) {
+            airConditionerBeanList.addAll(threeParty.getAir_conditioner().getList());
+
+        }
         list.get(8).setDeviceCount(airConditionerBeanList.size());
         list.get(9).setDeviceCount(cameraBeanList.size());
     }

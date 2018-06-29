@@ -37,7 +37,6 @@ public abstract class BaseNetActivity extends BaseDefaultUIActivity {
         }else if(requestType==ContentConfig.STRING_TYPE){
             request = new StringRequest(url, method);
         }
-
         if (hasCache()) {
             request.setCacheMode(CacheMode.REQUEST_NETWORK_FAILED_READ_CACHE);
         }

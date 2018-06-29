@@ -5,6 +5,8 @@ package com.suomate.dabaiserver.utils;
  * Created by lenovo on 2018/6/20.
  * http://101.201.50.1:808/readJson
  * http://101.201.50.1:808/a_new_dabai/public/index.php/classify/add?guid=123456975&name="dd"
+ *
+ *  http://101.201.50.1:808/a_new_dabai/public/index.php/device/add
  */
 
 public class UrlUtils {
@@ -18,5 +20,6 @@ public class UrlUtils {
     public static final String CUSTOM_CLASSIFY_NAME = BASEWEBSITE + "/a_new_dabai/public/index.php/classify/add";
     public static final String DELETE_CLASSIFY_ITEM = BASEWEBSITE + "/a_new_dabai/public/index.php/classify/delete";
     public static final String DELETE_AREA_ITEM = BASEWEBSITE + "/a_new_dabai/public/index.php/area/delete";
+    public static final String DEVICE_ADD = BASEWEBSITE + "/a_new_dabai/public/index.php/device/add";
 
 }

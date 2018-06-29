@@ -16,9 +16,6 @@ import java.util.List;
 public class ConfigSingleDeviceAdapter extends BaseQuickAdapter<ConfigSingleDeviceBean, BaseViewHolder> {
     public ConfigSingleDeviceAdapter(int layoutResId, @Nullable List<ConfigSingleDeviceBean> data) {
             super(layoutResId, data);
-
-
-
     }
 
     @Override

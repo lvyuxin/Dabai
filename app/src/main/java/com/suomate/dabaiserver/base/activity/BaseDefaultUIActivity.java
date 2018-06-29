@@ -5,11 +5,13 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.suomate.dabaiserver.R;
+import com.suomate.dabaiserver.utils.config.AppConfig;
 import com.suomate.dabaiserver.utils.receiver.NetworkReceiver;
 import com.suomate.dabaiserver.widget.EasyStatusView;
 import com.suomate.dabaiserver.widget.TitleBar;
@@ -41,7 +43,14 @@ public class BaseDefaultUIActivity extends BaseUIActivity {
         initTvNetWatcher();
         initMoneyBar();
     }
+    protected String getGuid() {
+        if (TextUtils.isEmpty(AppConfig.getInstance().getString("guid", null))) {
+            return "123456975";
+        } else {
+            return AppConfig.getInstance().getString("guid", null);
+        }
 
+    }
     private void initMoneyBar() {
         titleBar = fv(R.id.tb);
     }

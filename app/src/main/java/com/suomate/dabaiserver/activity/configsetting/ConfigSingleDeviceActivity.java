@@ -50,6 +50,8 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
                 bundle.putString("title",title);
                 bundle.putString("id",id);
                 bundle.putString("serial",serial);
+                bundle.putString("port",list.get(position).getPort()+"");
+
                 startActivity(ConfigAddDeviceActivity.class,bundle);
             }
         });
