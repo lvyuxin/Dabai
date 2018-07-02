@@ -11,6 +11,8 @@ public class FunctionFragment extends BaseFragment {
         return R.layout.fragment_function;
     }
 
-
-
+    @Override
+    protected void initViews() {
+        super.initViews();
+    }
 }

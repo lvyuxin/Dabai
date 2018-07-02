@@ -72,7 +72,7 @@ public class BaseDefaultUIActivity extends BaseUIActivity {
     }
 
     private void initRefreshLayout() {
-        mRefreshLayout = fv(R.id.refresh_layout);
+        mRefreshLayout = fv(R.id.refreshLayout);
         mRecyclerView = fv(R.id.recyclerView);
         if (mRefreshLayout != null) {
             mRefreshLayout.setHeaderHeight(56);

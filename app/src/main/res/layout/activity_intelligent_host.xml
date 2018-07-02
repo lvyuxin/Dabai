@@ -1,9 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_theme"
+    android:orientation="vertical"
     tools:context="com.suomate.dabaiserver.activity.configsetting.IntelligentHostActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <com.suomate.dabaiserver.widget.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        app:textTitle="主机" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/host_item_height">
+
+        <Button
+            android:layout_centerVertical="true"
+            android:id="@+id/btn_tick_host"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="@dimen/host_item_left_magin"
+            android:background="@drawable/selector_tick" />
+
+        <TextView
+            style="@style/host_tv"
+            android:layout_centerVertical="true"
+            android:id="@+id/tv1"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/btn_tick_host"
+            android:text="自动获取IP地址" />
+
+
+        <Button
+            android:layout_centerVertical="true"
+            style="@null"
+            android:layout_width="60dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/host_item_right_magin"
+            android:background="@drawable/shape_btn_stroke"
+            android:text="修改"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <include layout="@layout/item_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/host_item_height"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/host_tv"
+            android:layout_marginLeft="@dimen/host_item_left_magin"
+            android:text="IP地址:" />
+
+
+        <TextView
+            android:id="@+id/ip_tv"
+            style="@style/host_tv"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/host_item_right_magin"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <include layout="@layout/item_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/host_item_height"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/host_tv"
+            android:layout_marginLeft="@dimen/host_item_left_magin"
+            android:text="子网掩码：" />
+
+
+        <TextView
+            android:id="@+id/subnet_mask_tv"
+            style="@style/host_tv"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/host_item_right_magin"
+            android:text="" />
+    </RelativeLayout>
+
+    <include layout="@layout/item_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/host_item_height"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/host_tv"
+            android:layout_marginLeft="@dimen/host_item_left_magin"
+            android:text="网关：" />
+
+
+        <TextView
+            android:id="@+id/gateway_tv"
+            style="@style/host_tv"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/host_item_right_magin" />
+    </RelativeLayout>
+
+    <include layout="@layout/item_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/host_item_height"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/host_tv"
+            android:layout_marginLeft="@dimen/host_item_left_magin"
+            android:text="主机时间:"
+            />
+
+
+        <TextView
+            android:id="@+id/host_time_tv"
+            style="@style/host_tv"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/host_item_right_magin"
+         />
+    </RelativeLayout>
+
+    <include layout="@layout/item_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/host_item_height"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/host_tv"
+            android:layout_marginLeft="@dimen/host_item_left_magin"
+            android:text="系统时间：" />
+
+
+        <TextView
+            android:id="@+id/system_tv"
+            style="@style/host_tv"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/host_item_right_magin" />
+    </RelativeLayout>
+
+    <include layout="@layout/item_line" />
+
+
+    <Button
+        android:id="@+id/btn_check"
+        android:layout_marginTop="100dp"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        style="@null"
+        android:text="校准"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/shape_btn_stroke"/>
+</LinearLayout>

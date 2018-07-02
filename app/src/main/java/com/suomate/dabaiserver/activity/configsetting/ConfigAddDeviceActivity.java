@@ -32,7 +32,6 @@ public class ConfigAddDeviceActivity extends BaseActivity {
     @BindView(R.id.device_icon_iv)
     ImageView ivDeviceIcon;
     private String title, id, serial, area_id, classify_id, device_name, port, address;
-
     public static final int REQUEST_CODE_AREA = 101;
     public static final int REQUEST_CODE_CLASSIFY = 102;
     public static final int REQUEST_CODE_NOMINATE = 103;
@@ -106,15 +105,15 @@ public class ConfigAddDeviceActivity extends BaseActivity {
 
     public String getAddress() {
         if (serial.equals(ContentConfig.SERIAL.PANEL) || ContentConfig.SERIAL.PANEL_OLD.equals(serial)) {//智能面板
-            address="{254.251.1."+id+"}";
+            address="{254.251.1."+id+"};";
         }else if(serial.equals(ContentConfig.SERIAL.SWITCH485_CURTAIN)){
-            address="{254.0."+id+".1"+"}";
+            address="{254.0."+id+".1"+"};";
         }else if(serial.equals(ContentConfig.SERIAL.EXTENDED_DINUAN)){
-            address="{254.0."+id+".1"+"}";
+            address="{254.0."+id+".1"+"};";
         }else if(serial.equals(ContentConfig.SERIAL.EXTENDED_XINFEN)){
-            address="{254.0."+id+".1"+"}";
+            address="{254.0."+id+".1"+"};";
         }else{
-            address="{254.0."+id+"."+port+"}";
+            address="{254.0."+id+"."+port+"};";
         }
         return address;
     }

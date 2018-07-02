@@ -24,10 +24,11 @@ public class ContentConfig {
         public final static String SWITCH4 = "SMT-JD0416A";
         public final static String SWITCH4_OLD = "ET-R0416A";
         //4路弱电开关执行模块 窗帘
-        public final static String SWITCH4_CURTAIN = "SMT-KG04L";
-        public final static String SWITCH4_CURTAIN_OLD = "ET-CR02A";
-        //窗帘485模块
         public final static String SWITCH485_CURTAIN = "SMT-CLNET";
+        //窗帘模块
+        public final static String SWITCH4_CURTAIN = "SMT-KG04L";
+        public final static String SWITCH4_CURTAIN_OLD = "ET-CR04A";
+
         //调光执行模块
         public final static String DIMMING4 = "SMT-JD0416T4L";
         public final static String DIMMING4_OLD = "ET-R0416D4I";
@@ -40,9 +41,11 @@ public class ContentConfig {
         public final static String EXTENDED_XINFEN = "SMT-XFZH";
         public final static String EXTENDED_DINUAN = "SMT-DNZH";
         public final static String ELECTRICITY = "SMT-DL";
+        public static final String ELECTRICITY_OLD="SP01A";
         //面板
         public final static String PANEL = "SMT-16MBXY";
         public final static String PANEL_OLD = "KPS128A";
+        //IO模块
         public final static String IO = "SMT-IO0606";
         public final static String IO_OLD = "MI0606A";
         public final static String MONITOR = "SMT-JK1.0";
@@ -56,8 +59,9 @@ public class ContentConfig {
         public final static int DIMMING = 2;
         public final static int PANEL = 3;
         public final static int COLOREDLIGHT = 4;//colouredLightsList
-        public final static int EXTENDED = 5;
-        public final static int IO = 6;
+        public final static int CURTAIN = 5;
+        public final static int EXTENDED = 6;
+        public final static int IO = 7;
     }
 
     public final static class TYPE {

@@ -41,7 +41,8 @@
         <activity android:name=".activity.configsetting.EditNameActivity" />
         <activity android:name=".activity.configsetting.DeviceSelectListActivity" />
         <activity android:name=".activity.configsetting.DeviceIconSelectActivity" />
-        <activity android:name=".activity.configsetting.DeviceNextActivity"></activity>
+        <activity android:name=".activity.configsetting.DeviceNextActivity" />
+        <activity android:name=".activity.area.AreaDeviceListActivity"></activity>
     </application>
 
 </manifest>

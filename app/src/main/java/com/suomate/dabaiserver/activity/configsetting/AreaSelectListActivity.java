@@ -31,6 +31,7 @@ public class AreaSelectListActivity extends BaseActivity {
     private AreaSelectListAdapter adapter;
     private List<AreaSelectListBean.DataBean> list = new ArrayList<>();
     public static final int REQUEST_CODE = 103;
+    private int deleteCurPosition;
 
     @Override
     protected int bindLayout() {
@@ -65,12 +66,14 @@ public class AreaSelectListActivity extends BaseActivity {
                 finish();
             }
         });
+        //长点击删除
         adapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
                 AbstractRequest request = buildRequest(UrlUtils.DELETE_AREA_ITEM, ContentConfig.LIST_TYPE, RequestMethod.GET, null);
-                request.add("classify_id", list.get(position).getArea_id());
+                request.add("area_id", list.get(position).getArea_id());
                 executeNetwork(2, holdonMsg, request);
+                deleteCurPosition=position;
                 return false;
             }
         });
@@ -102,9 +105,9 @@ public class AreaSelectListActivity extends BaseActivity {
                 adapter.notifyDataSetChanged();
                 break;
             case 2:
-                showToast("删除成功!");
-                list.clear();
-                requestData();
+                showToast("删除"+list.get(deleteCurPosition).getArea_name()+"成功!");
+                list.remove(deleteCurPosition);
+                adapter.notifyDataSetChanged();
                 break;
         }
 

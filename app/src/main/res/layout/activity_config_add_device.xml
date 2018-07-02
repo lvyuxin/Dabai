@@ -96,6 +96,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="15dp"
         android:textColor="@color/white"
-        android:background="@drawable/save_shape"
+        android:background="@drawable/shape_btn_solid"
         android:text="下一步" />
 </LinearLayout>

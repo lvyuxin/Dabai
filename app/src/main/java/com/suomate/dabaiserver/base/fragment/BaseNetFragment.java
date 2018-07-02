@@ -19,6 +19,7 @@ import com.yanzhenjie.nohttp.rest.Response;
  */
 
 public abstract class BaseNetFragment extends BaseDefaultUIFragment {
+    protected  String holdonMsg ="请稍等";
     protected <T> void executeNetwork(int what, String message, AbstractRequest<T> request) {
         CallServer.getInstance().addRequest(what, request, new ImpHttpResponseListener<T>(((BaseUIActivity) getActivity()), message));
     }

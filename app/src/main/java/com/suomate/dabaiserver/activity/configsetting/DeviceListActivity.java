@@ -29,11 +29,10 @@ public class DeviceListActivity extends BaseActivity {
     private List<ReadJson.AlldeviceBean.DataBean> dimmingList;
     private List<ReadJson.AlldeviceBean.DataBean> panelList;
     private List<ReadJson.AlldeviceBean.DataBean> colouredLightsList;
+    private List<ReadJson.AlldeviceBean.DataBean> curtainList;
     private List<ReadJson.AlldeviceBean.DataBean> extendedList;
     private List<ReadJson.AlldeviceBean.DataBean> ioList;
     private int type;
-
-
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setWindowStatusBarColor(R.color.black);
@@ -51,6 +50,7 @@ public class DeviceListActivity extends BaseActivity {
         colouredLightsList = (List<ReadJson.AlldeviceBean.DataBean>) bundle.getSerializable("colouredLightsList");
         extendedList = (List<ReadJson.AlldeviceBean.DataBean>) bundle.getSerializable("extendedList");
         ioList = (List<ReadJson.AlldeviceBean.DataBean>) bundle.getSerializable("ioList");
+        curtainList= (List<ReadJson.AlldeviceBean.DataBean>) bundle.getSerializable("curtainList");
         type = bundle.getInt("type", 0);
         if (switchList != null) {//开关执行模块
             strTitle = "开关执行模块";
@@ -103,13 +103,15 @@ public class DeviceListActivity extends BaseActivity {
             titleBar.setTextTitle(strTitle);
             titleBar.setTextTitle(strTitle);
             for (int i = 0; i < extendedList.size(); i++) {
-                if (ContentConfig.SERIAL.EXTENDED_XINFEN.equals(extendedList.get(i).getSerial().trim()) || ContentConfig.SERIAL.EXTENDED_DINUAN.equals(extendedList.get(i).getSerial().trim())
-                        || ContentConfig.SERIAL.ELECTRICITY.equals(extendedList.get(i).getSerial().trim())) {
-                    extendedList.get(i).setName("扩展模块");
+                if (ContentConfig.SERIAL.EXTENDED_XINFEN.equals(extendedList.get(i).getSerial().trim())) {
+                    extendedList.get(i).setName("新风模块");
+                }else if( ContentConfig.SERIAL.EXTENDED_DINUAN.equals(extendedList.get(i).getSerial().trim())){
+                    extendedList.get(i).setName("地暖模块");
+                }else if(ContentConfig.SERIAL.ELECTRICITY.equals(extendedList.get(i).getSerial().trim()) || ContentConfig.SERIAL.ELECTRICITY_OLD.equals(extendedList.get(i).getSerial().trim())){
+                    extendedList.get(i).setName("电量模块");
                 }
             }
             adapter = new DeviceListAdapter(R.layout.item_device_list, extendedList);
-
         } else if (ioList != null) {
             strTitle = "io控制模块";
             titleBar.setTextTitle(strTitle);
@@ -120,6 +122,15 @@ public class DeviceListActivity extends BaseActivity {
             }
             adapter = new DeviceListAdapter(R.layout.item_device_list, ioList);
 
+        }else if(curtainList!=null){
+            strTitle = "窗帘控制模块";
+            titleBar.setTextTitle(strTitle);
+            for (int i = 0; i < curtainList.size(); i++) {
+                if (ContentConfig.SERIAL.SWITCH4_CURTAIN.equals(curtainList.get(i).getSerial().trim()) || ContentConfig.SERIAL.SWITCH4_CURTAIN_OLD.equals(curtainList.get(i).getSerial().trim())) {
+                    curtainList.get(i).setName("窗帘控制模块");
+                }
+            }
+            adapter = new DeviceListAdapter(R.layout.item_device_list, ioList);
         }
 //        if (TextUtils.isEmpty(strTitle)) {
 //            titleBar.setTextTitle(strTitle);
@@ -159,15 +170,18 @@ public class DeviceListActivity extends BaseActivity {
                         bundle.putString("title",colouredLightsList.get(position).getName());
                         bundle.putString("id",colouredLightsList.get(position).getId()+"");
                         bundle.putString("serial",colouredLightsList.get(position).getSerial().trim());
-
                         startActivity(ConfigSingleDeviceActivity.class,bundle);
-
                         break;
                     case ContentConfig.DEVICETYPE.EXTENDED:
                         bundle.putString("title",extendedList.get(position).getName());
                         bundle.putString("id",extendedList.get(position).getId()+"");
                         bundle.putString("serial",extendedList.get(position).getSerial().trim());
-
+                        startActivity(ConfigSingleDeviceActivity.class,bundle);
+                        break;
+                    case ContentConfig.DEVICETYPE.CURTAIN:
+                        bundle.putString("title",colouredLightsList.get(position).getName());
+                        bundle.putString("id",colouredLightsList.get(position).getId()+"");
+                        bundle.putString("serial",colouredLightsList.get(position).getSerial().trim());
                         startActivity(ConfigSingleDeviceActivity.class,bundle);
 
                         break;
@@ -175,7 +189,6 @@ public class DeviceListActivity extends BaseActivity {
                         bundle.putString("title",ioList.get(position).getName());
                         bundle.putString("id",ioList.get(position).getId()+"");
                         bundle.putString("serial",ioList.get(position).getSerial().trim());
-
                         startActivity(ConfigSingleDeviceActivity.class,bundle);
                         break;
                 }

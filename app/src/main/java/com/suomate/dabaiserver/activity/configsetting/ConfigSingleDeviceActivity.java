@@ -11,8 +11,12 @@ import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.adapter.ConfigSingleDeviceAdapter;
 import com.suomate.dabaiserver.base.activity.BaseActivity;
 import com.suomate.dabaiserver.bean.ConfigSingleDeviceBean;
+import com.suomate.dabaiserver.bean.Result;
+import com.suomate.dabaiserver.utils.UrlUtils;
 import com.suomate.dabaiserver.utils.config.ContentConfig;
+import com.suomate.dabaiserver.utils.net.AbstractRequest;
 import com.suomate.dabaiserver.widget.TitleBar;
+import com.yanzhenjie.nohttp.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +29,11 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
     @BindView(R.id.tb)
     TitleBar titleBar;
     private int type;
-    private  String serial,title,id;
+    private String serial, title, id;
 
     private List<ConfigSingleDeviceBean> list = new ArrayList<>();
     private ConfigSingleDeviceAdapter adapter;
+    private int curPosition;
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
@@ -46,15 +51,30 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Bundle bundle = new Bundle();
-                bundle.putString("title",title);
-                bundle.putString("id",id);
-                bundle.putString("serial",serial);
-                bundle.putString("port",list.get(position).getPort()+"");
-
-                startActivity(ConfigAddDeviceActivity.class,bundle);
+                curPosition=position;
+                AbstractRequest request = buildRequest(UrlUtils.CHECK_DEVICE_PORT, ContentConfig.STRING_TYPE, RequestMethod.POST, null);
+                request.add("guid", getGuid());
+                request.add("main_engine_id", id);
+                request.add("port", list.get(position).getPort() + "");
+                executeNetwork(1, holdonMsg, request);
             }
         });
+    }
+
+    @Override
+    protected <T> void mHandle200(int what, Result<T> result) {
+        super.mHandle200(what, result);
+        switch (what) {
+            case 1:
+                Bundle bundle = new Bundle();
+                bundle.putString("title", title);
+                bundle.putString("id", id);
+                bundle.putString("serial", serial);
+                bundle.putString("port", list.get(curPosition).getPort() + "");
+                startActivity(ConfigAddDeviceActivity.class, bundle);
+                break;
+        }
+
     }
 
     @Override
@@ -67,7 +87,7 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
         id = bundle.getString("id");
         serial = bundle.getString("serial");
         type = bundle.getInt("type", 0);
-        title=bundle.getString("title");
+        title = bundle.getString("title");
         titleBar.setTextTitle(title);
         switch (type) {
             case ContentConfig.DEVICETYPE.SWITCH://开关执行模块
@@ -116,11 +136,7 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
                     getDevicePorts(6);
                 }
                 break;
-
-
         }
-
-
     }
 
     private void getDevicePorts(int count) {
