@@ -118,7 +118,7 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
         void onMenuClick();
     }
 
-    public void setOnMenuClickListener(RightMenuListener menuListener){
+    public void setOnRightMenuClickListener(RightMenuListener menuListener){
         this.menuListener = menuListener;
     }
 

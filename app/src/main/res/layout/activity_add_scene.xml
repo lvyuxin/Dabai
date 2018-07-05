@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_theme"
+    android:orientation="vertical"
+    tools:context="com.suomate.dabaiserver.activity.function.AddSceneActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.suomate.dabaiserver.widget.TitleBar
+        android:id="@+id/tb"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        app:rightText="@string/add_secene"
+        app:textTitle="场景添加" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@mipmap/moren_image">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/btn_quyu_dianjihou" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv1"
+            style="@style/host_tv"
+            android:layout_centerVertical="true"
+            android:text="场景名：" />
+
+        <EditText
+            android:id="@+id/scene_name_et"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv1"
+            android:textColorHint="@color/white" />
+
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:id="@+id/rl_area"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv2"
+            style="@style/host_tv"
+            android:layout_centerVertical="true"
+            android:text="请选择区域：" />
+
+        <EditText
+            android:textColor="@color/white"
+
+            android:textColorHint="@color/white"
+            android:focusable="false"
+            android:id="@+id/et_area"
+            style="@style/edittext_normal"
+            android:layout_toRightOf="@+id/tv2" />
+    </RelativeLayout>
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/rl_area"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:gravity="center_vertical">-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv2"-->
+            <!--style="@style/host_tv"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:text="请选择区域：" />-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/et_area"-->
+            <!--style="@style/edittext_normal"-->
+            <!--android:layout_toRightOf="@+id/tv2" />-->
+    <!--</RelativeLayout>-->
+    <RelativeLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:id="@+id/rl_start_model"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv3"
+            style="@style/host_tv"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="请选择启动模式：" />
+
+        <EditText
+            android:textColor="@color/white"
+            android:id="@+id/et_start_modle"
+            style="@style/edittext_normal"
+            android:layout_toRightOf="@+id/tv3" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/tv_start1"
+            style="@style/host_tv"
+            android:layout_centerHorizontal="true"
+            android:text="一键启动" />
+
+        <TextView
+            android:padding="10dp"
+            android:layout_below="@+id/tv_start1"
+            android:id="@+id/tv_start2"
+            style="@style/host_tv"
+            android:layout_centerHorizontal="true"
+            android:text="定时启动" />
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:id="@+id/rl_start_task"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv4"
+            style="@style/host_tv"
+            android:layout_centerVertical="true"
+            android:text="请选择执行任务：" />
+
+        <EditText
+            android:focusable="true"
+            android:textColor="@color/white"
+            android:id="@+id/et_start_task"
+            style="@style/edittext_normal"
+            android:layout_toRightOf="@+id/tv4" />
+    </RelativeLayout>
+</LinearLayout>
+</ScrollView>

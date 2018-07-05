@@ -9,5 +9,6 @@
     <string name="area">区域列表</string>
     <string name="nominate">命名</string>
     <string name="save_sucess">保存成功</string>
+    <string name="add_secene">添加</string>
 
 </resources>

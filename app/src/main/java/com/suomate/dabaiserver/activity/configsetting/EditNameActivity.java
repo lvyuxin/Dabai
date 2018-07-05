@@ -38,7 +38,7 @@ public class EditNameActivity extends BaseActivity {
     }
 
     private void binEvent() {
-        tb.setOnMenuClickListener(new TitleBar.RightMenuListener() {
+        tb.setOnRightMenuClickListener(new TitleBar.RightMenuListener() {
             @Override
             public void onMenuClick() {
                 switch (type) {

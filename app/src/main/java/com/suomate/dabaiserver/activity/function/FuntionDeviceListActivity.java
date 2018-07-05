@@ -54,6 +54,7 @@ public class FuntionDeviceListActivity extends BaseActivity {
     }
 
     private void bindevent() {
+
         //点击开关按钮
         adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override

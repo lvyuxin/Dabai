@@ -197,7 +197,7 @@ public class ConfigFragment extends BaseFragment {
 
 
     private void classifyLocalDevice(ReadJson.AlldeviceBean alldevice) {
-        if (alldevice.getData() != null) {
+        if (alldevice != null) {
             List<ReadJson.AlldeviceBean.DataBean> alldeviceData = alldevice.getData();
             for (int i = 0; i < alldeviceData.size(); i++) {
                 //开关执行模块
@@ -251,7 +251,7 @@ public class ConfigFragment extends BaseFragment {
             }
         });
 
-        titlebar.setOnMenuClickListener(new TitleBar.RightMenuListener() {
+        titlebar.setOnRightMenuClickListener(new TitleBar.RightMenuListener() {
             @Override
             public void onMenuClick() {
                 showToast("点击了右边菜单");
@@ -260,11 +260,11 @@ public class ConfigFragment extends BaseFragment {
     }
 
     private void classifyThirdPartyDevice(ReadJson.OtherdeviceBean threeParty) {
-        if (threeParty.getCamera() != null) {
+        if (threeParty != null) {
             cameraBeanList.addAll(threeParty.getCamera());
         }
 
-        if (threeParty.getAir_conditioner() != null) {
+        if (threeParty != null) {
             airConditionerBeanList.addAll(threeParty.getAir_conditioner().getList());
 
         }

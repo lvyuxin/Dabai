@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_theme"
+    android:descendantFocusability="blocksDescendants"
+    android:layout_height="@dimen/normal_item_height">
+
+    <TextView
+        style="@style/host_tv"
+        android:id="@+id/task_name"
+        android:text="11111"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"/>
+    <Button
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:id="@+id/btn_check"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:padding="15dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/selector_tick" />
+<include layout="@layout/item_line"/>
+</RelativeLayout>

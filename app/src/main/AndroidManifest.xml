@@ -48,7 +48,9 @@
         <activity android:name=".activity.area.AreaDeviceListActivity" />
         <activity android:name=".activity.function.FuntionDeviceListActivity" />
         <activity android:name=".activity.configsetting.AddDeviceActivity" />
-        <activity android:name=".activity.configsetting.PanelNumberSelectActivity"></activity>
+        <activity android:name=".activity.configsetting.PanelNumberSelectActivity" />
+        <activity android:name=".activity.function.AddSceneActivity" />
+        <activity android:name=".activity.function.StartSceneTaskActivity"></activity>
     </application>
 
 </manifest>

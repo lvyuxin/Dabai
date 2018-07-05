@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.suomate.dabaiserver.R;
+import com.suomate.dabaiserver.activity.function.AddSceneActivity;
 import com.suomate.dabaiserver.activity.function.FuntionDeviceListActivity;
 import com.suomate.dabaiserver.adapter.classifyListAdapter;
 import com.suomate.dabaiserver.base.fragment.BaseFragment;
@@ -16,6 +17,7 @@ import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.utils.UrlUtils;
 import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
+import com.suomate.dabaiserver.widget.TitleBar;
 import com.yanzhenjie.nohttp.RequestMethod;
 
 import java.util.ArrayList;
@@ -26,6 +28,8 @@ import butterknife.BindView;
 public class FunctionFragment extends BaseFragment {
     @BindView(R.id.recycler)
     RecyclerView recycler;
+    @BindView(R.id.tb)
+    TitleBar tb;
     private classifyListAdapter adapter;
     private List<ClassifyListBean.DataBean> list = new ArrayList<>();
 
@@ -46,6 +50,16 @@ public class FunctionFragment extends BaseFragment {
 
 
     private void bindEvent() {
+
+        //添加场景的入口
+        tb.setOnRightMenuClickListener(new TitleBar.RightMenuListener() {
+            @Override
+            public void onMenuClick() {
+                startActivity(AddSceneActivity.class,null);
+
+            }
+        });
+
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -55,8 +69,6 @@ public class FunctionFragment extends BaseFragment {
                 startActivity(FuntionDeviceListActivity.class,bundle);
             }
         });
-
-
 
     }
     private void requestData() {

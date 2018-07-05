@@ -78,7 +78,7 @@ public class AreaSelectListActivity extends BaseActivity {
             }
         });
 
-        tb.setOnMenuClickListener(new TitleBar.RightMenuListener() {//自定义
+        tb.setOnRightMenuClickListener(new TitleBar.RightMenuListener() {//自定义
             @Override
             public void onMenuClick() {
                 Bundle bundle=new Bundle();

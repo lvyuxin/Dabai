@@ -76,7 +76,7 @@ public class ClassifyDeviceListActivity extends BaseActivity {
             }
         });
 
-        tb.setOnMenuClickListener(new TitleBar.RightMenuListener() {
+        tb.setOnRightMenuClickListener(new TitleBar.RightMenuListener() {
             @Override
             public void onMenuClick() {
                 Bundle bundle = new Bundle();

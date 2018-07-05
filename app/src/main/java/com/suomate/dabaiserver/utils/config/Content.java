@@ -52,12 +52,37 @@ public class Content {
         public final static String IO_OLD = "MI0606A";
         //视屏监控
         public final static String MONITOR = "SMT-JK1.0";
-
-
     }
+    public final static class CONTROL_TYPE {
+        public final static String  SWITCH = "switchLight";
+        //4路弱电开关执行模块 窗帘
+//        public final static String  = "SMT-CLNET";
+        //窗帘模块
+        public final static String SWITCH4_CURTAIN = "SMT-KG04L";
+        public final static String SWITCH4_CURTAIN_OLD = "ET-CR04A";
 
+        //调光执行模块
+        public final static String DIMMING = "dimmerLight";
+
+        //彩灯控制模块
+        public final static String COLORFUL_LIGHT = "SMT-DMX08";
+        public final static String COLORFUL_LIGHT_OLD = "ET-DMX08A";
+        //扩展模块
+        public final static String EXTENDED_XINFEN = "SMT-XFZH";
+        public final static String EXTENDED_DINUAN = "SMT-DNZH";
+        //电量
+        public final static String ELECTRICITY = "SMT-DL";
+        public static final String ELECTRICITY_OLD="SP01A";
+        //面板
+        public final static String INTELLIGENT_PANEL = "intelligentPanel";
+        //IO模块
+        public final static String IO_PANEL = "panel";
+
+
+        //视屏监控
+        public final static String MONITOR = "SMT-JK1.0";
+    }
     public final static class DEVICETYPE {
-
         public final static int SWITCH = 1;
         public final static int DIMMING = 2;
         public final static int PANEL = 3;
