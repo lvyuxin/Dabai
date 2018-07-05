@@ -13,7 +13,7 @@ import com.suomate.dabaiserver.base.activity.BaseActivity;
 import com.suomate.dabaiserver.bean.ClassifyListBean;
 import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.utils.UrlUtils;
-import com.suomate.dabaiserver.utils.config.ContentConfig;
+import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
 import com.suomate.dabaiserver.widget.TitleBar;
 import com.yanzhenjie.nohttp.RequestMethod;
@@ -50,7 +50,7 @@ public class ClassifyDeviceListActivity extends BaseActivity {
     }
 
     private void requestData() {
-        AbstractRequest request = buildRequest(UrlUtils.CLASSIFY_LIST, ContentConfig.LIST_TYPE, RequestMethod.GET, ClassifyListBean.DataBean.class);
+        AbstractRequest request = buildRequest(UrlUtils.CLASSIFY_LIST, Content.LIST_TYPE, RequestMethod.GET, ClassifyListBean.DataBean.class);
         request.add("guid",getGuid());
         executeNetwork(1, holdonMsg, request);
     }
@@ -69,7 +69,7 @@ public class ClassifyDeviceListActivity extends BaseActivity {
         adapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
-                AbstractRequest request = buildRequest(UrlUtils.DELETE_CLASSIFY_ITEM, ContentConfig.LIST_TYPE, RequestMethod.GET, null);
+                AbstractRequest request = buildRequest(UrlUtils.DELETE_CLASSIFY_ITEM, Content.LIST_TYPE, RequestMethod.GET, null);
                 request.add("classify_id", list.get(position).getClassify_id());
                 executeNetwork(2, holdonMsg, request);
                 return false;
@@ -80,7 +80,7 @@ public class ClassifyDeviceListActivity extends BaseActivity {
             @Override
             public void onMenuClick() {
                 Bundle bundle = new Bundle();
-                bundle.putInt("type", ContentConfig.TYPE.CLASSIFY);
+                bundle.putInt("type", Content.TYPE.CLASSIFY);
                 startActivityForResult(EditNameActivity.class, bundle, REQUEST_CODE);
             }
         });

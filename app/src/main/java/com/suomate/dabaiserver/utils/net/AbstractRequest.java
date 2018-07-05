@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.utils.config.AppConfig;
-import com.suomate.dabaiserver.utils.config.ContentConfig;
+import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.utils.LogUtils;
 import com.yanzhenjie.nohttp.Headers;
 import com.yanzhenjie.nohttp.RequestMethod;
@@ -41,7 +41,7 @@ public abstract class AbstractRequest<T> extends RestRequest<Result<T>> {
             // 响应码等于200，Http层成功。
             if (body == null || body.length == 0) {
                 // 服务器包体为空。
-                return new Result<>(ContentConfig.REQUEST_BODY_NULL, null, "body为空");
+                return new Result<>(Content.REQUEST_BODY_NULL, null, "body为空");
             } else {
                 // 这里可以统一打印所有请求的数据哦：
                 String bodyString = StringRequest.parseResponseString(headers, body);
@@ -60,14 +60,14 @@ public abstract class AbstractRequest<T> extends RestRequest<Result<T>> {
                     T result = getResult(bodyString);
                     return new Result<>(code, result, msg);
                 } else {
-                    if (code == ContentConfig.REQUEST_SCUCESS) {
+                    if (code == Content.REQUEST_SCUCESS) {
                         try {
                             T result = getResult(data);
                             return new Result<>(code, result, msg);
                         } catch (Exception e) {
-                            return new Result<>(ContentConfig.PARSE_WRONG, null, "实体类解析出现问题，请检查实体类!");
+                            return new Result<>(Content.PARSE_WRONG, null, "实体类解析出现问题，请检查实体类!");
                         }
-                    } else if (code == ContentConfig.PARAMETER_INCOMPLETE || code == ContentConfig.REQUEST_FAILD || code == ContentConfig.EXSISTED) {
+                    } else if (code == Content.PARAMETER_INCOMPLETE || code == Content.REQUEST_FAILD || code == Content.EXSISTED) {
                         return new Result<>(code, null, msg);
                     } else {
                         return new Result<>(code, null, "没有和服务端约定的状态");
@@ -75,7 +75,7 @@ public abstract class AbstractRequest<T> extends RestRequest<Result<T>> {
                 }
             }
         } else {
-            return new Result<>(ContentConfig.SERVER_WRONG, null, "服务器异常");
+            return new Result<>(Content.SERVER_WRONG, null, "服务器异常");
         }
     }
 

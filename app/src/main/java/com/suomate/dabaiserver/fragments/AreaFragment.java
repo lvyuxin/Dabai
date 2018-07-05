@@ -15,7 +15,7 @@ import com.suomate.dabaiserver.base.fragment.BaseFragment;
 import com.suomate.dabaiserver.bean.AreaSelectListBean;
 import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.utils.UrlUtils;
-import com.suomate.dabaiserver.utils.config.ContentConfig;
+import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
 import com.yanzhenjie.nohttp.RequestMethod;
 
@@ -55,7 +55,7 @@ public class AreaFragment extends BaseFragment {
     }
 
     private void requestData() {
-        AbstractRequest request = buildRequest(UrlUtils.AREA_LIST, ContentConfig.LIST_TYPE, RequestMethod.GET, AreaSelectListBean.DataBean.class);
+        AbstractRequest request = buildRequest(UrlUtils.AREA_LIST, Content.LIST_TYPE, RequestMethod.GET, AreaSelectListBean.DataBean.class);
         request.add("guid",getGuid());
         executeNetwork(1, holdonMsg, request);
     }

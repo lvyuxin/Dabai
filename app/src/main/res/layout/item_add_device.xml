@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/normal_item_height"
+    android:background="@color/background_theme">
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/host_tv"
+        android:layout_centerVertical="true"
+        android:text="111"
+        android:layout_marginLeft="20dp"/>
+    <TextView
+        android:id="@+id/tv_type"
+        style="@style/host_tv"
+        android:layout_centerVertical="true"
+        android:text="222"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"/>
+    <include layout="@layout/item_line" />
+</RelativeLayout>

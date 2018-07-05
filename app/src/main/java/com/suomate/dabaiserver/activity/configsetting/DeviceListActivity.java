@@ -10,7 +10,7 @@ import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.adapter.DeviceListAdapter;
 import com.suomate.dabaiserver.base.activity.BaseActivity;
 import com.suomate.dabaiserver.bean.ReadJson;
-import com.suomate.dabaiserver.utils.config.ContentConfig;
+import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.widget.TitleBar;
 
 import java.util.List;
@@ -56,13 +56,13 @@ public class DeviceListActivity extends BaseActivity {
             strTitle = "开关执行模块";
             titleBar.setTextTitle(strTitle);
             for (int i = 0; i < switchList.size(); i++) {
-                if (ContentConfig.SERIAL.SWITCH8.equals(switchList.get(i).getSerial().trim()) || ContentConfig.SERIAL.SWITCH8_OLD.equals(switchList.get(i).getSerial().trim())) {
+                if (Content.SERIAL.SWITCH8.equals(switchList.get(i).getSerial().trim()) || Content.SERIAL.SWITCH8_OLD.equals(switchList.get(i).getSerial().trim())) {
                     switchList.get(i).setName("8路16A开关执行模块");
-                } else if (ContentConfig.SERIAL.SWITCH4.equals(switchList.get(i).getSerial().trim()) || ContentConfig.SERIAL.SWITCH4_OLD.equals(switchList.get(i).getSerial().trim())) {
+                } else if (Content.SERIAL.SWITCH4.equals(switchList.get(i).getSerial().trim()) || Content.SERIAL.SWITCH4_OLD.equals(switchList.get(i).getSerial().trim())) {
                     switchList.get(i).setName("4路16A开关执行模块");
-                } else if (ContentConfig.SERIAL.SWITCH4_CURTAIN.equals(switchList.get(i).getSerial().trim()) || ContentConfig.SERIAL.SWITCH4_CURTAIN_OLD.equals(switchList.get(i).getSerial().trim())) {
+                } else if (Content.SERIAL.SWITCH4_CURTAIN.equals(switchList.get(i).getSerial().trim()) || Content.SERIAL.SWITCH4_CURTAIN_OLD.equals(switchList.get(i).getSerial().trim())) {
                     switchList.get(i).setName("4路弱电开关执行模块");
-                } else if (ContentConfig.SERIAL.SWITCH485_CURTAIN.equals(switchList.get(i).getSerial().trim())) {
+                } else if (Content.SERIAL.SWITCH485_CURTAIN.equals(switchList.get(i).getSerial().trim())) {
                     switchList.get(i).setName("窗帘485模块");
 
                 }
@@ -72,9 +72,9 @@ public class DeviceListActivity extends BaseActivity {
             strTitle = "调光执行模块";
             titleBar.setTextTitle(strTitle);
             for (int i = 0; i < dimmingList.size(); i++) {
-                if (ContentConfig.SERIAL.DIMMING2.equals(dimmingList.get(i).getSerial().trim()) || ContentConfig.SERIAL.DIMMING2_OLD.equals(dimmingList.get(i).getSerial().trim())) {
+                if (Content.SERIAL.DIMMING2.equals(dimmingList.get(i).getSerial().trim()) || Content.SERIAL.DIMMING2_OLD.equals(dimmingList.get(i).getSerial().trim())) {
                     dimmingList.get(i).setName("2路1A照明调光模块");
-                } else if (ContentConfig.SERIAL.DIMMING4.equals(dimmingList.get(i).getSerial().trim()) || ContentConfig.SERIAL.DIMMING4_OLD.equals(dimmingList.get(i).getSerial().trim())) {
+                } else if (Content.SERIAL.DIMMING4.equals(dimmingList.get(i).getSerial().trim()) || Content.SERIAL.DIMMING4_OLD.equals(dimmingList.get(i).getSerial().trim())) {
                     dimmingList.get(i).setName("4路16A开关执行模块");
                 }
             }
@@ -83,7 +83,7 @@ public class DeviceListActivity extends BaseActivity {
             strTitle = "面板";
             titleBar.setTextTitle(strTitle);
             for (int i = 0; i < panelList.size(); i++) {
-                if (ContentConfig.SERIAL.PANEL.equals(panelList.get(i).getSerial().trim()) || ContentConfig.SERIAL.PANEL_OLD.equals(panelList.get(i).getSerial().trim())) {
+                if (Content.SERIAL.PANEL.equals(panelList.get(i).getSerial().trim()) || Content.SERIAL.PANEL_OLD.equals(panelList.get(i).getSerial().trim())) {
                     panelList.get(i).setName("面板模块");
                 }
             }
@@ -93,7 +93,7 @@ public class DeviceListActivity extends BaseActivity {
             strTitle = "彩灯控制模块";
             titleBar.setTextTitle(strTitle);
             for (int i = 0; i < colouredLightsList.size(); i++) {
-                if (ContentConfig.SERIAL.COLORFUL_LIGHT.equals(colouredLightsList.get(i).getSerial().trim()) || ContentConfig.SERIAL.COLORFUL_LIGHT_OLD.equals(colouredLightsList.get(i).getSerial().trim())) {
+                if (Content.SERIAL.COLORFUL_LIGHT.equals(colouredLightsList.get(i).getSerial().trim()) || Content.SERIAL.COLORFUL_LIGHT_OLD.equals(colouredLightsList.get(i).getSerial().trim())) {
                     colouredLightsList.get(i).setName("彩灯控制模块");
                 }
             }
@@ -103,11 +103,11 @@ public class DeviceListActivity extends BaseActivity {
             titleBar.setTextTitle(strTitle);
             titleBar.setTextTitle(strTitle);
             for (int i = 0; i < extendedList.size(); i++) {
-                if (ContentConfig.SERIAL.EXTENDED_XINFEN.equals(extendedList.get(i).getSerial().trim())) {
+                if (Content.SERIAL.EXTENDED_XINFEN.equals(extendedList.get(i).getSerial().trim())) {
                     extendedList.get(i).setName("新风模块");
-                }else if( ContentConfig.SERIAL.EXTENDED_DINUAN.equals(extendedList.get(i).getSerial().trim())){
+                }else if( Content.SERIAL.EXTENDED_DINUAN.equals(extendedList.get(i).getSerial().trim())){
                     extendedList.get(i).setName("地暖模块");
-                }else if(ContentConfig.SERIAL.ELECTRICITY.equals(extendedList.get(i).getSerial().trim()) || ContentConfig.SERIAL.ELECTRICITY_OLD.equals(extendedList.get(i).getSerial().trim())){
+                }else if(Content.SERIAL.ELECTRICITY.equals(extendedList.get(i).getSerial().trim()) || Content.SERIAL.ELECTRICITY_OLD.equals(extendedList.get(i).getSerial().trim())){
                     extendedList.get(i).setName("电量模块");
                 }
             }
@@ -116,7 +116,7 @@ public class DeviceListActivity extends BaseActivity {
             strTitle = "io控制模块";
             titleBar.setTextTitle(strTitle);
             for (int i = 0; i < ioList.size(); i++) {
-                if (ContentConfig.SERIAL.IO.equals(ioList.get(i).getSerial().trim()) || ContentConfig.SERIAL.IO_OLD.equals(ioList.get(i).getSerial().trim())) {
+                if (Content.SERIAL.IO.equals(ioList.get(i).getSerial().trim()) || Content.SERIAL.IO_OLD.equals(ioList.get(i).getSerial().trim())) {
                     ioList.get(i).setName("io控制模块");
                 }
             }
@@ -126,15 +126,12 @@ public class DeviceListActivity extends BaseActivity {
             strTitle = "窗帘控制模块";
             titleBar.setTextTitle(strTitle);
             for (int i = 0; i < curtainList.size(); i++) {
-                if (ContentConfig.SERIAL.SWITCH4_CURTAIN.equals(curtainList.get(i).getSerial().trim()) || ContentConfig.SERIAL.SWITCH4_CURTAIN_OLD.equals(curtainList.get(i).getSerial().trim())) {
+                if (Content.SERIAL.SWITCH4_CURTAIN.equals(curtainList.get(i).getSerial().trim()) || Content.SERIAL.SWITCH4_CURTAIN_OLD.equals(curtainList.get(i).getSerial().trim())) {
                     curtainList.get(i).setName("窗帘控制模块");
                 }
             }
-            adapter = new DeviceListAdapter(R.layout.item_device_list, ioList);
+            adapter = new DeviceListAdapter(R.layout.item_device_list, curtainList);
         }
-//        if (TextUtils.isEmpty(strTitle)) {
-//            titleBar.setTextTitle(strTitle);
-//        }
         recycler.setAdapter(adapter);
     }
 
@@ -145,47 +142,44 @@ public class DeviceListActivity extends BaseActivity {
                 Bundle bundle=new Bundle();
                 bundle.putInt("type",type);
                 switch (type) {
-                    case ContentConfig.DEVICETYPE.SWITCH:
+                    case Content.DEVICETYPE.SWITCH:
                         bundle.putString("title",switchList.get(position).getName());
                         bundle.putString("id",switchList.get(position).getId()+"");
                         bundle.putString("serial",switchList.get(position).getSerial().trim());
                         startActivity(ConfigSingleDeviceActivity.class,bundle);
 //                        startActivity(new Intent(DeviceListActivity.this,ConfigSingleDeviceActivity.class));
                         break;
-                    case ContentConfig.DEVICETYPE.DIMMING:
+                    case Content.DEVICETYPE.DIMMING:
                         bundle.putString("title",dimmingList.get(position).getName());
                         bundle.putString("id",dimmingList.get(position).getId()+"");
                         bundle.putString("serial",dimmingList.get(position).getSerial().trim());
                         startActivity(ConfigSingleDeviceActivity.class,bundle);
-
                         break;
-                    case ContentConfig.DEVICETYPE.PANEL:
+                    case Content.DEVICETYPE.PANEL:
                         bundle.putString("title",panelList.get(position).getName());
                         bundle.putString("id",panelList.get(position).getId()+"");
                         bundle.putString("serial",panelList.get(position).getSerial().trim());
                         startActivity(ConfigSingleDeviceActivity.class,bundle);
-
                         break;
-                    case ContentConfig.DEVICETYPE.COLOREDLIGHT:
+                    case Content.DEVICETYPE.COLOREDLIGHT:
                         bundle.putString("title",colouredLightsList.get(position).getName());
                         bundle.putString("id",colouredLightsList.get(position).getId()+"");
                         bundle.putString("serial",colouredLightsList.get(position).getSerial().trim());
                         startActivity(ConfigSingleDeviceActivity.class,bundle);
                         break;
-                    case ContentConfig.DEVICETYPE.EXTENDED:
+                    case Content.DEVICETYPE.EXTENDED:
                         bundle.putString("title",extendedList.get(position).getName());
                         bundle.putString("id",extendedList.get(position).getId()+"");
                         bundle.putString("serial",extendedList.get(position).getSerial().trim());
                         startActivity(ConfigSingleDeviceActivity.class,bundle);
                         break;
-                    case ContentConfig.DEVICETYPE.CURTAIN:
-                        bundle.putString("title",colouredLightsList.get(position).getName());
-                        bundle.putString("id",colouredLightsList.get(position).getId()+"");
-                        bundle.putString("serial",colouredLightsList.get(position).getSerial().trim());
+                    case Content.DEVICETYPE.CURTAIN:
+                        bundle.putString("title",curtainList.get(position).getName());
+                        bundle.putString("id",curtainList.get(position).getId()+"");
+                        bundle.putString("serial",curtainList.get(position).getSerial().trim());
                         startActivity(ConfigSingleDeviceActivity.class,bundle);
-
                         break;
-                    case ContentConfig.DEVICETYPE.IO:
+                    case Content.DEVICETYPE.IO:
                         bundle.putString("title",ioList.get(position).getName());
                         bundle.putString("id",ioList.get(position).getId()+"");
                         bundle.putString("serial",ioList.get(position).getSerial().trim());

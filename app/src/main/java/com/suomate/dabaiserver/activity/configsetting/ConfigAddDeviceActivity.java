@@ -8,13 +8,9 @@ import android.widget.TextView;
 
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.base.activity.BaseActivity;
-import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.utils.LogUtils;
-import com.suomate.dabaiserver.utils.UrlUtils;
-import com.suomate.dabaiserver.utils.config.ContentConfig;
-import com.suomate.dabaiserver.utils.net.AbstractRequest;
+import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.widget.TitleBar;
-import com.yanzhenjie.nohttp.RequestMethod;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,7 +27,7 @@ public class ConfigAddDeviceActivity extends BaseActivity {
     TextView tvName;
     @BindView(R.id.device_icon_iv)
     ImageView ivDeviceIcon;
-    private String title, id, serial, area_id, classify_id, device_name, port, address;
+    private String title, main_engine_id, serial, area_id, classify_id, device_name, port, address;
     public static final int REQUEST_CODE_AREA = 101;
     public static final int REQUEST_CODE_CLASSIFY = 102;
     public static final int REQUEST_CODE_NOMINATE = 103;
@@ -46,7 +42,7 @@ public class ConfigAddDeviceActivity extends BaseActivity {
     public void getData() {
         Bundle bundle = getIntent().getExtras();
         title = bundle.getString("title");
-        id = bundle.getString("id");
+        main_engine_id = bundle.getString("id");
         serial = bundle.getString("serial");
         port = bundle.getString("port");
         tb.setTextTitle(title);
@@ -68,62 +64,50 @@ public class ConfigAddDeviceActivity extends BaseActivity {
                 break;
             case R.id.rl_niminate:
                 Bundle bundle = new Bundle();
-                bundle.putInt("type", ContentConfig.TYPE.NOMINATE);
+                bundle.putInt("type", Content.TYPE.NOMINATE);
                 startActivityForResult(EditNameActivity.class, bundle, REQUEST_CODE_NOMINATE);
                 break;
             case R.id.rl_icon:
                 startActivityForResult(DeviceIconSelectActivity.class, null, REQUEST_CODE_ICON);
                 break;
             case R.id.save_btn:
-                requestNext();
-//startActivityForResult();
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("area_id",area_id);
+                bundle1.putString("classify_id",classify_id);
+                bundle1.putString("device_name",device_name);
+                bundle1.putString("port",port);
+                bundle1.putString("main_engine_id",main_engine_id);
+                bundle1.putString("device_icon","");
+                bundle1.putString("type",serial);
+                bundle1.putString("search_version","");
+                //0不是1是
+                bundle1.putString("is_thirdly","0");
+                bundle1.putString("address",getAddress());
+                bundle1.putString("device_background_im","");
+
+                startActivity(AddDeviceActivity.class, bundle1);
                 break;
         }
     }
 
-    private void requestNext() {
-        AbstractRequest request = buildRequest(UrlUtils.DEVICE_ADD, ContentConfig.STRING_TYPE, RequestMethod.POST, null);
-        LogUtils.e(TAG,"guid:"+getGuid());
-        request.add("guid", getGuid());
-        request.add("area_id", area_id);
-        request.add("classify_id", classify_id);
-        request.add("device_name", device_name);
-        request.add("port", port);
-        request.add("main_engine_id", id);
-        //乱填的
-        request.add("device_icon", "http://101.201.50.1:808");
-        request.add("type", serial);
-        request.add("search_version", "0");//
-        request.add("show_version", "无用");//无用
-        //0不是1是
-        request.add("is_thirdly", "0");
-        request.add("address", getAddress());
-        request.add("device_background_im", "");//
-        request.add("panel_number", "");//
-        executeNetwork(1, "请稍后", request);
-    }
+
 
     public String getAddress() {
-        if (serial.equals(ContentConfig.SERIAL.PANEL) || ContentConfig.SERIAL.PANEL_OLD.equals(serial)) {//智能面板
-            address="{254.251.1."+id+"};";
-        }else if(serial.equals(ContentConfig.SERIAL.SWITCH485_CURTAIN)){
-            address="{254.0."+id+".1"+"};";
-        }else if(serial.equals(ContentConfig.SERIAL.EXTENDED_DINUAN)){
-            address="{254.0."+id+".1"+"};";
-        }else if(serial.equals(ContentConfig.SERIAL.EXTENDED_XINFEN)){
-            address="{254.0."+id+".1"+"};";
-        }else{
-            address="{254.0."+id+"."+port+"};";
+        if (serial.equals(Content.SERIAL.PANEL) || Content.SERIAL.PANEL_OLD.equals(serial)) {//智能面板
+            address = "{254.251.1." + main_engine_id + "};";
+        } else if (serial.equals(Content.SERIAL.SWITCH485_CURTAIN)) {
+            address = "{254.0." + main_engine_id + ".1" + "};";
+        } else if (serial.equals(Content.SERIAL.EXTENDED_DINUAN)) {
+            address = "{254.0." + main_engine_id + ".1" + "};";
+        } else if (serial.equals(Content.SERIAL.EXTENDED_XINFEN)) {
+            address = "{254.0." + main_engine_id + ".1" + "};";
+        } else {
+            address = "{254.0." + main_engine_id + "." + port + "};";
         }
         return address;
     }
 
-    @Override
-    protected <T> void mHandle200(int what, Result<T> result) {
-        super.mHandle200(what, result);
-        finish();
 
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -132,14 +116,14 @@ public class ConfigAddDeviceActivity extends BaseActivity {
             case REQUEST_CODE_AREA:
                 if (RESULT_OK == resultCode) {
                     area_id = data.getStringExtra("areaId");
-                    LogUtils.e(TAG,"areaid"+area_id);
+                    LogUtils.e(TAG, "areaid" + area_id);
                     tvArea.setText(data.getStringExtra("areaName"));
                 }
                 break;
             case REQUEST_CODE_CLASSIFY:
                 if (RESULT_OK == resultCode) {
                     classify_id = data.getStringExtra("classifyId");
-                    LogUtils.e(TAG,"classify_id"+classify_id);
+                    LogUtils.e(TAG, "classify_id" + classify_id);
                     tvClassify.setText(data.getStringExtra("classifyName"));
                 }
                 break;

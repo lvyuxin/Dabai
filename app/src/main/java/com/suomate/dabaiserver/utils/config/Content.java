@@ -4,7 +4,7 @@ package com.suomate.dabaiserver.utils.config;
  * Created by lenovo on 2018/6/20.
  */
 
-public class ContentConfig {
+public class Content {
     public static final int SERVER_WRONG = -7102;
     public static final int REQUEST_BODY_NULL = -2017;
     public static final int NOT_JSON_DATA = -4515;
@@ -21,6 +21,7 @@ public class ContentConfig {
     public final static class SERIAL {
         public final static String SWITCH8 = "SMT-JD0816A";
         public final static String SWITCH8_OLD = "ET-R0816A";
+
         public final static String SWITCH4 = "SMT-JD0416A";
         public final static String SWITCH4_OLD = "ET-R0416A";
         //4路弱电开关执行模块 窗帘
@@ -40,6 +41,7 @@ public class ContentConfig {
         //扩展模块
         public final static String EXTENDED_XINFEN = "SMT-XFZH";
         public final static String EXTENDED_DINUAN = "SMT-DNZH";
+        //电量
         public final static String ELECTRICITY = "SMT-DL";
         public static final String ELECTRICITY_OLD="SP01A";
         //面板
@@ -48,6 +50,7 @@ public class ContentConfig {
         //IO模块
         public final static String IO = "SMT-IO0606";
         public final static String IO_OLD = "MI0606A";
+        //视屏监控
         public final static String MONITOR = "SMT-JK1.0";
 
 

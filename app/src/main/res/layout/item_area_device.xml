@@ -14,6 +14,7 @@
     <Button
         android:id="@+id/switch_btn"
         style="@style/host_tv"
+        android:enabled="true"
         android:text="开关"
         android:layout_height="30dp"
         android:background="@drawable/shape_btn_solid"

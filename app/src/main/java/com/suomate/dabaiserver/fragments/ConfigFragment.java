@@ -19,7 +19,7 @@ import com.suomate.dabaiserver.bean.ConfigSettingBean;
 import com.suomate.dabaiserver.bean.ReadJson;
 import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.utils.UrlUtils;
-import com.suomate.dabaiserver.utils.config.ContentConfig;
+import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
 import com.suomate.dabaiserver.widget.TitleBar;
 import com.yanzhenjie.nohttp.RequestMethod;
@@ -69,7 +69,6 @@ public class ConfigFragment extends BaseFragment {
         goDeviceDetail();
     }
     private void goDeviceDetail() {
-
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -103,7 +102,6 @@ public class ConfigFragment extends BaseFragment {
                             bundle.putInt("type", 3);
                             startActivity(DeviceListActivity.class, bundle);
                         }
-
                         break;
                     case 4:
                         if (colouredLightsList.size() > 0) {
@@ -179,7 +177,7 @@ public class ConfigFragment extends BaseFragment {
     }
 
     private void requestData() {
-        AbstractRequest request = buildRequest(UrlUtils.GET_READJSON, ContentConfig.STRING_TYPE, RequestMethod.GET, null);
+        AbstractRequest request = buildRequest(UrlUtils.GET_READJSON, Content.STRING_TYPE, RequestMethod.GET, null);
         request.add("jsonname", "data.json");
         request.add("guid", getGuid());
         executeNetwork(1, "请稍后", request);
@@ -203,32 +201,32 @@ public class ConfigFragment extends BaseFragment {
             List<ReadJson.AlldeviceBean.DataBean> alldeviceData = alldevice.getData();
             for (int i = 0; i < alldeviceData.size(); i++) {
                 //开关执行模块
-                if (ContentConfig.SERIAL.SWITCH8.equals(alldeviceData.get(i).getSerial().trim()) || ContentConfig.SERIAL.SWITCH8_OLD.equals(alldeviceData.get(i).getSerial().trim())
-                        || ContentConfig.SERIAL.SWITCH4.equals(alldeviceData.get(i).getSerial().trim()) || ContentConfig.SERIAL.SWITCH4_OLD.equals(alldeviceData.get(i).getSerial().trim())
-                        || ContentConfig.SERIAL.SWITCH485_CURTAIN.equals(alldeviceData.get(i).getSerial().trim())) {
+                if (Content.SERIAL.SWITCH8.equals(alldeviceData.get(i).getSerial().trim()) || Content.SERIAL.SWITCH8_OLD.equals(alldeviceData.get(i).getSerial().trim())
+                        || Content.SERIAL.SWITCH4.equals(alldeviceData.get(i).getSerial().trim()) || Content.SERIAL.SWITCH4_OLD.equals(alldeviceData.get(i).getSerial().trim())
+                        || Content.SERIAL.SWITCH485_CURTAIN.equals(alldeviceData.get(i).getSerial().trim())) {
                     switchList.add(alldeviceData.get(i));
                     //调光执行模块
-                } else if (ContentConfig.SERIAL.DIMMING4.equals(alldeviceData.get(i).getSerial().trim()) || ContentConfig.SERIAL.DIMMING4_OLD.equals(alldeviceData.get(i).getSerial().trim())
-                        || ContentConfig.SERIAL.DIMMING2.equals(alldeviceData.get(i).getSerial().trim()) || ContentConfig.SERIAL.DIMMING2_OLD.equals(alldeviceData.get(i).getSerial().trim())) {
+                } else if (Content.SERIAL.DIMMING4.equals(alldeviceData.get(i).getSerial().trim()) || Content.SERIAL.DIMMING4_OLD.equals(alldeviceData.get(i).getSerial().trim())
+                        || Content.SERIAL.DIMMING2.equals(alldeviceData.get(i).getSerial().trim()) || Content.SERIAL.DIMMING2_OLD.equals(alldeviceData.get(i).getSerial().trim())) {
                     dimmingList.add(alldeviceData.get(i));
                     //彩灯模块
-                } else if (ContentConfig.SERIAL.COLORFUL_LIGHT.equals(alldeviceData.get(i).getSerial().trim()) || ContentConfig.SERIAL.COLORFUL_LIGHT_OLD.equals(alldeviceData.get(i).getSerial().trim())) {
+                } else if (Content.SERIAL.COLORFUL_LIGHT.equals(alldeviceData.get(i).getSerial().trim()) || Content.SERIAL.COLORFUL_LIGHT_OLD.equals(alldeviceData.get(i).getSerial().trim())) {
                     colouredLightsList.add(alldeviceData.get(i));
                     //窗帘模块
-                } else if (ContentConfig.SERIAL.SWITCH4_CURTAIN_OLD.equals(alldeviceData.get(i).getSerial().trim()) || ContentConfig.SERIAL.SWITCH4_CURTAIN.equals(alldeviceData.get(i).getSerial().trim())) {
+                } else if (Content.SERIAL.SWITCH4_CURTAIN_OLD.equals(alldeviceData.get(i).getSerial().trim()) || Content.SERIAL.SWITCH4_CURTAIN.equals(alldeviceData.get(i).getSerial().trim())) {
                     curtainList.add(alldeviceData.get(i));
                     //扩展模块
-                } else if (ContentConfig.SERIAL.EXTENDED_XINFEN.equals(alldeviceData.get(i).getSerial().trim()) || ContentConfig.SERIAL.EXTENDED_DINUAN.equals(alldeviceData.get(i).getSerial().trim())
-                        || ContentConfig.SERIAL.ELECTRICITY.equals(alldeviceData.get(i).getSerial().trim())) {
+                } else if (Content.SERIAL.EXTENDED_XINFEN.equals(alldeviceData.get(i).getSerial().trim()) || Content.SERIAL.EXTENDED_DINUAN.equals(alldeviceData.get(i).getSerial().trim())
+                        || Content.SERIAL.ELECTRICITY.equals(alldeviceData.get(i).getSerial().trim())) {
                     extendedList.add(alldeviceData.get(i));
                     //面板
-                } else if (ContentConfig.SERIAL.PANEL.equals(alldeviceData.get(i).getSerial().trim()) || ContentConfig.SERIAL.PANEL_OLD.equals(alldeviceData.get(i).getSerial().trim())) {
+                } else if (Content.SERIAL.PANEL.equals(alldeviceData.get(i).getSerial().trim()) || Content.SERIAL.PANEL_OLD.equals(alldeviceData.get(i).getSerial().trim())) {
                     panelList.add(alldeviceData.get(i));
                     //IO模块
-                } else if (ContentConfig.SERIAL.IO.equals(alldeviceData.get(i).getSerial().trim()) || ContentConfig.SERIAL.IO_OLD.equals(alldeviceData.get(i).getSerial().trim())) {
+                } else if (Content.SERIAL.IO.equals(alldeviceData.get(i).getSerial().trim()) || Content.SERIAL.IO_OLD.equals(alldeviceData.get(i).getSerial().trim())) {
                     ioList.add(alldeviceData.get(i));
                     //视屏监控
-                } else if (ContentConfig.SERIAL.MONITOR.equals(alldeviceData.get(i).getSerial().trim())) {
+                } else if (Content.SERIAL.MONITOR.equals(alldeviceData.get(i).getSerial().trim())) {
 
                 } else {//环境类的
 

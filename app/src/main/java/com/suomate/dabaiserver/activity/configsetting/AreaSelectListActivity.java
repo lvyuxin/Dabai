@@ -13,7 +13,7 @@ import com.suomate.dabaiserver.base.activity.BaseActivity;
 import com.suomate.dabaiserver.bean.AreaSelectListBean;
 import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.utils.UrlUtils;
-import com.suomate.dabaiserver.utils.config.ContentConfig;
+import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
 import com.suomate.dabaiserver.widget.TitleBar;
 import com.yanzhenjie.nohttp.RequestMethod;
@@ -50,7 +50,7 @@ public class AreaSelectListActivity extends BaseActivity {
     }
 
     private void requestData() {
-        AbstractRequest request = buildRequest(UrlUtils.AREA_LIST, ContentConfig.LIST_TYPE, RequestMethod.GET, AreaSelectListBean.DataBean.class);
+        AbstractRequest request = buildRequest(UrlUtils.AREA_LIST, Content.LIST_TYPE, RequestMethod.GET, AreaSelectListBean.DataBean.class);
         request.add("guid",getGuid());
         executeNetwork(1, holdonMsg, request);
     }
@@ -70,7 +70,7 @@ public class AreaSelectListActivity extends BaseActivity {
         adapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
-                AbstractRequest request = buildRequest(UrlUtils.DELETE_AREA_ITEM, ContentConfig.LIST_TYPE, RequestMethod.GET, null);
+                AbstractRequest request = buildRequest(UrlUtils.DELETE_AREA_ITEM, Content.LIST_TYPE, RequestMethod.GET, null);
                 request.add("area_id", list.get(position).getArea_id());
                 executeNetwork(2, holdonMsg, request);
                 deleteCurPosition=position;

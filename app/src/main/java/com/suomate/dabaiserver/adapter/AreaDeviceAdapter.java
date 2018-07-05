@@ -21,5 +21,8 @@ public class AreaDeviceAdapter extends BaseQuickAdapter<AreaDeviceEntity, BaseVi
     @Override
     protected void convert(BaseViewHolder helper, AreaDeviceEntity item) {
         helper.setText(R.id.area_device_name, item.getDevice_name());
+        helper.addOnClickListener(R.id.switch_btn);
+
     }
+
 }

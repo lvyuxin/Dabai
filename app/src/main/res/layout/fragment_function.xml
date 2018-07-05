@@ -1,9 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
+    android:orientation="vertical"
     tools:context="com.suomate.dabaiserver.fragments.FunctionFragment">
 
+    <com.suomate.dabaiserver.widget.TitleBar
+        android:id="@+id/tb"
+        android:layout_width="match_parent"
+        app:hasIvTitle="true"
+        app:TitleSrc="@mipmap/btn_gongneng_dianjihou"
+        app:hasRightIcon="true"
+        app:backImg="@mipmap/icon_more_select"
+        app:rightIcon="@mipmap/icon_add"
+        android:layout_height="@dimen/title_bar_height" />
 
-</FrameLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

@@ -9,7 +9,7 @@ import com.suomate.dabaiserver.base.activity.BaseActivity;
 import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.utils.UrlUtils;
 import com.suomate.dabaiserver.utils.config.AppConfig;
-import com.suomate.dabaiserver.utils.config.ContentConfig;
+import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
 import com.suomate.dabaiserver.widget.TitleBar;
 import com.yanzhenjie.nohttp.RequestMethod;
@@ -42,19 +42,19 @@ public class EditNameActivity extends BaseActivity {
             @Override
             public void onMenuClick() {
                 switch (type) {
-                    case ContentConfig.TYPE.AREA:
-                        AbstractRequest request1 = buildRequest(UrlUtils.CUSTOM_AREA_NAME, ContentConfig.LIST_TYPE, RequestMethod.GET, null);
+                    case Content.TYPE.AREA:
+                        AbstractRequest request1 = buildRequest(UrlUtils.CUSTOM_AREA_NAME, Content.LIST_TYPE, RequestMethod.GET, null);
                         request1.add("guid", AppConfig.getInstance().getString("guid", ""));
                         request1.add("name", editText.getText().toString());
                         executeNetwork(1, holdonMsg, request1);
                         break;
-                    case ContentConfig.TYPE.CLASSIFY:
-                        AbstractRequest request2 = buildRequest(UrlUtils.CUSTOM_CLASSIFY_NAME, ContentConfig.LIST_TYPE, RequestMethod.GET, null);
+                    case Content.TYPE.CLASSIFY:
+                        AbstractRequest request2 = buildRequest(UrlUtils.CUSTOM_CLASSIFY_NAME, Content.LIST_TYPE, RequestMethod.GET, null);
                         request2.add("guid", AppConfig.getInstance().getString("guid", ""));
                         request2.add("name", editText.getText().toString());
                         executeNetwork(2, holdonMsg, request2);
                         break;
-                    case ContentConfig.TYPE.NOMINATE:
+                    case Content.TYPE.NOMINATE:
                         Intent intent = getIntent();
                         intent.putExtra("name",editText.getText().toString());
                         setResult(RESULT_OK,intent);

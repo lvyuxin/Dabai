@@ -3,11 +3,8 @@ package com.suomate.dabaiserver.utils;
 /**
  * 所有的url类
  * Created by lenovo on 2018/6/20.
- * http://101.201.50.1:808/readJson
- * http://101.201.50.1:808/a_new_dabai/public/index.php/classify/add?guid=123456975&name="dd"
- * http://101.201.50.1:808/a_new_dabai/public/index.php/device/getDeciceAccessArea
- *  http://101.201.50.1:808/a_new_dabai/public/index.php/device/add
- http://101.201.50.1:808/a_new_dabai/public/index.php/device/delete
+ http://101.201.50.1:808/a_new_dabai/public/index.php/device/getDeciceAccessClassify
+ *
  */
 
 public class UrlUtils {
@@ -25,7 +22,12 @@ public class UrlUtils {
     public static final String DEVICE_ADD = BASEWEBSITE + "/a_new_dabai/public/index.php/device/add";
     public static final String CHECK_DEVICE_PORT = BASEWEBSITE + "/a_new_dabai/public/index.php/device/isHasDevice";
     //区域部分
-    public static final String  AREA_DEVICE= BASEWEBSITE + "/a_new_dabai/public/index.php/device/getDeciceAccessArea";
-    public static final String  AREA_DEVICE_DELETE= BASEWEBSITE + "/a_new_dabai/public/index.php/device/delete";
+    public static final String AREA_DEVICE = BASEWEBSITE + "/a_new_dabai/public/index.php/device/getDeciceAccessArea";
+    public static final String AREA_DEVICE_DELETE = BASEWEBSITE + "/a_new_dabai/public/index.php/device/delete";
+    //控制开关的接口
+    public static final String OPEN_NORMAL_LIGHT = BASEWEBSITE1 + "/sendMsg";
+    //功能部分
+    public static final String FUNCTION_DEVICE_LIST=BASEWEBSITE+"/a_new_dabai/public/index.php/device/getDeciceAccessClassify";
+
 
 }

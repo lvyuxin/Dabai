@@ -26,6 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".utils.DeviceService" />
+
         <activity android:name=".activity.TestDataActivity" />
         <activity android:name=".activity.LoadAndRefreshActivity" />
         <activity android:name=".activity.configsetting.IntelligentHostActivity" />
@@ -42,7 +45,10 @@
         <activity android:name=".activity.configsetting.DeviceSelectListActivity" />
         <activity android:name=".activity.configsetting.DeviceIconSelectActivity" />
         <activity android:name=".activity.configsetting.DeviceNextActivity" />
-        <activity android:name=".activity.area.AreaDeviceListActivity"></activity>
+        <activity android:name=".activity.area.AreaDeviceListActivity" />
+        <activity android:name=".activity.function.FuntionDeviceListActivity" />
+        <activity android:name=".activity.configsetting.AddDeviceActivity" />
+        <activity android:name=".activity.configsetting.PanelNumberSelectActivity"></activity>
     </application>
 
 </manifest>

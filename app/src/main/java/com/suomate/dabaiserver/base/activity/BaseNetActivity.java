@@ -2,7 +2,7 @@ package com.suomate.dabaiserver.base.activity;
 
 
 import com.suomate.dabaiserver.bean.Result;
-import com.suomate.dabaiserver.utils.config.ContentConfig;
+import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
 import com.suomate.dabaiserver.utils.net.CallServer;
 import com.suomate.dabaiserver.utils.net.EntityListRequest;
@@ -30,11 +30,11 @@ public abstract class BaseNetActivity extends BaseDefaultUIActivity {
 
     protected <T> AbstractRequest buildRequest(String url,int  requestType, RequestMethod method, Class<T> clazz) {
         AbstractRequest request=null;
-        if (requestType==ContentConfig.ENTITY_TYPE) {
+        if (requestType== Content.ENTITY_TYPE) {
             request = new EntityRequest<>(url, method, clazz);
-        }else if(requestType==ContentConfig.LIST_TYPE){
+        }else if(requestType== Content.LIST_TYPE){
             request = new EntityListRequest<>(url, method,clazz);
-        }else if(requestType==ContentConfig.STRING_TYPE){
+        }else if(requestType== Content.STRING_TYPE){
             request = new StringRequest(url, method);
         }
         if (hasCache()) {
@@ -69,35 +69,35 @@ public abstract class BaseNetActivity extends BaseDefaultUIActivity {
             Result<T> tResult = response.get();
             int code = tResult.getCode();
             switch (code) {
-                case ContentConfig.REQUEST_SCUCESS://请求成功
+                case Content.REQUEST_SCUCESS://请求成功
                     if (mStatusView != null) {
                         mStatusView.content();
                     }
                     mHandle200(what, tResult);
                     break;
-                case ContentConfig.REQUEST_FAILD://请求失败
+                case Content.REQUEST_FAILD://请求失败
                     showToast(tResult.getMessage());
                     break;
-                case ContentConfig.PARAMETER_INCOMPLETE://参数不全
+                case Content.PARAMETER_INCOMPLETE://参数不全
                     showToast(tResult.getMessage());
                     break;
-                case ContentConfig.EXSISTED://已经存在
+                case Content.EXSISTED://已经存在
                     showToast(tResult.getMessage());
                     break;
-                case ContentConfig.SERVER_WRONG://服务器异常
+                case Content.SERVER_WRONG://服务器异常
                     showToast("code:" + code + "\n" + "msg :" + tResult.getMessage());
                     if (mStatusView != null) {
                         mStatusView.error();
                     }
                     mHandleFailed(what);
                     break;
-                case ContentConfig.REQUEST_BODY_NULL://请求包体为空
+                case Content.REQUEST_BODY_NULL://请求包体为空
                     showToast("code:" + code + "\n" + "msg :" + tResult.getMessage());
                     break;
-                case ContentConfig.NOT_JSON_DATA://服务端给的数据不是json数据
+                case Content.NOT_JSON_DATA://服务端给的数据不是json数据
                     showToast("code:" + code + "\n" + "msg :" + tResult.getMessage());
                     break;
-                case ContentConfig.PARSE_WRONG://解析异常
+                case Content.PARSE_WRONG://解析异常
                     showToast(tResult.getMessage());
                     break;
                 default:

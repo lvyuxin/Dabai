@@ -19,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <TextView
-
             style="@style/add_tv_style"
             android:text="区域"
            />

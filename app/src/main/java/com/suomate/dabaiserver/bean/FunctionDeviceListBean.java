@@ -1,10 +1,34 @@
 package com.suomate.dabaiserver.bean;
 
 /**
- * Created by lenovo on 2018/7/2.
+ * Created by fanxi on 2018/7/4.
  */
 
-public class AreaDeviceEntity {
+public class FunctionDeviceListBean {
+
+    /**
+     * device_id : 61
+     * area_id : 7
+     * classify_id : 7
+     * device_name : 地暖1
+     * port : 3
+     * main_engine_id : 56
+     * device_icon : http://101.201.50.1:808
+     * type : SMT-DNZH
+     * search_version : 0
+     * show_version : 无用
+     * is_thirdly : 0
+     * address : {254.0.56.1};
+     * device_background_img : null
+     * guid : 123456975
+     * control_type : null
+     * panel_number : null
+     * other_guid : null
+     * is_use : 0
+     * area_name : 测试区域
+     * classify_name : 地暖
+     */
+
     private int device_id;
     private int area_id;
     private int classify_id;
@@ -17,22 +41,22 @@ public class AreaDeviceEntity {
     private String show_version;
     private int is_thirdly;
     private String address;
-    private String device_background_img;
+    private Object device_background_img;
     private int guid;
     private Object control_type;
     private Object panel_number;
     private Object other_guid;
+    private int is_use;
     private String area_name;
     private String classify_name;
-    //自定义属性
-    private Boolean Open=false;
+    private boolean isOpen;
 
-    public Boolean isOpen() {
-        return Open;
+    public boolean isOpen() {
+        return isOpen;
     }
 
-    public void setOpen(Boolean open) {
-        Open = open;
+    public void setOpen(boolean open) {
+        isOpen = open;
     }
 
     public int getDevice_id() {
@@ -131,11 +155,11 @@ public class AreaDeviceEntity {
         this.address = address;
     }
 
-    public String getDevice_background_img() {
+    public Object getDevice_background_img() {
         return device_background_img;
     }
 
-    public void setDevice_background_img(String device_background_img) {
+    public void setDevice_background_img(Object device_background_img) {
         this.device_background_img = device_background_img;
     }
 
@@ -169,6 +193,14 @@ public class AreaDeviceEntity {
 
     public void setOther_guid(Object other_guid) {
         this.other_guid = other_guid;
+    }
+
+    public int getIs_use() {
+        return is_use;
+    }
+
+    public void setIs_use(int is_use) {
+        this.is_use = is_use;
     }
 
     public String getArea_name() {
