@@ -11,8 +11,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-
     <com.suomate.dabaiserver.widget.TitleBar
         android:id="@+id/tb"
         android:layout_width="match_parent"
@@ -20,10 +18,14 @@
         app:rightText="@string/add_secene"
         app:textTitle="场景添加" />
 
+    <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@mipmap/moren_img"/>-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@mipmap/moren_image">
+        android:background="@mipmap/moren_img">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -117,7 +119,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:text="请选择启动模式：" />
+            android:text="第一步：请选择启动模式：" />
 
         <EditText
             android:textColor="@color/white"
@@ -126,25 +128,25 @@
             android:layout_toRightOf="@+id/tv3" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
-        <TextView
-            android:padding="10dp"
-            android:id="@+id/tv_start1"
-            style="@style/host_tv"
-            android:layout_centerHorizontal="true"
-            android:text="一键启动" />
+        <!--<TextView-->
+            <!--android:padding="10dp"-->
+            <!--android:id="@+id/tv_start1"-->
+            <!--style="@style/host_tv"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:text="一键启动" />-->
 
-        <TextView
-            android:padding="10dp"
-            android:layout_below="@+id/tv_start1"
-            android:id="@+id/tv_start2"
-            style="@style/host_tv"
-            android:layout_centerHorizontal="true"
-            android:text="定时启动" />
-    </RelativeLayout>
+        <!--<TextView-->
+            <!--android:padding="10dp"-->
+            <!--android:layout_below="@+id/tv_start1"-->
+            <!--android:id="@+id/tv_start2"-->
+            <!--style="@style/host_tv"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:text="定时启动" />-->
+    <!--</RelativeLayout>-->
 
     <RelativeLayout
 
@@ -160,7 +162,7 @@
             android:id="@+id/tv4"
             style="@style/host_tv"
             android:layout_centerVertical="true"
-            android:text="请选择执行任务：" />
+            android:text="第二步：请选择执行任务：" />
 
         <EditText
             android:focusable="true"

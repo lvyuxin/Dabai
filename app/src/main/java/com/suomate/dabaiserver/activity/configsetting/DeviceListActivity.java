@@ -35,7 +35,7 @@ public class DeviceListActivity extends BaseActivity {
     private int type;
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setWindowStatusBarColor(R.color.black);
+        setWindowStatusBarColor(R.color.title_color);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         getData();
         event();

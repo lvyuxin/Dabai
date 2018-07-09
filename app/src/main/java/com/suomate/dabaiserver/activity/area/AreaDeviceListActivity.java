@@ -47,7 +47,7 @@ public class AreaDeviceListActivity extends BaseActivity {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setWindowStatusBarColor(R.color.black);
+        setWindowStatusBarColor(R.color.title_color);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AreaDeviceAdapter(R.layout.item_area_device, list);
         recyclerView.setAdapter(adapter);

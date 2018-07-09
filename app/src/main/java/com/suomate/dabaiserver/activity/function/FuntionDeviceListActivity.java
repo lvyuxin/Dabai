@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.suomate.dabaiserver.R;
-import com.suomate.dabaiserver.adapter.FunctionDeviceAdapter;
+import com.suomate.dabaiserver.adapter.function.FunctionDeviceAdapter;
 import com.suomate.dabaiserver.base.activity.BaseActivity;
 import com.suomate.dabaiserver.bean.FunctionDeviceListBean;
 import com.suomate.dabaiserver.bean.Result;
@@ -42,7 +42,7 @@ public class FuntionDeviceListActivity extends BaseActivity {
     }
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setWindowStatusBarColor(R.color.black);
+        setWindowStatusBarColor(R.color.title_color);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         Bundle bundle = getIntent().getExtras();
         classify_id = bundle.getString("classify_id");

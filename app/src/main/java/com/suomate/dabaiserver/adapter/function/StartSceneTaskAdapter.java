@@ -1,6 +1,7 @@
-package com.suomate.dabaiserver.adapter;
+package com.suomate.dabaiserver.adapter.function;
 
 import android.support.annotation.Nullable;
+import android.widget.CheckBox;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -21,11 +22,7 @@ public class StartSceneTaskAdapter extends BaseQuickAdapter<RequestInfoBean.Exec
     @Override
     protected void convert(BaseViewHolder helper, RequestInfoBean.ExecuteDevice item) {
         helper.setText(R.id.task_name,item.getName());
-        if (item.isSelect()) {
-            helper.setChecked(R.id.btn_check,true);
-        }else{
-            helper.setChecked(R.id.btn_check,false);
-        }
-//        helper.addOnClickListener(R.id.btn_check);
+        CheckBox checkBox = helper.getView(R.id.btn_check);
+        checkBox.setChecked(item.isSelect());
     }
 }

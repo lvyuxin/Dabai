@@ -10,7 +10,7 @@ public class DeviceSelectListActivity extends BaseActivity {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setWindowStatusBarColor(R.color.black);
+        setWindowStatusBarColor(R.color.title_color);
     }
 
     @Override

@@ -30,7 +30,7 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
     private int curPosition;
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setWindowStatusBarColor(R.color.black);
+        setWindowStatusBarColor(R.color.title_color);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         getData();
         adapter = new ConfigSingleDeviceAdapter(R.layout.item_config_single_device, list);

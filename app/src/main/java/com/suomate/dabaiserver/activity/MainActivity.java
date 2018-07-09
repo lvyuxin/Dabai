@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setWindowStatusBarColor(R.color.black);
+        setWindowStatusBarColor(R.color.title_color);
         AppConfig.getInstance().putString("guid","123456975");
         configFragment = new ConfigFragment();
         functionFragment = new FunctionFragment();

@@ -1,4 +1,4 @@
-package com.suomate.dabaiserver.adapter;
+package com.suomate.dabaiserver.adapter.function;
 
 import android.support.annotation.Nullable;
 

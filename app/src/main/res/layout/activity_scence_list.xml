@@ -1,20 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/title_color"
+    android:background="@color/background_theme"
     android:orientation="vertical"
-    tools:context="com.suomate.dabaiserver.fragments.FunctionFragment">
+    tools:context="com.suomate.dabaiserver.activity.function.ScenceListActivity">
 
     <com.suomate.dabaiserver.widget.TitleBar
+        app:textTitle="场景列表"
         android:id="@+id/tb"
         android:layout_width="match_parent"
-        app:hasIvTitle="true"
-        app:TitleSrc="@mipmap/btn_gongneng_dianjihou"
-        app:hasRightIcon="true"
-        app:backImg="@mipmap/icon_more_select"
         app:rightIcon="@mipmap/icon_add"
+        app:hasRightIcon="true"
         android:layout_height="@dimen/title_bar_height" />
 
     <android.support.v7.widget.RecyclerView

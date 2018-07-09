@@ -35,7 +35,7 @@ public class IntelligentHostActivity extends BaseActivity {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setWindowStatusBarColor(R.color.black);
+        setWindowStatusBarColor(R.color.title_color);
         String ipinfor = getIntent().getExtras().getString("ipinfor");
 //        String[] splits = ipinfor.split(",");
         //ip地址

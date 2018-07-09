@@ -3,7 +3,7 @@ package com.suomate.dabaiserver.utils;
 /**
  * 所有的url类
  * Created by lenovo on 2018/6/20.
- http://101.201.50.1:808/a_new_dabai/public/index.php/sceneInfo/sceneInfo
+ * http://101.201.50.1:808/a_new_dabai/public/index.php/sceneInfo/sceneInfo
  */
 
 public class UrlUtils {
@@ -26,11 +26,12 @@ public class UrlUtils {
     //控制开关的接口
     public static final String OPEN_NORMAL_LIGHT = BASEWEBSITE1 + "/sendMsg";
     //功能部分
-    public static final String FUNCTION_DEVICE_LIST=BASEWEBSITE+"/a_new_dabai/public/index.php/device/getDeciceAccessClassify";
+    public static final String FUNCTION_DEVICE_LIST = BASEWEBSITE + "/a_new_dabai/public/index.php/device/getDeciceAccessClassify";
     //一键添加场景功能
-    public static final String ADD_SCENCE=BASEWEBSITE+"/a_new_dabai/public/index.php/scene/addS";
-    public static final String SCENCE_LIST=BASEWEBSITE+"/a_new_dabai/public/index.php/sceneInfo/sceneInfo";
-   public static final String SCENCE_TIME_LIST=BASEWEBSITE+"/a_new_dabai/public/index.php/sceneInfo/timerInfo";
+    public static final String ADD_SCENCE = BASEWEBSITE + "/a_new_dabai/public/index.php/scene/addS";
+    public static final String SCENCE_LIST = BASEWEBSITE + "/a_new_dabai/public/index.php/sceneInfo/sceneInfo";
+    public static final String SCENCE_TIME_LIST = BASEWEBSITE + "/a_new_dabai/public/index.php/sceneInfo/timerInfo";
+    public static final String DELETE_SCENCE = BASEWEBSITE + "/a_new_dabai/public/index.php/scene/delete";
 
 
 

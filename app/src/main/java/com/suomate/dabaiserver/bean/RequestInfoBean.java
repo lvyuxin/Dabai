@@ -1,5 +1,7 @@
 package com.suomate.dabaiserver.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by fanxi on 2018/7/5.
  */
@@ -86,6 +88,62 @@ public class RequestInfoBean {
         }
     }
 
+    public static class ExecuteSelectDevice implements Serializable{
+        private String device_or_scene_id;
+        private String val;
+        private int delay;
+        private String type;
+        private String address;
+
+        public ExecuteSelectDevice(String device_or_scene_id, String val, int delay, String type, String address) {
+            this.device_or_scene_id = device_or_scene_id;
+            this.val = val;
+            this.delay = delay;
+            this.type = type;
+            this.address = address;
+        }
+
+        public String getDevice_or_scene_id() {
+            return device_or_scene_id;
+        }
+
+        public void setDevice_or_scene_id(String device_or_scene_id) {
+            this.device_or_scene_id = device_or_scene_id;
+        }
+
+        public String getVal() {
+            return val;
+        }
+
+        public void setVal(String val) {
+            this.val = val;
+        }
+
+        public int getDelay() {
+            return delay;
+        }
+
+        public void setDelay(int delay) {
+            this.delay = delay;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+    }
+
     public static class ExecuteDevice {
         @Override
         public String toString() {
@@ -124,7 +182,6 @@ public class RequestInfoBean {
             this.address = address;
             this.name = name;
         }
-
         public boolean isSelect() {
             return isSelect;
         }

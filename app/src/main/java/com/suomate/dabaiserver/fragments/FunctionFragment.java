@@ -8,8 +8,8 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.suomate.dabaiserver.R;
-import com.suomate.dabaiserver.activity.function.AddSceneActivity;
 import com.suomate.dabaiserver.activity.function.FuntionDeviceListActivity;
+import com.suomate.dabaiserver.activity.function.ScenceListActivity;
 import com.suomate.dabaiserver.adapter.classifyListAdapter;
 import com.suomate.dabaiserver.base.fragment.BaseFragment;
 import com.suomate.dabaiserver.bean.ClassifyListBean;
@@ -55,8 +55,7 @@ public class FunctionFragment extends BaseFragment {
         tb.setOnRightMenuClickListener(new TitleBar.RightMenuListener() {
             @Override
             public void onMenuClick() {
-                startActivity(AddSceneActivity.class,null);
-
+                startActivity(ScenceListActivity.class,null);
             }
         });
 

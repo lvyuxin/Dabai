@@ -40,7 +40,7 @@ public class AreaSelectListActivity extends BaseActivity {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        setWindowStatusBarColor(R.color.black);
+        setWindowStatusBarColor(R.color.title_color);
         tb.setTextTitle(getString(R.string.area));
         recycler.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AreaSelectListAdapter(R.layout.item_test, list);

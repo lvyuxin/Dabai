@@ -50,7 +50,9 @@
         <activity android:name=".activity.configsetting.AddDeviceActivity" />
         <activity android:name=".activity.configsetting.PanelNumberSelectActivity" />
         <activity android:name=".activity.function.AddSceneActivity" />
-        <activity android:name=".activity.function.StartSceneTaskActivity"></activity>
+        <activity android:name=".activity.function.StartSceneTaskActivity" />
+        <activity android:name=".activity.function.ScenceStartMudleActivity" />
+        <activity android:name=".activity.function.ScenceListActivity"></activity>
     </application>
 
 </manifest>
