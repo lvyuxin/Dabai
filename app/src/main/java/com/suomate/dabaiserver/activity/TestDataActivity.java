@@ -32,13 +32,7 @@ public class TestDataActivity extends BaseActivity {
     private BaseQuickAdapter adapter;
     private ArrayList<String> datas = new ArrayList<>();
     private int curPage=1;
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_test_data);
-//        ButterKnife.bind(this);
-////        tvShow = findViewById(R.id.tv_show);
-//    }
+
 
     @Override
     protected int bindLayout() {

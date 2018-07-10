@@ -45,6 +45,7 @@ public class AddSceneActivity extends BaseActivity {
     private String executeDevice;
     private int modeType;
     private String launchStr;
+
     @Override
     protected int bindLayout() {
         return R.layout.activity_add_scene;
@@ -57,7 +58,7 @@ public class AddSceneActivity extends BaseActivity {
         tb.setOnRightMenuClickListener(new TitleBar.RightMenuListener() {
             @Override
             public void onMenuClick() {
-                if (modeType==1||modeType==2) {
+                if (modeType == 1 || modeType == 2) {
                     requestData();
                 }
             }
@@ -78,21 +79,29 @@ public class AddSceneActivity extends BaseActivity {
     private void requestData() {
         RequestInfoBean.PhoneMessageBean phoneMessageBean = new RequestInfoBean.PhoneMessageBean("12345678901", "你好");
         RequestInfoBean.EmailMessageBean emailMessageBean = new RequestInfoBean.EmailMessageBean("12345678901@qq.com", "你好qq");
-        AbstractRequest request = buildRequest(UrlUtils.ADD_SCENCE, Content.LIST_TYPE, RequestMethod.POST, null);
+        AbstractRequest request;
+        if (modeType == 2) { //定时启动
+            request = buildRequest(UrlUtils.ADD_TIME_SCENCE, Content.LIST_TYPE, RequestMethod.POST, null);
+            request.add("timeTouch", launchStr);
+        } else {
+            request = buildRequest(UrlUtils.ADD_SCENCE, Content.LIST_TYPE, RequestMethod.POST, null);
+        }
         request.add("guid", getGuid());
         request.add("scene_img", "灯1");
         request.add("area_id", area_id);
         request.add("icon", "11");
-        if(modeType == 2){ //定时启动
-            request.add("timeTouch", launchStr);
-        }
         request.add("sceneName", etSceneName.getText().toString());
         request.add("message", "你好");
         request.add("app", "111");
         request.add("email", "397670543@qq.com");
         request.add("executeDevice", executeDevice);
         request.add("clickTouch", "1");
-        executeNetwork(1, holdonMsg, request);
+        if (modeType == 2) { //定时启动
+            executeNetwork(2, holdonMsg, request);
+        } else {
+            executeNetwork(1, holdonMsg, request);
+        }
+
     }
 
     @Override
@@ -117,7 +126,6 @@ public class AddSceneActivity extends BaseActivity {
             case R.id.rl_start_task:
                 startActivityForResult(StartSceneTaskActivity.class, null, REQUEST_TASK);
                 break;
-
         }
     }
 
@@ -150,7 +158,7 @@ public class AddSceneActivity extends BaseActivity {
     }
 
     @Subscribe
-    public void onEventMainThread(TimeLaunchBean launchBean){
+    public void onEventMainThread(TimeLaunchBean launchBean) {
         launchStr = JSON.toJSONString(launchBean);
     }
 

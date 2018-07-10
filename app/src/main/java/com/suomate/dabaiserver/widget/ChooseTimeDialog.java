@@ -6,18 +6,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.adapter.function.SelectTimeAdapter;
 import com.suomate.dabaiserver.bean.TimeBean;
 import com.suomate.dabaiserver.bean.TimeLaunchBean;
-
 import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import cn.carbswang.android.numberpickerview.library.NumberPickerView;
 
 /**
@@ -33,13 +29,14 @@ public class ChooseTimeDialog extends BaseDialog{
     private String strWeek = "";
     private int chooseHour,chooseMin;
 
-    public ChooseTimeDialog(@NonNull Context context, int themeResId) {
-        super(context, themeResId);
+    public ChooseTimeDialog(@NonNull Context context, int themeResId, boolean isShowBottom) {
+        super(context, themeResId, isShowBottom);
         setContentView(R.layout.dialog_choosetime);
         init();
         setRecyclerView();
         setData();
     }
+
 
     private void init() {
         pickerViewLeft = findViewById(R.id.number_pickerview_left);

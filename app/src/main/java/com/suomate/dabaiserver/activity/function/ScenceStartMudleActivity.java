@@ -3,7 +3,6 @@ package com.suomate.dabaiserver.activity.function;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.base.activity.BaseActivity;
 import com.suomate.dabaiserver.widget.ChooseTimeDialog;
@@ -55,7 +54,7 @@ public class ScenceStartMudleActivity extends BaseActivity {
             case R.id.tv_time_start:
                 modeType = 2;
 //                mTimepicker.setVisibility(View.VISIBLE);
-                new ChooseTimeDialog(this,R.style.basedialog_style).show();
+                new ChooseTimeDialog(this,R.style.basedialog_style,true).show();
                 break;
             case R.id.tv_linkage_start:
                 modeType = 3;

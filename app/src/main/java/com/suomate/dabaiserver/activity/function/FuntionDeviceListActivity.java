@@ -89,7 +89,7 @@ public class FuntionDeviceListActivity extends BaseActivity {
 
     private void sendOrder(FunctionDeviceListBean deviceEntity, int type) {
         String content = null;
-        AbstractRequest request = buildRequest(UrlUtils.OPEN_NORMAL_LIGHT, Content.STRING_TYPE, RequestMethod.GET, null);
+        AbstractRequest request = buildRequest(UrlUtils.SEND_ORDER, Content.STRING_TYPE, RequestMethod.GET, null);
         request.add("guid", getGuid() + "");
         request.add("extend", "0");
         request.add("name", deviceEntity.getDevice_name());

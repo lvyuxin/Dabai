@@ -50,7 +50,6 @@ public class StartSceneTaskActivity extends BaseActivity {
         recycler.setLayoutManager(new LinearLayoutManager(this));
         adapter = new StartSceneTaskAdapter(R.layout.item_scence_task, list);
         recycler.setAdapter(adapter);
-
         requestData();
         bindEvent();
     }
@@ -74,7 +73,6 @@ public class StartSceneTaskActivity extends BaseActivity {
                         selectList.add(new RequestInfoBean.ExecuteSelectDevice(list.get(i).getDevice_or_scene_id(),
                                 list.get(i).getVal(), list.get(i).getDelay(), list.get(i).getType(), list.get(i).getAddress()));
                     }
-
                 }
                 LogUtils.e("fancycount:"+count);
                 Intent intent = getIntent();

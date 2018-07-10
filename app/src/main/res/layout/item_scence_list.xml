@@ -5,10 +5,20 @@
     android:background="@color/background_theme">
 
     <TextView
-        android:layout_centerVertical="true"
-        android:layout_marginRight="20dp"
         android:id="@+id/tv_name"
-        style="@style/host_tv" />
+        style="@style/host_tv"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp" />
+
+    <TextView
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        style="@style/host_tv"
+        android:text="一键启动场景"
+        android:padding="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/tv_scence_start" />
 
     <include layout="@layout/item_line" />
 </RelativeLayout>

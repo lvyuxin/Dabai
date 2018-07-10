@@ -45,7 +45,7 @@ public abstract class AbstractRequest<T> extends RestRequest<Result<T>> {
             } else {
                 // 这里可以统一打印所有请求的数据哦：
                 String bodyString = StringRequest.parseResponseString(headers, body);
-                Log.e(TAG, "fancyresult: " + bodyString);
+                Log.d(TAG, "fancyresult: " + bodyString);
                 JSONObject bodyObject;
                 try {
                     bodyObject = JSON.parseObject(bodyString);
