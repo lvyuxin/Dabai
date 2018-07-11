@@ -17,8 +17,7 @@ public class ScenceDetailActivity extends BaseActivity {
     @BindView(R.id.tb)
     TitleBar tb;
     private int sceneId;
-
-
+//    private MoreDetailDialog moreDetailDialog;
     @Override
     protected int bindLayout() {
         return R.layout.activity_scence_detail;
@@ -29,15 +28,16 @@ public class ScenceDetailActivity extends BaseActivity {
         super.initViews(savedInstanceState);
         Bundle bundle = getIntent().getExtras();
         sceneId = bundle.getInt("sceneId");
+//        moreDetailDialog=new MoreDetailDialog(this,R.layout.dialog_scence_detail,true,getSupportFragmentManager());
         requestData();
         bindEnvent();
     }
 
     private void bindEnvent() {
-        //
         tb.setOnRightMenuClickListener(new TitleBar.RightMenuListener() {
             @Override
             public void onMenuClick() {
+//                moreDetailDialog.show();
 
             }
         });
@@ -56,7 +56,6 @@ public class ScenceDetailActivity extends BaseActivity {
         switch (what) {
             case 1:
                 break;
-
         }
     }
 }

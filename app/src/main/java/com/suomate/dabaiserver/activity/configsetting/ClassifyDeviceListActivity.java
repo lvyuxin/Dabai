@@ -24,7 +24,6 @@ import java.util.List;
 import butterknife.BindView;
 
 public class ClassifyDeviceListActivity extends BaseActivity {
-
     @BindView(R.id.tb)
     TitleBar tb;
     @BindView(R.id.recycler)
@@ -66,6 +65,7 @@ public class ClassifyDeviceListActivity extends BaseActivity {
                 finish();
             }
         });
+
         adapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {

@@ -1,5 +1,4 @@
 package com.suomate.dabaiserver.adapter;
-
 import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -17,7 +16,6 @@ public class ConfigSettingAdapter extends BaseQuickAdapter<ConfigSettingBean, Ba
     public ConfigSettingAdapter(int layoutResId, @Nullable List<ConfigSettingBean> data) {
         super(layoutResId, data);
     }
-
     @Override
     protected void convert(BaseViewHolder helper, ConfigSettingBean item) {
         helper.setText(R.id.config_device_name, item.getName());

@@ -1,4 +1,4 @@
-package com.suomate.dabaiserver.widget;
+package com.suomate.dabaiserver.widget.dialog;
 
 /**
  * Created by fanxi on 2018/7/8.

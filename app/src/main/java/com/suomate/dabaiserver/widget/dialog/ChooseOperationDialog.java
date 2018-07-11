@@ -1,4 +1,4 @@
-package com.suomate.dabaiserver.widget;
+package com.suomate.dabaiserver.widget.dialog;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

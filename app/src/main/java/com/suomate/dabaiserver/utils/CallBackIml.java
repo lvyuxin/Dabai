@@ -20,7 +20,10 @@ public class CallBackIml implements IcallBack{
     public void callBack(String str) {
 
     }
+    @Override
+    public void callBack(String id,String name) {
 
+    }
     @Override
     public void callBack(JSONObject obj) {
 
@@ -45,4 +48,5 @@ public class CallBackIml implements IcallBack{
     public void callBack(boolean boo) {
 
     }
+
 }

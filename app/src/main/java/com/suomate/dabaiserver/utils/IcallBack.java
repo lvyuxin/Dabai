@@ -21,7 +21,7 @@ public interface IcallBack {
     void confirmHandle();
 
     void callBack(int position);
-
+    void callBack(String  id,String name);
     void callBack(boolean boo);
 
 }

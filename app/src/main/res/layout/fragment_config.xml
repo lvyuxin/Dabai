@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background_theme"
+    android:background="@color/black"
     android:orientation="vertical"
     tools:context="com.suomate.dabaiserver.fragments.ConfigFragment">
 
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:minHeight="@dimen/title_bar_height"
         app:hasIvTitle="true"
+        app:hasLine="false"
         app:backImg="@mipmap/icon_more_select"
         app:TitleSrc="@mipmap/icon_config"
         app:rightIcon="@mipmap/btn_tupian_tianjia"

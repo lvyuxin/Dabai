@@ -6,7 +6,24 @@ package com.suomate.dabaiserver.bean;
 
 public class ConfigSingleDeviceBean {
     private int  port;
+    private String name;
+    private DeviceInfoBean deviceInfoBean;
 
+    public DeviceInfoBean getDeviceInfoBean() {
+        return deviceInfoBean;
+    }
+
+    public void setDeviceInfoBean(DeviceInfoBean deviceInfoBean) {
+        this.deviceInfoBean = deviceInfoBean;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getPort() {
         return port;

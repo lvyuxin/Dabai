@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.base.activity.BaseActivity;
+import com.suomate.dabaiserver.utils.config.ContentStr;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,19 +37,19 @@ public class PanelNumberSelectActivity extends BaseActivity {
        intent= getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle.getInt("type") == 1) {//io面板
-            list.add("一按键无文字面板");
-            list.add("二按键无文字面板");
-            list.add("三按键无文字面板");
-            list.add("四按键无文字面板");
-            list.add("五按键无文字面板");
-            list.add("六按键无文字面板");
+            list.add(ContentStr.Control_type.io_panel1);
+            list.add(ContentStr.Control_type.io_panel2);
+            list.add(ContentStr.Control_type.io_panel3);
+            list.add(ContentStr.Control_type.io_panel4);
+            list.add(ContentStr.Control_type.io_panel5);
+            list.add(ContentStr.Control_type.io_panel6);
         } else {
-            list.add("一按键有文字面板");
-            list.add("二按键有文字面板");
-            list.add("三按键有文字面板");
-            list.add("四按键有文字面板");
-            list.add("五按键有文字面板");
-            list.add("六按键有文字面板");
+            list.add(ContentStr.Control_type.intelligent_panel1);
+            list.add(ContentStr.Control_type.intelligent_panel2);
+            list.add(ContentStr.Control_type.intelligent_panel3);
+            list.add(ContentStr.Control_type.intelligent_panel4);
+            list.add(ContentStr.Control_type.intelligent_panel5);
+            list.add(ContentStr.Control_type.intelligent_panel6);
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -62,6 +63,7 @@ public class PanelNumberSelectActivity extends BaseActivity {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 panel_number = position + 1;
                 intent.putExtra("panel_number",panel_number);
+                intent.putExtra("control_type",list.get(position));
                 setResult(RESULT_OK,intent);
                 showToast("选择成功！");
                 finish();

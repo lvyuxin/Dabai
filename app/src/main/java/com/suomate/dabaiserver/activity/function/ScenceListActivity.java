@@ -20,7 +20,7 @@ import com.suomate.dabaiserver.utils.LogUtils;
 import com.suomate.dabaiserver.utils.UrlUtils;
 import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
-import com.suomate.dabaiserver.widget.ChooseOperationDialog;
+import com.suomate.dabaiserver.widget.dialog.ChooseOperationDialog;
 import com.suomate.dabaiserver.widget.TitleBar;
 import com.yanzhenjie.nohttp.RequestMethod;
 

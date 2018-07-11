@@ -8,12 +8,14 @@
         tools:context=".activity.TestDataActivity"
         android:orientation="vertical">
 
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:onClick="get"-->
-            <!--android:text="get"-->
-            <!--tools:ignore="OnClick" />-->
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="get"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shape_btn_solid"
+            tools:ignore="OnClick" />
 
         <!--<Button-->
             <!--android:layout_width="wrap_content"-->

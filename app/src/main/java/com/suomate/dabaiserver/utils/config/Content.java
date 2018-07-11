@@ -96,6 +96,10 @@ public class Content {
         public final static int AREA = 1;
         public final static int CLASSIFY = 2;
         public final static int NOMINATE = 3;
+        public final static int TYPE_AREA = 1;
+//        public final static int CLASSIFY = 2;
+//        public final static int NOMINATE = 3;
+
 
     }
 }

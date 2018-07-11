@@ -1,23 +1,32 @@
 package com.suomate.dabaiserver.activity.configsetting;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.adapter.ConfigSingleDeviceAdapter;
 import com.suomate.dabaiserver.base.activity.BaseActivity;
 import com.suomate.dabaiserver.bean.ConfigSingleDeviceBean;
+import com.suomate.dabaiserver.bean.DeviceInfoBean;
 import com.suomate.dabaiserver.bean.Result;
+import com.suomate.dabaiserver.utils.LogUtils;
 import com.suomate.dabaiserver.utils.UrlUtils;
 import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
 import com.suomate.dabaiserver.widget.TitleBar;
 import com.yanzhenjie.nohttp.RequestMethod;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
+
 public class ConfigSingleDeviceActivity extends BaseActivity {
     @BindView(R.id.recycler)
     RecyclerView recycler;
@@ -26,48 +35,86 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
     private int type;
     private String serial, title, id;
     private List<ConfigSingleDeviceBean> list = new ArrayList<>();
+    private List<DeviceInfoBean> deviceInfoList = new ArrayList<>();
     private ConfigSingleDeviceAdapter adapter;
-    private int curPosition;
+    public static final int REQUEST_CODE=101;
+
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setWindowStatusBarColor(R.color.title_color);
         recycler.setLayoutManager(new LinearLayoutManager(this));
-        getData();
         adapter = new ConfigSingleDeviceAdapter(R.layout.item_config_single_device, list);
         View headerView = LayoutInflater.from(this).inflate(R.layout.config_device_header, null);
         adapter.addHeaderView(headerView);
         recycler.setAdapter(adapter);
+        getData();
+        requestData();
         bindEvent();
+    }
+
+    private void requestData() {
+        AbstractRequest request = buildRequest(UrlUtils.getDeciceAccessId, Content.LIST_TYPE, RequestMethod.POST, DeviceInfoBean.class);
+        request.add("guid", getGuid());
+        request.add("main_engine_id", id);
+        LogUtils.e("fancyid", id);
+        executeNetwork(2, request);
     }
 
     private void bindEvent() {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                curPosition=position;
-                AbstractRequest request = buildRequest(UrlUtils.CHECK_DEVICE_PORT, Content.STRING_TYPE, RequestMethod.POST, null);
-                request.add("guid", getGuid());
-                request.add("main_engine_id", id);
-                request.add("port", list.get(position).getPort() + "");
-                executeNetwork(1, holdonMsg, request);
+                Bundle bundle = new Bundle();
+                bundle.putString("id", id);
+                bundle.putString("serial", serial);
+                bundle.putString("port", list.get(position).getPort() + "");
+
+                if (TextUtils.isEmpty(list.get(position).getName())) {//添加设备
+                    bundle.putInt("type", 1);
+                    bundle.putString("title", "未命名");
+                } else {//修改设备
+                    bundle.putSerializable("deviceInfo", list.get(position).getDeviceInfoBean());
+                    bundle.putInt("type", 2);
+                    bundle.putString("title", list.get(position).getName());
+                }
+                startActivityForResult(ConfigAddDeviceActivity.class, bundle,REQUEST_CODE);
             }
         });
-    }
 
+    }
 
     @Override
     protected <T> void mHandle200(int what, Result<T> result) {
         super.mHandle200(what, result);
         switch (what) {
-            case 1:
-                Bundle bundle = new Bundle();
-                bundle.putString("title", title);
-                bundle.putString("id", id);
-                bundle.putString("serial", serial);
-                bundle.putString("port", list.get(curPosition).getPort() + "");
-                startActivity(ConfigAddDeviceActivity.class, bundle);
+            case 2:
+                deviceInfoList.clear();
+//                list.clear();
+                deviceInfoList.addAll((List<DeviceInfoBean>) result.getData());
+                for (int i = 0; i < deviceInfoList.size(); i++) {
+                    for (int i1 = 0; i1 < list.size(); i1++) {
+                        if (deviceInfoList.get(i).getPort() == list.get(i1).getPort()) {
+                            list.get(i1).setDeviceInfoBean(deviceInfoList.get(i));
+                            list.get(i1).setName(deviceInfoList.get(i).getArea_name() + "/" + deviceInfoList.get(i).getDevice_name());
+                        }
+                    }
+                }
+                adapter.notifyDataSetChanged();
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CODE:
+                requestData();
+                break;
+
+
+        }
+
     }
 
     @Override

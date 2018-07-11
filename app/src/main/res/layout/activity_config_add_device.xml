@@ -13,52 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_bar_height"
         app:hasLine="true" />
-
     <RelativeLayout
-        android:id="@+id/rl_area"
+        android:id="@+id/rl_port"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <TextView
+            android:id="@+id/port_tv"
             style="@style/add_tv_style"
-            android:text="区域"
-           />
-        <TextView
-            android:id="@+id/tv_area"
-            style="@style/add_right_tv_style"
-            android:text="" />
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:background="@color/grey_line"
-        android:layout_height="0.5dp"/>
-    <RelativeLayout
-        android:id="@+id/rl_classification"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <TextView
-            style="@style/add_tv_style"
-            android:text="类别"
+            android:text="端口"
             />
         <TextView
-            android:id="@+id/tv_classify"
+            android:id="@+id/tv_type"
             style="@style/add_right_tv_style" />
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:background="@color/grey_line"
-        android:layout_height="0.5dp"/>
-    <RelativeLayout
-        android:id="@+id/rl_niminate"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <TextView
-            style="@style/add_tv_style"
-            android:text="命名"
-            />
-        <TextView
-            android:id="@+id/tv_name"
-            style="@style/add_right_tv_style"
-            />
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
@@ -82,18 +48,92 @@
             android:src="@mipmap/icon_moren"
             />
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/grey_line"
+        android:layout_height="0.5dp"/>
+    <RelativeLayout
+        android:id="@+id/rl_niminate"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            style="@style/add_tv_style"
+            android:text="命名"
+            />
+        <TextView
+            android:text="请输入名称"
+            android:id="@+id/tv_name"
+            style="@style/add_right_tv_style"
+            />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/grey_line"
+        android:layout_height="0.5dp"/>
+    <RelativeLayout
+        android:id="@+id/rl_area"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            style="@style/add_tv_style"
+            android:text="区域"
+           />
+        <TextView
+
+            android:id="@+id/tv_area"
+            style="@style/add_right_tv_style"
+            android:text="请选择区域" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/grey_line"
+        android:layout_height="0.5dp"/>
+    <RelativeLayout
+        android:id="@+id/rl_classification"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            style="@style/add_tv_style"
+            android:text="分组"
+            />
+        <TextView
+            android:text="请选择分组"
+            android:id="@+id/tv_classify"
+            style="@style/add_right_tv_style" />
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/grey_line"
+        android:layout_height="0.5dp"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_control_type"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+
+            style="@style/add_tv_style"
+            android:text="类型"
+            />
+        <TextView
+            android:text="请选择类型"
+            android:id="@+id/tv_control_type"
+            style="@style/add_right_tv_style" />
+    </RelativeLayout>
+
 
     <View
         android:layout_width="match_parent"
         android:background="@color/grey_line"
         android:layout_height="0.5dp"/>
     <Button
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:id="@+id/save_btn"
         android:layout_width="250dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="15dp"
         android:textColor="@color/white"
         android:background="@drawable/shape_btn_solid"
         android:text="下一步" />

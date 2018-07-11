@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.base.activity.BaseActivity;
-import com.suomate.dabaiserver.widget.ChooseTimeDialog;
+import com.suomate.dabaiserver.widget.dialog.ChooseTimeDialog;
 import com.suomate.dabaiserver.widget.TitleBar;
 
 import butterknife.BindView;

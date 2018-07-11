@@ -7,12 +7,19 @@
     <color name="black">#000</color>
     <color name="white">#fff</color>
     <color name="app_bar_grey">#000</color>
+    <color name="item_bg">#1D1D1D</color>
     <color name="transparent">#00000000</color>
     <color name="grey_black_tv2">#808080</color>
     <color name="blue_btn">#408fff</color>
     <color name="grey_black_tv">#4c4c4c</color>
     <color name="total_transparent">#00000000</color>
-    <color name="background_theme">#333</color>
+
+    <!--<color name="background_theme">#333</color>-->
+    <color name="background_theme">#1D1D1D</color>
     <color name="line_bg">#484848</color>
     <color name="grey_line">#484848</color>
+    <!--配置部分专用的颜色-->
+    <color name="item_config_bg">#ff333333</color>
+
+
 </resources>

@@ -3,7 +3,7 @@ package com.suomate.dabaiserver.utils;
 /**
  * 所有的url类
  * Created by lenovo on 2018/6/20.
- http://101.201.50.1:808/a_new_dabai/public/index.php/sceneInfo/getSceneInfo
+ * http://101.201.50.1:808/a_new_dabai/public/index.php/device/update
  */
 
 public class UrlUtils {
@@ -19,7 +19,10 @@ public class UrlUtils {
     public static final String DELETE_CLASSIFY_ITEM = BASEWEBSITE + "/a_new_dabai/public/index.php/classify/delete";
     public static final String DELETE_AREA_ITEM = BASEWEBSITE + "/a_new_dabai/public/index.php/area/delete";
     public static final String DEVICE_ADD = BASEWEBSITE + "/a_new_dabai/public/index.php/device/add";
+
+    public static final String DEVICE_UPDATE = BASEWEBSITE + "/a_new_dabai/public/index.php/device/update";
     public static final String CHECK_DEVICE_PORT = BASEWEBSITE + "/a_new_dabai/public/index.php/device/isHasDevice";
+    public static final String getDeciceAccessId = BASEWEBSITE + "/a_new_dabai/public/index.php/device/getDeciceAccessId";
     //区域部分
     public static final String AREA_DEVICE = BASEWEBSITE + "/a_new_dabai/public/index.php/device/getDeciceAccessArea";
     public static final String AREA_DEVICE_DELETE = BASEWEBSITE + "/a_new_dabai/public/index.php/device/delete";
@@ -33,5 +36,5 @@ public class UrlUtils {
     public static final String SCENCE_TIME_LIST = BASEWEBSITE + "/a_new_dabai/public/index.php/sceneInfo/timerInfo";
     public static final String DELETE_SCENCE = BASEWEBSITE + "/a_new_dabai/public/index.php/scene/delete";
     public static final String ADD_TIME_SCENCE = BASEWEBSITE + "/a_new_dabai/public/index.php/timer/addT";
-   public static final String  SCENCE_DETAIL=BASEWEBSITE+"/a_new_dabai/public/index.php/sceneInfo/getSceneInfo";
+    public static final String SCENCE_DETAIL = BASEWEBSITE + "/a_new_dabai/public/index.php/sceneInfo/getSceneInfo";
 }

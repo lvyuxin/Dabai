@@ -1,4 +1,4 @@
-package com.suomate.dabaiserver.widget;
+package com.suomate.dabaiserver.widget.dialog;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -156,7 +156,6 @@ public class ChooseTimeDialog extends BaseDialog{
             }
             strWeek= strWeek.substring(0, strWeek.lastIndexOf(","));
         }
-
         TimeLaunchBean bean = new TimeLaunchBean();
         bean.setHour(chooseHour+"");
         bean.setMinute(chooseMin+"");
