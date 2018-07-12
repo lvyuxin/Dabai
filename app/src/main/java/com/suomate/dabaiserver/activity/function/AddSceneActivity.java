@@ -4,19 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.suomate.dabaiserver.R;
-import com.suomate.dabaiserver.activity.configsetting.AreaSelectListActivity;
 import com.suomate.dabaiserver.base.activity.BaseActivity;
+import com.suomate.dabaiserver.bean.AreaSelectListBean;
 import com.suomate.dabaiserver.bean.RequestInfoBean;
 import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.bean.TimeLaunchBean;
+import com.suomate.dabaiserver.utils.CallBackIml;
 import com.suomate.dabaiserver.utils.LogUtils;
 import com.suomate.dabaiserver.utils.UrlUtils;
 import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
 import com.suomate.dabaiserver.widget.TitleBar;
+import com.suomate.dabaiserver.widget.dialog.SelectAreaDialog;
 import com.yanzhenjie.nohttp.RequestMethod;
 
 import org.greenrobot.eventbus.EventBus;
@@ -33,19 +36,23 @@ public class AddSceneActivity extends BaseActivity {
     TitleBar tb;
     @BindView(R.id.scene_name_et)
     EditText etSceneName;
-    @BindView(R.id.et_area)
-    EditText etArea;
-    @BindView(R.id.et_start_modle)
-    EditText etStartModle;
-    @BindView(R.id.et_start_task)
-    EditText etStartTask;
+    @BindView(R.id.area_tv)
+    TextView tvArea;
+
+//    @BindView(R.id.et_area)
+//    EditText etArea;
+//    @BindView(R.id.et_start_modle)
+//    EditText etStartModle;
+//    @BindView(R.id.et_start_task)
+//    EditText etStartTask;
     private String area_id;
     public static final int REQUEST_AREA = 90, REQUEST_TASK = 91, REQUEST_MODLE = 92;
     private List<RequestInfoBean.ExecuteSelectDevice> selectList = new ArrayList<>();
     private String executeDevice;
     private int modeType;
     private String launchStr;
-
+    private SelectAreaDialog selectAreaDialog;
+    private List<AreaSelectListBean.DataBean> areaList = new ArrayList<>();
     @Override
     protected int bindLayout() {
         return R.layout.activity_add_scene;
@@ -64,16 +71,15 @@ public class AddSceneActivity extends BaseActivity {
             }
         });
         bindEvent();
-
     }
 
     private void bindEvent() {
-        etArea.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivityForResult(AreaSelectListActivity.class, null, REQUEST_AREA);
-            }
-        });
+//        etArea.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivityForResult(AreaSelectListActivity.class, null, REQUEST_AREA);
+//            }
+//        });
     }
 
     private void requestData() {
@@ -86,6 +92,7 @@ public class AddSceneActivity extends BaseActivity {
         } else {
             request = buildRequest(UrlUtils.ADD_SCENCE, Content.LIST_TYPE, RequestMethod.POST, null);
         }
+
         request.add("guid", getGuid());
         request.add("scene_img", "灯1");
         request.add("area_id", area_id);
@@ -111,21 +118,45 @@ public class AddSceneActivity extends BaseActivity {
             case 1:
                 showToast("添加场景成功！");
                 break;
+            case 2://区域请求
+                areaList.addAll((List<AreaSelectListBean.DataBean>) result.getData());
+                selectAreaDialog = new SelectAreaDialog(this, R.style.basedialog_style, true, areaList);
+                selectAreaDialog.setCallBackIml(new CallBackIml() {
+                    @Override
+                    public void callBack(String id, String name) {
+                        super.callBack(id, name);
+                        area_id = id;
+                        tvArea.setText(name+ " ▼");
+                    }
+                });
+                selectAreaDialog.show();
+                break;
         }
     }
+    private void requestAreaData() {
+        AbstractRequest request = buildRequest(UrlUtils.AREA_LIST, Content.LIST_TYPE, RequestMethod.GET, AreaSelectListBean.DataBean.class);
+        request.add("guid", getGuid());
+        executeNetwork(2, holdonMsg, request);
+    }
 
-    @OnClick({R.id.rl_start_model, R.id.rl_start_task, R.id.rl_area})
+    @OnClick({R.id.rl_icon,R.id.rl_area,R.id.iv_add})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.rl_icon:
+                showToast("点了图片！");
+                break;
             case R.id.rl_area:
-                startActivityForResult(AreaSelectListActivity.class, null, REQUEST_AREA);
+                requestAreaData();
                 break;
-            case R.id.rl_start_model:
-                startActivityForResult(ScenceStartMudleActivity.class, null, REQUEST_MODLE);
+            case R.id.iv_add://添加条件
+                startActivityForResult(ScenceStartConditionActivity.class, null, REQUEST_MODLE);
                 break;
-            case R.id.rl_start_task:
-                startActivityForResult(StartSceneTaskActivity.class, null, REQUEST_TASK);
-                break;
+
+//            case R.id.rl_start_model:
+//                break;
+//            case R.id.rl_start_task:
+//                startActivityForResult(StartSceneTaskActivity.class, null, REQUEST_TASK);
+//                break;
         }
     }
 
@@ -136,14 +167,14 @@ public class AddSceneActivity extends BaseActivity {
             case REQUEST_AREA:
                 if (resultCode == RESULT_OK) {
                     area_id = data.getStringExtra("areaId");
-                    etArea.setText(data.getStringExtra("areaName"));
+//                    etArea.setText(data.getStringExtra("areaName"));
                 }
                 break;
             case REQUEST_TASK:
                 if (resultCode == RESULT_OK) {
                     selectList = (List<RequestInfoBean.ExecuteSelectDevice>) data.getSerializableExtra("selectList");
                     executeDevice = JSON.toJSONString(selectList);
-                    etStartTask.setText(selectList.size() + "");
+//                    etStartTask.setText(selectList.size() + "");
                     LogUtils.e(TAG, selectList.size() + executeDevice);
                 }
 

@@ -15,10 +15,11 @@
 
         <CheckBox
             android:id="@+id/check_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginLeft="10dp"
             android:enabled="false"
+            style="@null"
             android:background="@drawable/selector_tick"/>
 
     </LinearLayout>

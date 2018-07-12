@@ -1,18 +1,14 @@
 package com.suomate.dabaiserver.widget.dialog;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
 import com.suomate.dabaiserver.R;
-import com.suomate.dabaiserver.activity.TestDataActivity;
 import com.suomate.dabaiserver.bean.AreaSelectListBean;
-import com.suomate.dabaiserver.bean.DeviceAddBean;
 import com.suomate.dabaiserver.utils.CallBackIml;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.carbswang.android.numberpickerview.library.NumberPickerView;
@@ -21,7 +17,7 @@ import cn.carbswang.android.numberpickerview.library.NumberPickerView;
  * Created by fanxi on 2018/7/10.
  */
 
-public class ConfigSelectDialog extends BaseDialog {
+public class SelectAreaDialog extends BaseDialog {
     private TextView tvCancle, tvSure;
     private NumberPickerView pickerView;
     List<AreaSelectListBean.DataBean> areaList;
@@ -35,7 +31,7 @@ public class ConfigSelectDialog extends BaseDialog {
         this.callBackIml = callBackIml;
     }
 
-    public ConfigSelectDialog(@NonNull Context context, int themeResId, boolean isShowBottom, List<AreaSelectListBean.DataBean> areaList) {
+    public SelectAreaDialog(@NonNull Context context, int themeResId, boolean isShowBottom, List<AreaSelectListBean.DataBean> areaList) {
         super(context, themeResId, isShowBottom);
         setContentView(R.layout.dialog_config_select);
         this.areaList = areaList;
@@ -78,8 +74,9 @@ public class ConfigSelectDialog extends BaseDialog {
         tvCancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), TestDataActivity.class);
-                context.startActivity(intent);
+//                Intent intent = new Intent(getContext(), TestDataActivity.class);
+//                context.startActivity(intent);
+//                ((Activity)context).startActivityForResult();
                 dismiss();
             }
         });

@@ -24,6 +24,8 @@ public class PanelNumberSelectActivity extends BaseActivity {
     private List<String> list = new ArrayList<>();
     private int panel_number;
     Intent intent;
+    private int   type;
+    private String control_type;
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
@@ -36,20 +38,23 @@ public class PanelNumberSelectActivity extends BaseActivity {
         };
        intent= getIntent();
         Bundle bundle = intent.getExtras();
-        if (bundle.getInt("type") == 1) {//io面板
-            list.add(ContentStr.Control_type.io_panel1);
-            list.add(ContentStr.Control_type.io_panel2);
-            list.add(ContentStr.Control_type.io_panel3);
-            list.add(ContentStr.Control_type.io_panel4);
-            list.add(ContentStr.Control_type.io_panel5);
-            list.add(ContentStr.Control_type.io_panel6);
+         type = bundle.getInt("type");
+        if (type == 1) {//io面板
+            control_type=ContentStr.Control_type.panel;
+            list.add(ContentStr.Control_type_name.io_panel1);
+            list.add(ContentStr.Control_type_name.io_panel2);
+            list.add(ContentStr.Control_type_name.io_panel3);
+            list.add(ContentStr.Control_type_name.io_panel4);
+            list.add(ContentStr.Control_type_name.io_panel5);
+            list.add(ContentStr.Control_type_name.io_panel6);
         } else {
-            list.add(ContentStr.Control_type.intelligent_panel1);
-            list.add(ContentStr.Control_type.intelligent_panel2);
-            list.add(ContentStr.Control_type.intelligent_panel3);
-            list.add(ContentStr.Control_type.intelligent_panel4);
-            list.add(ContentStr.Control_type.intelligent_panel5);
-            list.add(ContentStr.Control_type.intelligent_panel6);
+            control_type=ContentStr.Control_type.intelligentPanel;
+            list.add(ContentStr.Control_type_name.intelligent_panel1);
+            list.add(ContentStr.Control_type_name.intelligent_panel2);
+            list.add(ContentStr.Control_type_name.intelligent_panel3);
+            list.add(ContentStr.Control_type_name.intelligent_panel4);
+            list.add(ContentStr.Control_type_name.intelligent_panel5);
+            list.add(ContentStr.Control_type_name.intelligent_panel6);
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -63,7 +68,8 @@ public class PanelNumberSelectActivity extends BaseActivity {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 panel_number = position + 1;
                 intent.putExtra("panel_number",panel_number);
-                intent.putExtra("control_type",list.get(position));
+                intent.putExtra("control_type",control_type);
+                intent.putExtra("control_type_name",list.get(position));
                 setResult(RESULT_OK,intent);
                 showToast("选择成功！");
                 finish();

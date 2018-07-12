@@ -150,12 +150,8 @@ public class CommonMethod {
                 }
             }
         }).start();
-
         return bitmap[0];
     }
-
-
-
 
     /**
      * 子字符串modelStr在字符串str中第count次出现时的下标
@@ -178,6 +174,23 @@ public class CommonMethod {
         }
         //matcher.start();返回以前匹配的初始索引。
         return slashMatcher.start();
+    }
+
+    /**
+     * 返回时间数组
+     *
+     */
+
+
+    public static String[] getShowNums(int maxValue){
+        String[] nums = new String[maxValue];
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = i + "";
+            if(nums[i].length() == 1){
+                nums[i] = "0" + nums[i];
+            }
+        }
+        return nums;
     }
 
 }

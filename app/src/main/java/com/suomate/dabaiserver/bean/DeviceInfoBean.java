@@ -46,7 +46,7 @@ public class DeviceInfoBean implements Serializable {
     private String device_background_img;
     private int guid;
     private String control_type;
-    private Object panel_number;
+    private int  panel_number;
     private Object other_guid;
     private int is_fictitious;
     private String area_name;
@@ -172,11 +172,11 @@ public class DeviceInfoBean implements Serializable {
         this.control_type = control_type;
     }
 
-    public Object getPanel_number() {
+    public int getPanel_number() {
         return panel_number;
     }
 
-    public void setPanel_number(Object panel_number) {
+    public void setPanel_number(int panel_number) {
         this.panel_number = panel_number;
     }
 

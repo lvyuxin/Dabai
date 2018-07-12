@@ -122,8 +122,6 @@
             android:id="@+id/tv_control_type"
             style="@style/add_right_tv_style" />
     </RelativeLayout>
-
-
     <View
         android:layout_width="match_parent"
         android:background="@color/grey_line"

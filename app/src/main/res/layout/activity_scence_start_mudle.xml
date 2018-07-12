@@ -1,59 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background_theme"
-    tools:context="com.suomate.dabaiserver.activity.function.ScenceStartMudleActivity">
+    android:orientation="vertical"
+    tools:context="com.suomate.dabaiserver.activity.function.ScenceStartConditionActivity">
 
-    <com.suomate.dabaiserver.widget.TitleBar
-        app:textTitle="选择启动条件"
-        android:id="@+id/tb"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_bar_height"
-        app:rightText="确定"
-       />
-    <TextView
-        android:id="@+id/tv_instant_start"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/normal_item_height"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:text="立即启动"/>
-    <TextView
-        android:id="@+id/tv_time_start"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/normal_item_height"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:text="定时启动"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_linkage_start"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/normal_item_height"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:text="联动启动"/>
-    <TextView
-        android:id="@+id/tv_positon_start"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/normal_item_height"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:text="定位启动"/>
+        <com.suomate.dabaiserver.widget.TitleBar
+            android:id="@+id/tb"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar_height"
+            app:hasLine="true"
+            app:textTitle="启动条件" />
 
-    <!--<TimePicker-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:id="@+id/timepicker"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:background="@color/white"-->
-        <!--/>-->
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_instant_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btn_instant_start"
+                style="@style/btn_stick"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:id="@+id/tv_instant_start"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/normal_item_height"
+                android:gravity="center"
+                android:text="立即启动"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <include layout="@layout/item_line" />
+
+        <LinearLayout
+            android:id="@+id/ll_time_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btn_time_start"
+                style="@style/btn_stick"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:id="@+id/tv_time_start"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/normal_item_height"
+                android:gravity="center"
+                android:text="定时启动"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <include layout="@layout/item_line" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/btn_cancle"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:background="@drawable/shape_btn_stroke"
+                android:text="取消"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btn_sure"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="40dp"
+                android:layout_toRightOf="@+id/btn_cancle"
+                android:background="@drawable/shape_btn_solid"
+                android:text="确定"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                style="@style/host_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="时间:"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                    android:id="@+id/number_pickerview_left"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:npv_DividerColor="@color/white"
+                    app:npv_ShowCount="3"
+                    app:npv_ShowDivider="true"
+                    app:npv_TextColorNormal="@color/grey_black_tv2"
+                    app:npv_TextColorSelected="@color/white"
+                    app:npv_TextSizeNormal="14sp"
+                    app:npv_TextSizeSelected="18sp"
+                    app:npv_WrapSelectorWheel="false" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:text="时"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                    android:id="@+id/number_pickerview_right"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:npv_DividerColor="@color/white"
+                    app:npv_ShowCount="3"
+                    app:npv_ShowDivider="true"
+                    app:npv_TextColorNormal="@color/grey_black_tv2"
+                    app:npv_TextColorSelected="@color/white"
+                    app:npv_TextSizeNormal="14sp"
+                    app:npv_TextSizeSelected="18sp"
+                    app:npv_WrapSelectorWheel="false" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:text="分"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="重复："
+                android:textColor="@color/white" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+        </LinearLayout>
+
+        <include layout="@layout/item_line" />
+        <!--联动启动-->
+        <LinearLayout
+            android:id="@+id/ll_link_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="visible">
+
+            <Button
+                android:id="@+id/btn_link_start"
+                style="@style/btn_stick"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:id="@+id/tv_link_start"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/normal_item_height"
+                android:gravity="center"
+                android:text="联动启动"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <include layout="@layout/item_line" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_bar_height"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/link_time_rb"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="全天"
+                android:textColor="@color/white" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/line_bg" />
+
+            <RadioButton
+                android:id="@+id/link_week_rb"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="每天"
+                android:textColor="@color/white" />
+        </RadioGroup>
+
+        <include layout="@layout/item_line" />
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shape_btn_stroke"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</ScrollView>

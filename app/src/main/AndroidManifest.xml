@@ -47,11 +47,11 @@
         <activity android:name=".activity.configsetting.DeviceNextActivity" />
         <activity android:name=".activity.area.AreaDeviceListActivity" />
         <activity android:name=".activity.function.FuntionDeviceListActivity" />
-        <activity android:name=".activity.configsetting.AddDeviceActivity" />
+        <activity android:name=".activity.configsetting.ControlTypeActivity" />
         <activity android:name=".activity.configsetting.PanelNumberSelectActivity" />
         <activity android:name=".activity.function.AddSceneActivity" />
         <activity android:name=".activity.function.StartSceneTaskActivity" />
-        <activity android:name=".activity.function.ScenceStartMudleActivity" />
+        <activity android:name=".activity.function.ScenceStartConditionActivity" />
         <activity android:name=".activity.function.ScenceListActivity" />
         <activity android:name=".activity.function.ScenceDetailActivity"></activity>
     </application>

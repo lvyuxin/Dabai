@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.suomate.dabaiserver.R;
@@ -15,6 +17,7 @@ import com.suomate.dabaiserver.base.activity.BaseActivity;
 import com.suomate.dabaiserver.bean.ConfigSingleDeviceBean;
 import com.suomate.dabaiserver.bean.DeviceInfoBean;
 import com.suomate.dabaiserver.bean.Result;
+import com.suomate.dabaiserver.utils.DeviceUtils;
 import com.suomate.dabaiserver.utils.LogUtils;
 import com.suomate.dabaiserver.utils.UrlUtils;
 import com.suomate.dabaiserver.utils.config.Content;
@@ -44,9 +47,6 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
         setWindowStatusBarColor(R.color.title_color);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ConfigSingleDeviceAdapter(R.layout.item_config_single_device, list);
-        View headerView = LayoutInflater.from(this).inflate(R.layout.config_device_header, null);
-        adapter.addHeaderView(headerView);
-        recycler.setAdapter(adapter);
         getData();
         requestData();
         bindEvent();
@@ -123,21 +123,33 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
     }
 
     public void getData() {
+
+        View headerView = LayoutInflater.from(this).inflate(R.layout.config_device_header, null);
+        ImageView ivHead=headerView.findViewById(R.id.head_iv);
+        TextView tvHead=headerView.findViewById(R.id.head_tv);
+
+        adapter.addHeaderView(headerView);
+        recycler.setAdapter(adapter);
+
         Bundle bundle = getIntent().getExtras();
         id = bundle.getString("id");
         serial = bundle.getString("serial");
         type = bundle.getInt("type", 0);
         title = bundle.getString("title");
         titleBar.setTextTitle(title);
+        tvHead.setText(DeviceUtils.getDeviceType(id,serial));
         switch (type) {
             case Content.DEVICETYPE.SWITCH://开关执行模块
                 if (Content.SERIAL.SWITCH4.equals(serial) || Content.SERIAL.SWITCH4_OLD.equals(serial)) {
                     getDevicePorts(4);
+                    ivHead.setImageResource(R.mipmap.icon_four_sixteen_lu);
                 } else if (Content.SERIAL.SWITCH8.equals(serial) || Content.SERIAL.SWITCH8_OLD.equals(serial)) {
                     getDevicePorts(8);
+                    ivHead.setImageResource(R.mipmap.icon_eight_sixteen);
                     //四路弱点执行模块 6个
                 } else if (Content.SERIAL.SWITCH4_CURTAIN.equals(serial) || Content.SERIAL.SWITCH4_CURTAIN_OLD.equals(serial)) {
                     getDevicePorts(4);
+
                     //窗帘模块 port 4
                 } else if (Content.SERIAL.SWITCH485_CURTAIN.equals(serial)) {
                     getDevicePorts(4);

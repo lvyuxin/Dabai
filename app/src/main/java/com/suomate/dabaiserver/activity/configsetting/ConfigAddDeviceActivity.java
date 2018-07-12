@@ -18,7 +18,7 @@ import com.suomate.dabaiserver.utils.UrlUtils;
 import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
 import com.suomate.dabaiserver.widget.TitleBar;
-import com.suomate.dabaiserver.widget.dialog.ConfigSelectDialog;
+import com.suomate.dabaiserver.widget.dialog.SelectAreaDialog;
 import com.yanzhenjie.nohttp.RequestMethod;
 
 import java.util.ArrayList;
@@ -44,15 +44,16 @@ public class ConfigAddDeviceActivity extends BaseActivity {
     TextView tvType;
     @BindView(R.id.tv_control_type)
     TextView tvControlType;
-    private String title, main_engine_id, serial, area_id, classify_id, device_name,device_id, port, address, control_type;
+    private String title, main_engine_id, serial, area_id, classify_id, device_name, device_id, port, address, control_type;
     public static final int REQUEST_CODE_CLASSIFY = 102;
     public static final int REQUEST_CODE_NOMINATE = 103;
     public static final int REQUEST_CODE_ICON = 104, REQUEST_CONTROLTYPE = 105;
     private DeviceInfoBean deviceInfo;
-    private ConfigSelectDialog configSelectDialog;
+    private SelectAreaDialog selectAreaDialog;
     private List<AreaSelectListBean.DataBean> areaList = new ArrayList<>();
     private int requestType;
     private int panel_number;
+
     @Override
 
     protected void initViews(Bundle savedInstanceState) {
@@ -69,13 +70,8 @@ public class ConfigAddDeviceActivity extends BaseActivity {
         tvPort.setText("端口" + port);
         title = bundle.getString("title");
         tb.setTextTitle(title);
-        if (main_engine_id.length() == 1) {
-            tvType.setText("ID00" + main_engine_id + "-D-" + serial);
-        } else if (main_engine_id.length() == 2) {
-            tvType.setText("ID0" + main_engine_id + "-D-" + serial);
-        } else if (main_engine_id.length() == 3) {
-            tvType.setText("ID" + main_engine_id + "-D-" + serial);
-        }
+        tvType.setText(DeviceUtils.getDeviceType(main_engine_id,serial));
+
         requestType = bundle.getInt("type");
         if (requestType == 1) {
         } else if (requestType == 2) {
@@ -83,12 +79,16 @@ public class ConfigAddDeviceActivity extends BaseActivity {
             tvName.setText(deviceInfo.getDevice_name());
             tvArea.setText(deviceInfo.getArea_name());
             tvClassify.setText(deviceInfo.getClassify_name());
-            tvControlType.setText(DeviceUtils.getControlTypeName(deviceInfo.getControl_type()));
+            if (deviceInfo.getPanel_number() != 0) {
+                tvControlType.setText(DeviceUtils.getControlTypeName(deviceInfo.getControl_type(), deviceInfo.getPanel_number()));
+            } else {
+                tvControlType.setText(DeviceUtils.getControlTypeName(deviceInfo.getControl_type()));
+            }
             area_id = deviceInfo.getArea_id() + "";
             classify_id = deviceInfo.getClassify_id() + "";
             device_name = deviceInfo.getDevice_name();
             control_type = deviceInfo.getControl_type();
-            device_id=deviceInfo.getDevice_id()+"";
+            device_id = deviceInfo.getDevice_id() + "";
             tvControlType.setText(DeviceUtils.getControlTypeName(control_type));
         }
 
@@ -119,7 +119,7 @@ public class ConfigAddDeviceActivity extends BaseActivity {
             case R.id.rl_control_type://类型
                 Bundle bundle2 = new Bundle();
                 bundle2.putString("type", serial);
-                startActivityForResult(AddDeviceActivity.class, bundle2, REQUEST_CONTROLTYPE);
+                startActivityForResult(ControlTypeActivity.class, bundle2, REQUEST_CONTROLTYPE);
                 break;
             case R.id.save_btn:
                 if (requestType == 1) {//添加
@@ -127,55 +127,96 @@ public class ConfigAddDeviceActivity extends BaseActivity {
                 } else if (requestType == 2) {//修改
                     requestUpdate();
                 }
-
                 break;
         }
     }
 
-
     private void requestAdd() {
+
         AbstractRequest request = buildRequest(UrlUtils.DEVICE_ADD, Content.STRING_TYPE, RequestMethod.POST, null);
         LogUtils.e(TAG, "guid:" + getGuid());
         request.add("guid", getGuid());
-        request.add("area_id", area_id);
-        request.add("classify_id", classify_id);
-        request.add("device_name", device_name);
-        request.add("port", port);
-        request.add("main_engine_id", main_engine_id);
-        //乱填的
-        request.add("device_icon", "http://101.201.50.1:808");
-        request.add("type", serial);
-        request.add("search_version", "011");//
-        request.add("show_version", "无用");//无用
-        request.add("is_thirdly", "0");
-        request.add("address", getAddress());
-        request.add("device_background_im", "");//
-        request.add("panel_number", panel_number);//
-        request.add("control_type", control_type);
-        executeNetwork(1, "请稍后", request);
+        if (device_name != null) {
+            request.add("device_name", device_name);
+            if (area_id != null) {
+                request.add("area_id", area_id);
+                if (classify_id != null) {
+                    request.add("classify_id", classify_id);
+
+                    if (control_type != null) {
+                        request.add("control_type", control_type);
+                        request.add("port", port);
+                        request.add("main_engine_id", main_engine_id);
+                        //乱填的
+                        request.add("device_icon", "http://101.201.50.1:808");
+                        request.add("type", serial);
+                        request.add("search_version", "011");//
+                        request.add("show_version", "无用");//无用
+                        request.add("is_thirdly", "0");
+                        request.add("address", getAddress());
+                        request.add("device_background_im", "");//
+                        request.add("panel_number", panel_number);//
+
+                        LogUtils.d(TAG, "control_type:" + control_type);
+                        executeNetwork(1, "请稍后", request);
+                    } else {
+                        showToast("请选择类型！");
+                    }
+                } else {
+                    showToast("请选择分组！");
+                }
+            } else {
+                showToast("请选择区域！");
+            }
+
+        } else {
+            showToast("请给设备命名！");
+        }
+
+
     }
 
     private void requestUpdate() {
         AbstractRequest request = buildRequest(UrlUtils.DEVICE_UPDATE, Content.STRING_TYPE, RequestMethod.POST, null);
         request.add("guid", getGuid());
-        request.add("area_id", area_id);
-        request.add("classify_id", classify_id);
-        request.add("device_name", device_name);
-        request.add("device_id", device_id);
-        request.add("port", port);
-        request.add("main_engine_id", main_engine_id);
-        //乱填的
-        request.add("device_icon", "http://101.201.50.1:808");
-        request.add("type", serial);
-        request.add("search_version", "011");//
-        request.add("show_version", "无用");//无用
-        request.add("is_thirdly", "0");
-        request.add("address", getAddress());
-        request.add("device_background_im", "");//
-        request.add("panel_number", panel_number);//
-        request.add("control_type", control_type);
-        executeNetwork(2, "请稍后", request);
+        if (device_name != null) {
+            request.add("device_name", device_name);
+            if (area_id != null) {
+                request.add("area_id", area_id);
+                if (classify_id != null) {
+                    request.add("classify_id", classify_id);
+
+                    if (control_type != null) {
+                        request.add("control_type", control_type);
+                        request.add("device_id", device_id);
+                        request.add("port", port);
+                        request.add("main_engine_id", main_engine_id);
+                        //乱填的
+                        request.add("device_icon", "http://101.201.50.1:808");
+                        request.add("type", serial);
+                        request.add("search_version", "011");//
+                        request.add("show_version", "无用");//无用
+                        request.add("is_thirdly", "0");
+                        request.add("address", getAddress());
+                        request.add("device_background_im", "");//
+                        request.add("panel_number", panel_number);//
+                        executeNetwork(2, "请稍后", request);
+                    } else {
+                        showToast("请选择类型！");
+                    }
+                } else {
+                    showToast("请选择分组！");
+                }
+            } else {
+                showToast("请选择区域！");
+            }
+        } else {
+            showToast("请给设备命名！");
+        }
+
     }
+
+
 
 
     @Override
@@ -193,8 +234,8 @@ public class ConfigAddDeviceActivity extends BaseActivity {
             case 3:
                 result.getData();
                 areaList.addAll((List<AreaSelectListBean.DataBean>) result.getData());
-                configSelectDialog = new ConfigSelectDialog(this, R.style.basedialog_style, true, areaList);
-                configSelectDialog.setCallBackIml(new CallBackIml() {
+                selectAreaDialog = new SelectAreaDialog(this, R.style.basedialog_style, true, areaList);
+                selectAreaDialog.setCallBackIml(new CallBackIml() {
                     @Override
                     public void callBack(String id, String name) {
                         super.callBack(id, name);
@@ -202,7 +243,7 @@ public class ConfigAddDeviceActivity extends BaseActivity {
                         tvArea.setText(name);
                     }
                 });
-                configSelectDialog.show();
+                selectAreaDialog.show();
                 break;
         }
     }
@@ -233,13 +274,10 @@ public class ConfigAddDeviceActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case REQUEST_CONTROLTYPE:
-                if (resultCode == RESULT_OK) {
-                    control_type = data.getStringExtra("control_type");
-                    tvControlType.setText(data.getStringExtra("control_type_name"));
-                } else if (resultCode == 2) {
-                    control_type = data.getStringExtra("control_type");
-                    panel_number= data.getIntExtra("panel_number",0);
-                }
+                control_type = data.getStringExtra("control_type");
+                panel_number = data.getIntExtra("panel_number", 0);
+                tvControlType.setText(data.getStringExtra("control_type_name"));
+                LogUtils.e("fancycy111:" + control_type + "  " + data.getStringExtra("control_type_name") + "   " + panel_number);
                 break;
             case REQUEST_CODE_CLASSIFY:
                 if (RESULT_OK == resultCode) {

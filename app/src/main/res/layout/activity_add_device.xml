@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_theme"
     android:orientation="vertical"
-    tools:context="com.suomate.dabaiserver.activity.configsetting.AddDeviceActivity">
+    tools:context="com.suomate.dabaiserver.activity.configsetting.ControlTypeActivity">
 
     <com.suomate.dabaiserver.widget.TitleBar
         android:layout_width="match_parent"

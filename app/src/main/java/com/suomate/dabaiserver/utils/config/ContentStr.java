@@ -44,19 +44,10 @@ public class ContentStr {
         public static final String gas = "gas";
         public static final String smokeFeeling = "smokeFeeling";
         //io 面板
-        public static final String io_panel1 = "io_panel1";
-        public static final String io_panel2 = "io_panel2";
-        public static final String io_panel3 = "io_panel3";
-        public static final String io_panel4 = "io_panel4";
-        public static final String io_panel5 = "io_panel5";
-        public static final String io_panel6 = "io_panel6";
+        public static final String panel= "panel";
         //智能面板
-        public static final String intelligent_panel1 = "一按键无文字面板";
-        public static final String intelligent_panel2 = "二按键无文字面板";
-        public static final String intelligent_panel3 = "三按键无文字面板";
-        public static final String intelligent_panel4 = "四按键无文字面板";
-        public static final String intelligent_panel5 = "五按键无文字面板";
-        public static final String intelligent_panel6 = "六按键无文字面板";
+        public static final String intelligentPanel = "intelligentPanel";
+
         public static final String electricityConversion = "electricityConversion";
 
     }
