@@ -26,9 +26,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
 
-            <Button
-                android:id="@+id/btn_instant_start"
+            <CheckBox
+                android:id="@+id/check_instant_start"
                 style="@style/btn_stick"
+                android:button="@null"
                 android:layout_marginRight="10dp" />
 
             <TextView
@@ -49,9 +50,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
 
-            <Button
-                android:id="@+id/btn_time_start"
+            <CheckBox
+                android:id="@+id/check_time_start"
                 style="@style/btn_stick"
+                android:button="@null"
+                android:layout_height="14dp"
                 android:layout_marginRight="10dp" />
 
             <TextView
@@ -184,7 +187,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="visible">
 
             <TextView
 
@@ -211,8 +215,9 @@
             android:layout_gravity="center_horizontal"
             android:visibility="visible">
 
-            <Button
-                android:id="@+id/btn_link_start"
+            <CheckBox
+                android:id="@+id/check_link_start"
+                android:button="@null"
                 style="@style/btn_stick"
                 android:layout_marginRight="10dp" />
 
@@ -226,7 +231,6 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <include layout="@layout/item_line" />
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -259,16 +263,20 @@
                 android:textColor="@color/white" />
         </RadioGroup>
 
-        <include layout="@layout/item_line" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/io_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <Button
-            android:layout_width="250dp"
-            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/btn_submit"
+            style="@style/normal_button_stroke"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/shape_btn_stroke"
             android:text="提交"
-            android:textColor="@color/white"
-            android:visibility="gone" />
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </ScrollView>

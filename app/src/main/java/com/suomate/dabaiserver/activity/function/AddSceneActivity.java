@@ -38,21 +38,26 @@ public class AddSceneActivity extends BaseActivity {
     EditText etSceneName;
     @BindView(R.id.area_tv)
     TextView tvArea;
+    @BindView(R.id.tv_instant)
+    TextView tvInstant;
+    @BindView(R.id.tv_time)
+    TextView tvTime;
+    @BindView(R.id.tv_time_detail)
+    TextView tvTimeDetail;
+    @BindView(R.id.tv_link)
+    TextView tvLink;
+    @BindView(R.id.tv_link_detail)
+    TextView tvLinkDetail;
 
-//    @BindView(R.id.et_area)
-//    EditText etArea;
-//    @BindView(R.id.et_start_modle)
-//    EditText etStartModle;
-//    @BindView(R.id.et_start_task)
-//    EditText etStartTask;
     private String area_id;
-    public static final int REQUEST_AREA = 90, REQUEST_TASK = 91, REQUEST_MODLE = 92;
+    public static final int REQUEST_AREA = 90, REQUEST_TASK = 91, REQUEST_CONDITION = 92;
     private List<RequestInfoBean.ExecuteSelectDevice> selectList = new ArrayList<>();
     private String executeDevice;
     private int modeType;
     private String launchStr;
     private SelectAreaDialog selectAreaDialog;
     private List<AreaSelectListBean.DataBean> areaList = new ArrayList<>();
+
     @Override
     protected int bindLayout() {
         return R.layout.activity_add_scene;
@@ -85,12 +90,14 @@ public class AddSceneActivity extends BaseActivity {
     private void requestData() {
         RequestInfoBean.PhoneMessageBean phoneMessageBean = new RequestInfoBean.PhoneMessageBean("12345678901", "你好");
         RequestInfoBean.EmailMessageBean emailMessageBean = new RequestInfoBean.EmailMessageBean("12345678901@qq.com", "你好qq");
-        AbstractRequest request;
-        if (modeType == 2) { //定时启动
+
+        AbstractRequest request=null;
+        if (modeType == 1) {
+            request = buildRequest(UrlUtils.ADD_SCENCE, Content.LIST_TYPE, RequestMethod.POST, null);
+
+        } else if(modeType==2){
             request = buildRequest(UrlUtils.ADD_TIME_SCENCE, Content.LIST_TYPE, RequestMethod.POST, null);
             request.add("timeTouch", launchStr);
-        } else {
-            request = buildRequest(UrlUtils.ADD_SCENCE, Content.LIST_TYPE, RequestMethod.POST, null);
         }
 
         request.add("guid", getGuid());
@@ -126,20 +133,21 @@ public class AddSceneActivity extends BaseActivity {
                     public void callBack(String id, String name) {
                         super.callBack(id, name);
                         area_id = id;
-                        tvArea.setText(name+ " ▼");
+                        tvArea.setText(name + " ▼");
                     }
                 });
                 selectAreaDialog.show();
                 break;
         }
     }
+
     private void requestAreaData() {
         AbstractRequest request = buildRequest(UrlUtils.AREA_LIST, Content.LIST_TYPE, RequestMethod.GET, AreaSelectListBean.DataBean.class);
         request.add("guid", getGuid());
         executeNetwork(2, holdonMsg, request);
     }
 
-    @OnClick({R.id.rl_icon,R.id.rl_area,R.id.iv_add})
+    @OnClick({R.id.rl_icon, R.id.rl_area, R.id.iv_add,R.id.btn_finish,R.id.iv_task_add1})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_icon:
@@ -149,14 +157,13 @@ public class AddSceneActivity extends BaseActivity {
                 requestAreaData();
                 break;
             case R.id.iv_add://添加条件
-                startActivityForResult(ScenceStartConditionActivity.class, null, REQUEST_MODLE);
+                startActivityForResult(ScenceStartConditionActivity.class, null, REQUEST_CONDITION);
                 break;
-
-//            case R.id.rl_start_model:
-//                break;
-//            case R.id.rl_start_task:
-//                startActivityForResult(StartSceneTaskActivity.class, null, REQUEST_TASK);
-//                break;
+            case R.id.iv_task_add1://执行任务的添加
+                startActivityForResult(ScenceStartTaskActivity.class, null, REQUEST_TASK);
+                break;
+            case R.id.btn_finish://完成
+                break;
         }
     }
 
@@ -167,21 +174,30 @@ public class AddSceneActivity extends BaseActivity {
             case REQUEST_AREA:
                 if (resultCode == RESULT_OK) {
                     area_id = data.getStringExtra("areaId");
-//                    etArea.setText(data.getStringExtra("areaName"));
                 }
                 break;
             case REQUEST_TASK:
                 if (resultCode == RESULT_OK) {
                     selectList = (List<RequestInfoBean.ExecuteSelectDevice>) data.getSerializableExtra("selectList");
                     executeDevice = JSON.toJSONString(selectList);
-//                    etStartTask.setText(selectList.size() + "");
                     LogUtils.e(TAG, selectList.size() + executeDevice);
                 }
 
                 break;
-            case REQUEST_MODLE:
+            case REQUEST_CONDITION:
                 if (resultCode == RESULT_OK) {
                     modeType = data.getIntExtra("type", 0);
+                    switch (modeType) {
+                        case Content.TYPE.TYPE_INSTANT:
+                            tvInstant.setVisibility(View.VISIBLE);
+                            break;
+                        case Content.TYPE.TYPE_TIME:
+                            tvTime.setVisibility(View.VISIBLE);
+                            break;
+                        case Content.TYPE.TYPE_LINK:
+                            tvLink.setVisibility(View.VISIBLE);
+                            break;
+                    }
                 }
                 break;
         }
@@ -198,4 +214,5 @@ public class AddSceneActivity extends BaseActivity {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
 }

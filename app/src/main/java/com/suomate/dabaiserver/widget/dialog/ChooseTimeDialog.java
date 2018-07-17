@@ -11,6 +11,8 @@ import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.adapter.function.SelectTimeAdapter;
 import com.suomate.dabaiserver.bean.TimeBean;
 import com.suomate.dabaiserver.bean.TimeLaunchBean;
+import com.suomate.dabaiserver.widget.dialog.base.BaseDialog;
+
 import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,7 @@ import cn.carbswang.android.numberpickerview.library.NumberPickerView;
  * Created by fanxi on 2018/7/8.
  */
 
-public class ChooseTimeDialog extends BaseDialog{
+public class ChooseTimeDialog extends BaseDialog {
     private NumberPickerView pickerViewLeft,pickerViewRight;
     private RecyclerView recyclerView;
     private SelectTimeAdapter adapter;
@@ -35,6 +37,21 @@ public class ChooseTimeDialog extends BaseDialog{
         init();
         setRecyclerView();
         setData();
+    }
+
+    @Override
+    protected int bindLayout() {
+        return 0;
+    }
+
+    @Override
+    protected void initViews() {
+
+    }
+
+    @Override
+    protected void bindEvent() {
+
     }
 
 

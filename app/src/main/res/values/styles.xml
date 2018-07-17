@@ -51,7 +51,7 @@
     </style>
 
     <style name="select_icon_tv">
-         <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:textSize">16sp</item>
@@ -80,6 +80,14 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <style name="normal_tv_little">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="edittext_normal" parent="Theme.AppCompat.Light">
         <item name="android:layout_width">150dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -89,13 +97,14 @@
         <item name="android:layout_centerVertical">true</item>
 
     </style>
-<style name="scence_operation">
-    <item name="android:layout_height">@dimen/normal_item_height</item>
-    <item name="android:layout_width">match_parent</item>
-    <item name="android:textColor">@color/black</item>
-    <item name="android:textSize">18sp</item>
-    <item name="android:gravity">center</item>
-</style>
+
+    <style name="scence_operation">
+        <item name="android:layout_height">@dimen/normal_item_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
+    </style>
 
     <style name="basedialog_style" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
@@ -119,16 +128,46 @@
         <item name="android:windowBackground">@color/total_transparent</item>
         <item name="android:backgroundDimAmount">0</item>
         <item name="android:backgroundDimEnabled">true</item>
-        <!--<item name="android:windowAnimationStyle">@style/dialog_animation</item>-->
+        <item name="android:windowAnimationStyle">@style/dialog_animation</item>
     </style>
-<style name="btn_stick">
-    <item name="android:layout_height">16dp</item>
-    <item name="android:layout_width">16dp</item>
-    <item name="android:background">@drawable/selector_tick</item>
-</style>
 
-    <!--<style name="dialog_animation" parent="android:Animation">-->
-        <!--<item name="@android:windowEnterAnimation">@anim/dialog_enter</item>-->
-        <!--<item name="@android:windowExitAnimation">@anim/dialog_exit</item>-->
-    <!--</style>-->
+    <style name="btn_stick">
+        <item name="android:layout_height">16dp</item>
+        <item name="android:layout_width">16dp</item>
+        <item name="android:background">@drawable/selector_tick</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="dialog_animation" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+
+    <style name="et_normal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@null</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:textColorHint">@color/grey_black_tv</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <!--<Button-->
+        <!--android:id="@+id/btn_finish"-->
+        <!--android:layout_margin="20dp"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_width="250dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:text="完成"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="16sp"-->
+        <!--android:background="@drawable/shape_btn_stroke"/>-->
+    <style name="normal_button_stroke">
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/shape_btn_stroke</item>
+        <item name="android:button">@null</item>
+    </style>
 </resources>

@@ -14,12 +14,13 @@
     <color name="grey_black_tv">#4c4c4c</color>
     <color name="total_transparent">#00000000</color>
 
-    <!--<color name="background_theme">#333</color>-->
+    <color name="background_theme1">#333</color>
     <color name="background_theme">#1D1D1D</color>
     <color name="line_bg">#484848</color>
     <color name="grey_line">#484848</color>
     <!--配置部分专用的颜色-->
     <color name="item_config_bg">#ff333333</color>
 
+    <color name="dialog_bg">#ff333333</color>
 
 </resources>

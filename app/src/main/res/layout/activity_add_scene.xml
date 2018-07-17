@@ -117,7 +117,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:padding="20dp"
-                android:src="@mipmap/icon_add" />
+                android:src="@mipmap/icon_add"
+                android:visibility="visible" />
 
             <TextView
                 style="@style/host_tv"
@@ -125,143 +126,92 @@
                 android:layout_centerHorizontal="true"
                 android:layout_margin="20dp"
                 android:text="请至少添加一个启动"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_instant"
+                style="@style/normal_tv"
+                android:padding="10dp"
+                android:text="立刻启动" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_time"
+                style="@style/normal_tv"
+                android:layout_below="@+id/tv_instant"
+                android:padding="10dp"
+                android:text="定时启动" />
+
+
+            <TextView
+                android:visibility="gone"
+                android:layout_marginTop="-10dp"
+                android:id="@+id/tv_time_detail"
+                style="@style/normal_tv_little"
+                android:layout_below="@+id/tv_time"
+                android:paddingLeft="10dp"
+                android:text="cccc" />
+
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_link"
+                style="@style/normal_tv"
+                android:layout_below="@+id/tv_time_detail"
+                android:padding="10dp"
+                android:text="联动启动" />
+
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_link_detail"
+                style="@style/normal_tv_little"
+                android:layout_below="@+id/tv_link"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="-10dp"
+                android:text="cccc" />
         </RelativeLayout>
 
-        <!--<RelativeLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_marginTop="20dp"-->
-        <!--android:gravity="center_vertical">-->
+        <TextView
+            style="@style/host_tv"
+            android:layout_margin="10dp"
+            android:text="执行任务" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/item_config_bg">
 
-        <!--<TextView-->
-        <!--android:id="@+id/tv1"-->
-        <!--style="@style/host_tv"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:text="场景名：" />-->
+            <ImageView
+                android:id="@+id/iv_task_add1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:padding="20dp"
+                android:src="@mipmap/icon_add"
+                android:visibility="visible" />
 
-        <!--<EditText-->
-        <!--android:id="@+id/scene_name_et"-->
-        <!--android:layout_width="180dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_toRightOf="@+id/tv1"-->
-        <!--android:textColorHint="@color/white" />-->
+            <TextView
+                style="@style/host_tv"
+                android:layout_below="@+id/iv_task_add1"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp"
+                android:text="请至少添加一个任务"
+                android:textSize="12sp"
+                android:visibility="visible" />
 
+        </RelativeLayout>
+        <Button
+            android:id="@+id/btn_finish"
+            style="@style/normal_button_stroke"
+            android:layout_margin="20dp"
+            android:layout_gravity="center_horizontal"
+            android:text="完成"
+         />
 
-        <!--</RelativeLayout>-->
-
-
-        <!--<RelativeLayout-->
-        <!--android:id="@+id/rl_area"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:focusable="true"-->
-        <!--android:focusableInTouchMode="true"-->
-        <!--android:gravity="center_vertical">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/tv2"-->
-        <!--style="@style/host_tv"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:text="请选择区域：" />-->
-
-        <!--<EditText-->
-        <!--android:id="@+id/et_area"-->
-
-        <!--style="@style/edittext_normal"-->
-        <!--android:layout_toRightOf="@+id/tv2"-->
-        <!--android:focusable="false"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:textColorHint="@color/white" />-->
-        <!--</RelativeLayout>-->
-        <!--&lt;!&ndash;<RelativeLayout&ndash;&gt;-->
-        <!--&lt;!&ndash;android:id="@+id/rl_area"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_height="50dp"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_gravity="center_horizontal"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:gravity="center_vertical">&ndash;&gt;-->
-
-        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
-        <!--&lt;!&ndash;android:id="@+id/tv2"&ndash;&gt;-->
-        <!--&lt;!&ndash;style="@style/host_tv"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:text="请选择区域：" />&ndash;&gt;-->
-
-        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
-        <!--&lt;!&ndash;android:id="@+id/et_area"&ndash;&gt;-->
-        <!--&lt;!&ndash;style="@style/edittext_normal"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_toRightOf="@+id/tv2" />&ndash;&gt;-->
-        <!--&lt;!&ndash;</RelativeLayout>&ndash;&gt;-->
-        <!--<RelativeLayout-->
-        <!--android:id="@+id/rl_start_model"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:focusable="true"-->
-        <!--android:focusableInTouchMode="true"-->
-        <!--android:gravity="center_vertical">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/tv3"-->
-        <!--style="@style/host_tv"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:text="第一步：请选择启动模式：" />-->
-
-        <!--<EditText-->
-        <!--android:id="@+id/et_start_modle"-->
-        <!--style="@style/edittext_normal"-->
-        <!--android:layout_toRightOf="@+id/tv3"-->
-        <!--android:textColor="@color/white" />-->
-        <!--</RelativeLayout>-->
-
-        <!--&lt;!&ndash;<RelativeLayout&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_height="wrap_content">&ndash;&gt;-->
-
-        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
-        <!--&lt;!&ndash;android:padding="10dp"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:id="@+id/tv_start1"&ndash;&gt;-->
-        <!--&lt;!&ndash;style="@style/host_tv"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_centerHorizontal="true"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:text="一键启动" />&ndash;&gt;-->
-
-        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
-        <!--&lt;!&ndash;android:padding="10dp"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_below="@+id/tv_start1"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:id="@+id/tv_start2"&ndash;&gt;-->
-        <!--&lt;!&ndash;style="@style/host_tv"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_centerHorizontal="true"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:text="定时启动" />&ndash;&gt;-->
-        <!--&lt;!&ndash;</RelativeLayout>&ndash;&gt;-->
-
-        <!--<RelativeLayout-->
-
-        <!--android:id="@+id/rl_start_task"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:focusable="true"-->
-        <!--android:focusableInTouchMode="true"-->
-        <!--android:gravity="center_vertical">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/tv4"-->
-        <!--style="@style/host_tv"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:text="第二步：请选择执行任务：" />-->
-
-        <!--<EditText-->
-        <!--android:id="@+id/et_start_task"-->
-        <!--style="@style/edittext_normal"-->
-        <!--android:layout_toRightOf="@+id/tv4"-->
-        <!--android:focusable="true"-->
-        <!--android:textColor="@color/white" />-->
-        <!--</RelativeLayout>-->
     </LinearLayout>
 
 

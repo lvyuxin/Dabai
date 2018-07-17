@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.utils.CallBackIml;
+import com.suomate.dabaiserver.widget.dialog.base.BaseDialog;
 
 /**
  * Created by fanxi on 2018/7/9.
@@ -23,22 +24,24 @@ public class ChooseOperationDialog extends BaseDialog {
         this.callBackIml = callBackIml;
     }
 
-    public ChooseOperationDialog(@NonNull Context context, int themeResId) {
-        super(context, themeResId);
-        setContentView(R.layout.dialog_choose_operation);
-//        tvDetail.setOnClickListener(context);
-        init();
-        bindEvent();
+    public ChooseOperationDialog(@NonNull Context context, int themeResId, boolean isShowBottom) {
+        super(context, themeResId, isShowBottom);
     }
 
-    private void init() {
+    @Override
+    protected int bindLayout() {
+        return R.layout.dialog_choose_operation;
+    }
+
+    @Override
+    protected void initViews() {
         tvDetail = findViewById(R.id.tv_detail);
         tvDelete = findViewById(R.id.tv_delete);
         tvCancel = findViewById(R.id.tv_cancel);
     }
 
-
-    private void bindEvent() {
+    @Override
+    protected void bindEvent() {
         tvDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +66,4 @@ public class ChooseOperationDialog extends BaseDialog {
             }
         });
     }
-
-
 }

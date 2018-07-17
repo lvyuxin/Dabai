@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/item_config_bg"
+    android:layout_height="200dp">
+    <include layout="@layout/dialog_title" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_margin="10dp"
+                style="@style/normal_tv"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:text="状态"/>
+            <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/tv1"
+                android:id="@+id/picker"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:npv_DividerColor="@color/white"
+                app:npv_ShowCount="5"
+                android:minHeight="50dp"
+                app:npv_ShowDivider="true"
+                app:npv_TextColorNormal="@color/grey_black_tv2"
+                app:npv_TextColorSelected="@color/white"
+                app:npv_TextSizeNormal="14sp"
+                app:npv_TextSizeSelected="18sp"
+                app:npv_WrapSelectorWheel="false" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:id="@+id/rl2"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_margin="10dp"
+                style="@style/normal_tv"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:text="状态"/>
+            <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/tv2"
+                android:id="@+id/picker2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:npv_DividerColor="@color/white"
+                app:npv_ShowCount="5"
+                android:minHeight="50dp"
+                app:npv_ShowDivider="true"
+                app:npv_TextColorNormal="@color/grey_black_tv2"
+                app:npv_TextColorSelected="@color/white"
+                app:npv_TextSizeNormal="14sp"
+                app:npv_TextSizeSelected="18sp"
+                app:npv_WrapSelectorWheel="false" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl3"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tv3"
+                android:layout_margin="10dp"
+                style="@style/normal_tv"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:text="状态"/>
+            <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/tv3"
+                android:id="@+id/picker3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:npv_DividerColor="@color/white"
+                app:npv_ShowCount="5"
+                android:minHeight="50dp"
+                app:npv_ShowDivider="true"
+                app:npv_TextColorNormal="@color/grey_black_tv2"
+                app:npv_TextColorSelected="@color/white"
+                app:npv_TextSizeNormal="14sp"
+                app:npv_TextSizeSelected="18sp"
+                app:npv_WrapSelectorWheel="false" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

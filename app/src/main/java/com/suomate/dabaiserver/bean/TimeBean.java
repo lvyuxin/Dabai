@@ -5,7 +5,7 @@ package com.suomate.dabaiserver.bean;
  */
 
 public class TimeBean {
-    private String name="";
+    private String name = "";
     private boolean isSelect;
     private String type;
 
@@ -42,5 +42,47 @@ public class TimeBean {
 
     public void setSelect(boolean select) {
         isSelect = select;
+    }
+
+    public static class LinkTimeBean {
+        private String  shour, sminute, fhour, fminute;
+        public LinkTimeBean(String shour, String sminute, String fhour, String fminute) {
+            this.shour = shour;
+            this.sminute = sminute;
+            this.fhour = fhour;
+            this.fminute = fminute;
+        }
+
+        public String getShour() {
+            return shour;
+        }
+
+        public void setShour(String shour) {
+            this.shour = shour;
+        }
+
+        public String getSminute() {
+            return sminute;
+        }
+
+        public void setSminute(String sminute) {
+            this.sminute = sminute;
+        }
+
+        public String getFhour() {
+            return fhour;
+        }
+
+        public void setFhour(String fhour) {
+            this.fhour = fhour;
+        }
+
+        public String getFminute() {
+            return fminute;
+        }
+
+        public void setFminute(String fminute) {
+            this.fminute = fminute;
+        }
     }
 }

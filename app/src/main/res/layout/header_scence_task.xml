@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_theme"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/normal_tv_little"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:text="执行消息" />
+
+    <include layout="@layout/item_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/low_item_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/check_app"
+            style="@style/btn_stick"
+            android:layout_margin="10dp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            style="@style/normal_tv"
+            android:text="APP推送" />
+
+        <EditText
+            android:id="@+id/et_app"
+            style="@style/et_normal"
+            android:layout_marginLeft="20dp"
+            android:hint="请输入app推送内容" />
+    </LinearLayout>
+
+    <include layout="@layout/item_line" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/low_item_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/check_msg"
+            style="@style/btn_stick"
+            android:layout_margin="10dp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            style="@style/normal_tv"
+            android:text="Message" />
+
+        <EditText
+            android:id="@+id/et_msg"
+            style="@style/et_normal"
+            android:layout_marginLeft="20dp"
+            android:hint="请输入短信推送内容" />
+    </LinearLayout>
+
+    <include layout="@layout/item_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/low_item_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/check_email"
+            style="@style/btn_stick"
+            android:layout_margin="10dp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            style="@style/normal_tv"
+            android:text="Email" />
+
+        <EditText
+            android:id="@+id/et_email"
+            style="@style/et_normal"
+            android:layout_marginLeft="20dp"
+            android:hint="请输入邮件推送内容" />
+    </LinearLayout>
+
+    <include layout="@layout/item_line" />
+
+    <TextView
+        style="@style/normal_tv_little"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:text="执行动作" />
+
+    <include layout="@layout/item_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/normal_item_height">
+
+        <CheckBox
+            android:id="@+id/head_check"
+            style="@style/btn_stick"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/head_device_name"
+            style="@style/normal_tv"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="6dp"
+            android:layout_toRightOf="@+id/head_check"
+            android:text="全选" />
+
+        <TextView
+            android:id="@+id/head_device_percent"
+            style="@style/normal_tv_little"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:autoLink="all"
+            android:text="全部" />
+    </RelativeLayout>
+
+</LinearLayout>

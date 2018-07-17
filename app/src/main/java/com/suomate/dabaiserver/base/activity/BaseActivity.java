@@ -29,6 +29,11 @@ public class BaseActivity extends BaseNetActivity {
     }
 
     @Override
+    protected void mHandle403(int what, Result result) {
+
+    }
+
+    @Override
     protected void mHandleFailed(int what) {
 
     }

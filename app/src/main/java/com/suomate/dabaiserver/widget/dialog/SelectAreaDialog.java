@@ -8,7 +8,9 @@ import android.widget.TextView;
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.bean.AreaSelectListBean;
 import com.suomate.dabaiserver.utils.CallBackIml;
+import com.suomate.dabaiserver.widget.dialog.base.BaseDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.carbswang.android.numberpickerview.library.NumberPickerView;
@@ -20,27 +22,19 @@ import cn.carbswang.android.numberpickerview.library.NumberPickerView;
 public class SelectAreaDialog extends BaseDialog {
     private TextView tvCancle, tvSure;
     private NumberPickerView pickerView;
-    List<AreaSelectListBean.DataBean> areaList;
+    List<AreaSelectListBean.DataBean> areaList=new ArrayList<>();
     private String[] values;
     private CallBackIml callBackIml;
     private String name;
     private int curPosition;
-    private Context context;
 
     public void setCallBackIml(CallBackIml callBackIml) {
         this.callBackIml = callBackIml;
     }
 
-    public SelectAreaDialog(@NonNull Context context, int themeResId, boolean isShowBottom, List<AreaSelectListBean.DataBean> areaList) {
+    public SelectAreaDialog(@NonNull Context context, int themeResId, boolean isShowBottom, final List<AreaSelectListBean.DataBean> areaList) {
         super(context, themeResId, isShowBottom);
-        setContentView(R.layout.dialog_config_select);
         this.areaList = areaList;
-        this.context = context;
-        initView();
-        bindEvent();
-    }
-
-    private void initView() {
         tvCancle = findViewById(R.id.tv_cancle);
         tvSure = findViewById(R.id.tv_sure);
         pickerView = findViewById(R.id.picker);
@@ -52,25 +46,8 @@ public class SelectAreaDialog extends BaseDialog {
             }
         }
         setPickerShadowData();
-    }
-    private void setPickerShadowData() {
-        pickerView.setDisplayedValues(values);
-        pickerView.setMinValue(0);
-        pickerView.setMaxValue(values.length - 1);
-        pickerView.setValue(0);   //默认边框宽度
-        pickerView.setOnValueChangeListenerInScrolling(new NumberPickerView.OnValueChangeListenerInScrolling() {
-            @Override
-            public void onValueChangeInScrolling(NumberPickerView picker, int oldVal, int newVal) {
-                curPosition = oldVal;
-                if (areaList.size() > 0) {
-                    name = values[oldVal];
-                }
 
-            }
-        });
-    }
 
-    private void bindEvent() {
         tvCancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,4 +68,47 @@ public class SelectAreaDialog extends BaseDialog {
     }
 
 
+    private void setPickerShadowData() {
+        pickerView.setDisplayedValues(values);
+        pickerView.setMinValue(0);
+        pickerView.setMaxValue(values.length - 1);
+        pickerView.setValue(0);   //默认边框宽度
+        pickerView.setOnValueChangeListenerInScrolling(new NumberPickerView.OnValueChangeListenerInScrolling() {
+            @Override
+            public void onValueChangeInScrolling(NumberPickerView picker, int oldVal, int newVal) {
+                curPosition = oldVal;
+                if (areaList.size() > 0) {
+                    name = values[oldVal];
+                }
+
+            }
+        });
+    }
+
+
+    @Override
+    protected int bindLayout() {
+        return R.layout.dialog_config_select;
+    }
+
+    @Override
+    protected void initViews() {
+//        tvCancle = findViewById(R.id.tv_cancle);
+//        tvSure = findViewById(R.id.tv_sure);
+//        pickerView = findViewById(R.id.picker);
+//        if (areaList.size() > 0) {
+//            name = areaList.get(0).getArea_name();
+//            values = new String[areaList.size()];
+//            for (int i = 0; i < areaList.size(); i++) {
+//                values[i] = areaList.get(i).getArea_name() + "";
+//            }
+//        }
+//        setPickerShadowData();
+    }
+
+    @Override
+    protected void bindEvent() {
+
+
+    }
 }

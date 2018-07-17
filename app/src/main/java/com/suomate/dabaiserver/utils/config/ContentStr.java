@@ -47,7 +47,6 @@ public class ContentStr {
         public static final String panel= "panel";
         //智能面板
         public static final String intelligentPanel = "intelligentPanel";
-
         public static final String electricityConversion = "electricityConversion";
 
     }
@@ -86,6 +85,12 @@ public class ContentStr {
         public static final String intelligent_panel6 = "六按键有文字面板";
 
         public static final String electricityConversion = "电量";//电量
+
+    }
+    public final static class Symbol {
+        public static final String dot = "•";
+        public static final String triangle_open = "▼";
+        public static final String triangle_close = "▲";
 
     }
 }

@@ -55,7 +55,7 @@ public abstract class HttpResponseListener<T> implements OnResponseListener<Resu
     public void onFailed(int what, Response<Result<T>> response) {
         Exception e = response.getException();
         if (e instanceof NetworkError) {
-            //context.showToast(e.getMessage());
+            context.showToast(e.getMessage());
         }else if(e instanceof ServerError){
             context.showToast(e.getMessage());
         }else if(e instanceof StorageReadWriteError){

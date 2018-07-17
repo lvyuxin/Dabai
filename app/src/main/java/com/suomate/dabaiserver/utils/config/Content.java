@@ -10,7 +10,8 @@ public class Content {
     public static final int NOT_JSON_DATA = -4515;
     public static final int REQUEST_SCUCESS = 10200;
     public static final int REQUEST_FAILD = 10400;
-    public static final int PARAMETER_INCOMPLETE = 10401;
+    public static final int PARAMETER_INCOMPLETE = 10401;//in existence
+    public static final int INEXISTENCE=10403;//不存在
     public static final int EXSISTED = 10404;
     public static final int PARSE_WRONG = -1545;
     //网络请求的几种方式
@@ -97,6 +98,16 @@ public class Content {
         public final static int CLASSIFY = 2;
         public final static int NOMINATE = 3;
         public final static int TYPE_AREA = 1;
+        public final static int TYPE_HUMAN_FEELING= 1;
+        public final static int TYPE_GAS= 2;
+        public final static int TYPE_SMOKE= 3;
+        public final static int TYPE_IO_PANEL= 4;
+        public final static int TYPE_INTELLIGENT_PANEL= 5;
+        //启动方式
+        public final static int TYPE_INSTANT= 1;
+        public final static int TYPE_TIME= 2;
+        public final static int TYPE_LINK= 3;
+
 //        public final static int CLASSIFY = 2;
 //        public final static int NOMINATE = 3;
 

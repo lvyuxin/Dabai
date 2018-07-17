@@ -1,101 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal">
-
-        <cn.carbswang.android.numberpickerview.library.NumberPickerView
-            android:id="@+id/picker_start_hour"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            app:npv_ShowCount="5"
-            app:npv_ShowDivider="true"
-            app:npv_TextColorNormal="@color/grey_black_tv2"
-            app:npv_TextColorSelected="@color/white"
-            app:npv_TextSizeNormal="14sp"
-            app:npv_TextSizeSelected="18sp"
-            app:npv_WrapSelectorWheel="false"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="时"
-            android:textSize="18sp"
-            android:layout_gravity="center_vertical"/>
-
-        <cn.carbswang.android.numberpickerview.library.NumberPickerView
-            android:id="@+id/picker_start_minute"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            app:npv_ShowCount="5"
-            app:npv_ShowDivider="true"
-            app:npv_TextColorNormal="@color/grey_black_tv2"
-            app:npv_TextColorSelected="@color/white"
-            app:npv_TextSizeNormal="14sp"
-            app:npv_TextSizeSelected="18sp"
-            app:npv_WrapSelectorWheel="false"
-            android:layout_marginLeft="20dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="分"
-            android:textSize="18sp"
-            android:layout_gravity="center_vertical"/>
-    </LinearLayout>
-<!--结束时间段-->
+    android:layout_height="250dp"
+    android:background="@color/dialog_bg"
+    android:minHeight="250dp"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal">
-
-        <cn.carbswang.android.numberpickerview.library.NumberPickerView
-            android:id="@+id/picker_end_hour"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            app:npv_ShowCount="5"
-            app:npv_ShowDivider="true"
-            app:npv_TextColorNormal="@color/grey_black_tv2"
-            app:npv_TextColorSelected="@color/white"
-            app:npv_TextSizeNormal="14sp"
-            app:npv_TextSizeSelected="18sp"
-            app:npv_WrapSelectorWheel="false"/>
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="时"
-            android:textSize="18sp"
-            android:layout_gravity="center_vertical"/>
-
-        <cn.carbswang.android.numberpickerview.library.NumberPickerView
-            android:id="@+id/picker_end_minute"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            app:npv_ShowCount="5"
-            app:npv_ShowDivider="true"
-            app:npv_TextColorNormal="@color/grey_black_tv2"
-            app:npv_TextColorSelected="@color/white"
-            app:npv_TextSizeNormal="14sp"
-            app:npv_TextSizeSelected="18sp"
-            app:npv_WrapSelectorWheel="false"
-            android:layout_marginLeft="20dp"/>
+            android:id="@+id/dialog_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:autoLink="all"
+            android:padding="10dp"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="分"
-            android:textSize="18sp"
-            android:layout_gravity="center_vertical"/>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="时间段"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/ldialog_sure"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:autoLink="all"
+            android:gravity="end"
+            android:padding="10dp"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="开始时间"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="结束时间"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                android:id="@+id/picker_start_hour"
+                android:layout_width="50dp"
+                android:layout_height="@dimen/picker_view_height"
+                app:npv_DividerColor="@color/white"
+                app:npv_ShowCount="3"
+                app:npv_ShowDivider="true"
+                app:npv_TextColorNormal="@color/grey_black_tv2"
+                app:npv_TextColorSelected="@color/white"
+                app:npv_TextSizeNormal="14sp"
+                app:npv_TextSizeSelected="18sp"
+                app:npv_WrapSelectorWheel="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="时"
+                android:textSize="16sp" />
+
+            <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                android:id="@+id/picker_start_minute"
+                android:layout_width="50dp"
+                android:layout_height="@dimen/picker_view_height"
+                android:layout_marginLeft="20dp"
+                app:npv_DividerColor="@color/white"
+                app:npv_ShowCount="3"
+                app:npv_ShowDivider="true"
+                app:npv_TextColorNormal="@color/grey_black_tv2"
+                app:npv_TextColorSelected="@color/white"
+                app:npv_TextSizeNormal="14sp"
+                app:npv_TextSizeSelected="18sp"
+                app:npv_WrapSelectorWheel="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="分"
+                android:textSize="16sp" />
+        </LinearLayout>
+        <!--结束时间段-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                android:id="@+id/picker_end_hour"
+                android:layout_width="50dp"
+                android:layout_height="@dimen/picker_view_height"
+                app:npv_DividerColor="@color/white"
+                app:npv_ShowCount="3"
+                app:npv_ShowDivider="true"
+                app:npv_TextColorNormal="@color/grey_black_tv2"
+                app:npv_TextColorSelected="@color/white"
+                app:npv_TextSizeNormal="14sp"
+                app:npv_TextSizeSelected="18sp"
+                app:npv_WrapSelectorWheel="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="时"
+                android:textSize="16sp" />
+
+            <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                android:id="@+id/picker_end_minute"
+                android:layout_width="50dp"
+                android:layout_height="@dimen/picker_view_height"
+                android:layout_marginLeft="20dp"
+                app:npv_DividerColor="@color/white"
+                app:npv_ShowCount="3"
+                app:npv_ShowDivider="true"
+                app:npv_TextColorNormal="@color/grey_black_tv2"
+                app:npv_TextColorSelected="@color/white"
+                app:npv_TextSizeNormal="14sp"
+                app:npv_TextSizeSelected="18sp"
+                app:npv_WrapSelectorWheel="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="分"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
 </LinearLayout>

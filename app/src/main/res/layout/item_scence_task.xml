@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
     android:background="@color/background_theme"
     android:descendantFocusability="blocksDescendants"
-    android:layout_height="@dimen/normal_item_height">
+    android:orientation="vertical">
 
-    <TextView
-        style="@style/host_tv"
-        android:id="@+id/task_name"
-        android:text="11111"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"/>
-    <CheckBox
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="0dp"
-        android:id="@+id/btn_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        style="@null"
-        android:enabled="false"
-        android:layout_centerVertical="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/low_item_height">
+
+        <TextView
+            android:text="dddd"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/scence_device_name"
+            style="@style/normal_tv"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:text="11111"
+            android:id="@+id/scence_device_percent"
+            android:layout_alignParentRight="true"
+            style="@style/normal_tv_little"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            />
+    </RelativeLayout>
 
 
-<include layout="@layout/item_line"/>
-</RelativeLayout>
+    <include layout="@layout/item_line" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/item_recylcer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <include layout="@layout/item_line" />
+</LinearLayout>

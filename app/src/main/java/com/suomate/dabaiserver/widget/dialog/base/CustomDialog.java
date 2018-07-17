@@ -1,6 +1,12 @@
-package com.suomate.dabaiserver.base.activity;
+package com.suomate.dabaiserver.widget.dialog.base;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.widget.Toast;
 
+import com.suomate.dabaiserver.base.activity.BaseUIActivity;
 import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.utils.config.Content;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
@@ -15,14 +21,51 @@ import com.yanzhenjie.nohttp.rest.CacheMode;
 import com.yanzhenjie.nohttp.rest.Response;
 
 /**
- * 网络基类
+ * Created by fanxi on 2018/7/17.
  */
-public abstract class BaseNetActivity extends BaseDefaultUIActivity {
-    protected String holdonMsg = "请稍等";
 
+public abstract  class CustomDialog  extends Dialog{
+
+    protected String holdonMsg = "请稍等";
+    protected Context mContext;
+
+    public CustomDialog(@NonNull Context context) {
+        super(context);
+        this.mContext=context;
+//        initViews();
+//        bindEvent();
+    }
+
+    public CustomDialog(@NonNull Context context, int themeResId) {
+        super(context, themeResId);
+        this.mContext=context;
+//        initViews();
+//        bindEvent();
+    }
+
+    protected CustomDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
+        super(context, cancelable, cancelListener);
+        this.mContext=context;
+//        initViews();
+//        bindEvent();
+    }
+
+    /**
+     * 绑定视图id    (setContentView());
+     *
+     * @return 视图id
+     */
+    protected abstract int bindLayout();
+    /**
+     * 控件的初始化
+     */
+
+    protected abstract void initViews();
+
+    protected abstract void bindEvent();
 
     protected <T> void executeNetwork(int what, String message, AbstractRequest<T> request) {
-        CallServer.getInstance().addRequest(what, request, new ImpHttpResponseListener<T>(this, message));
+        CallServer.getInstance().addRequest(what, request, new ImpHttpResponseListener<T>(((BaseUIActivity) getContext()), message));
     }
 
     protected <T> void executeNetwork(int what, AbstractRequest<T> request) {
@@ -44,26 +87,15 @@ public abstract class BaseNetActivity extends BaseDefaultUIActivity {
         request.addHeader("guid", "123456975");
         return request;
     }
-
-    /**
-     * 设置是否有缓存
-     *
-     * @return true有缓存 false无缓存
-     */
-    protected boolean hasCache() {
-        return false;
-    }
-
     private class ImpHttpResponseListener<T> extends HttpResponseListener<T> {
+
         public ImpHttpResponseListener(BaseUIActivity context, String message) {
             super(context, message);
         }
 
         @Override
         public void onHttpStart(int what) {
-            if (mStatusView != null && mRefreshLayout == null) {
-                mStatusView.loading();
-            }
+
         }
 
         @Override
@@ -72,9 +104,10 @@ public abstract class BaseNetActivity extends BaseDefaultUIActivity {
             int code = tResult.getCode();
             switch (code) {
                 case Content.REQUEST_SCUCESS://请求成功
-                    if (mStatusView != null) {
-                        mStatusView.content();
-                    }
+                    mHandle200(what, tResult);
+                    break;
+                case 0:
+
                     mHandle200(what, tResult);
                     break;
                 case Content.REQUEST_FAILD://请求失败
@@ -83,17 +116,12 @@ public abstract class BaseNetActivity extends BaseDefaultUIActivity {
                 case Content.PARAMETER_INCOMPLETE://参数不全
                     showToast(tResult.getMessage());
                     break;
-                case Content.INEXISTENCE:
-                    mHandle403(what, tResult);
-                    break;
                 case Content.EXSISTED://已经存在
                     showToast(tResult.getMessage());
                     break;
                 case Content.SERVER_WRONG://服务器异常
                     showToast("code:" + code + "\n" + "msg :" + tResult.getMessage());
-                    if (mStatusView != null) {
-                        mStatusView.error();
-                    }
+
                     mHandleFailed(what);
                     break;
                 case Content.REQUEST_BODY_NULL://请求包体为空
@@ -114,17 +142,32 @@ public abstract class BaseNetActivity extends BaseDefaultUIActivity {
         public void onHttpFailed(int what, Response<Result<T>> response) {
             Exception e = response.getException();
             if (e instanceof NetworkError) {
-                if (mStatusView != null) {
-                    mStatusView.noNet();
-                }
+
                 mHandleNoNetwork(what);
             }
         }
 
         @Override
         public void onHttpFinish(int what) {
-            stopRefreshAndLoadMore();
         }
+    }
+
+
+    /**
+     * 吐司
+     *
+     * @param content 内容
+     */
+    public void showToast(String content) {
+        Toast.makeText(mContext, content, Toast.LENGTH_SHORT).show();
+    }
+    /**
+     * 设置是否有缓存
+     *
+     * @return true有缓存 false无缓存
+     */
+    protected boolean hasCache() {
+        return false;
     }
 
     protected abstract <T> void mHandle200(int what, Result<T> result);

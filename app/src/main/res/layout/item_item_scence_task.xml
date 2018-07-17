@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/background_theme"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/low_item_height">
+
+        <CheckBox
+            android:id="@+id/item_device_check"
+            style="@style/btn_stick"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="6dp" />
+
+        <TextView
+            android:id="@+id/item_device_name"
+            style="@style/normal_tv"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/item_device_check"
+            android:text="全选" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -49,7 +49,7 @@ public class ScenceListActivity extends BaseActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ScenceListAdapter(R.layout.item_scence_list, list);
         mRecyclerView.setAdapter(adapter);
-        chooseOperationDialog = new ChooseOperationDialog(ScenceListActivity.this, R.style.basedialog_style);
+        chooseOperationDialog = new ChooseOperationDialog(ScenceListActivity.this, R.style.basedialog_style,true);
         tb.setOnRightMenuClickListener(new TitleBar.RightMenuListener() {
             @Override
             public void onMenuClick() {

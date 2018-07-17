@@ -2,9 +2,15 @@ package com.suomate.dabaiserver.widget.dialog;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.view.View;
+import android.widget.TextView;
 
 import com.suomate.dabaiserver.R;
+import com.suomate.dabaiserver.bean.TimeBean;
 import com.suomate.dabaiserver.utils.CommonMethod;
+import com.suomate.dabaiserver.widget.dialog.base.BaseDialog;
+
+import org.greenrobot.eventbus.EventBus;
 
 import cn.carbswang.android.numberpickerview.library.NumberPickerView;
 
@@ -14,60 +20,111 @@ import cn.carbswang.android.numberpickerview.library.NumberPickerView;
 
 public class LinkSelectTimeDialog extends BaseDialog {
     private NumberPickerView startHourPicker, startMinutePicker, endHourPicker, endMinutePicker;
-    private int startHour, startMinute, endHour, endMinute;
+    private TextView tvCancel,tvSure;
+    private int  shour,sminute,fhour,fminute;
 
     public LinkSelectTimeDialog(@NonNull Context context, int themeResId, boolean isShowBottom) {
         super(context, themeResId, isShowBottom);
-        initView();
-        bindEvent();
     }
 
+    @Override
+    protected int bindLayout() {
+        return R.layout.dialog_link_time;
+    }
 
-    private void initView() {
+    @Override
+    protected void initViews() {
         startHourPicker = findViewById(R.id.picker_start_hour);
         startMinutePicker = findViewById(R.id.picker_start_minute);
         endHourPicker = findViewById(R.id.picker_end_hour);
         endMinutePicker = findViewById(R.id.picker_end_minute);
-        setPickerShadowHourData(startHourPicker, 24);
-        setPickerShadowHourData(startMinutePicker, 60);
-        setPickerShadowHourData(endHourPicker, 24);
-        setPickerShadowHourData(endMinutePicker, 60);
+
+        tvCancel=findViewById(R.id.dialog_cancel);
+        tvSure=findViewById(R.id.ldialog_sure);
+        setPickerShadowHourData();
+
     }
 
-    private void setPickerShadowHourData(NumberPickerView picker, int maxVlue) {
-        String[] showNums = CommonMethod.getShowNums(maxVlue);
-        picker.setDisplayedValues(showNums);
-        picker.setMinValue(0);
-        picker.setMaxValue(showNums.length - 1);
-        picker.setValue(0);   //默认边框宽度
+
+
+
+    private void setPickerShadowHourData() {
+        String[] showNums = CommonMethod.getShowNums(24);
+//        LogUtils.e("fancycyshowNums:"+showNums.length);
+        if (startHourPicker!=null) {
+            startHourPicker.setDisplayedValues(showNums);
+            startHourPicker.setMinValue(0);
+            startHourPicker.setMaxValue(showNums.length - 1);
+            startHourPicker.setValue(0);   //默认边框宽度
+        }
+
+
+
+        String[] showNums1 = CommonMethod.getShowNums(60);
+        startMinutePicker.setDisplayedValues(showNums1);
+        startMinutePicker.setMinValue(0);
+        startMinutePicker.setMaxValue(showNums.length - 1);
+        startMinutePicker.setValue(0);   //默认边框宽度
+
+        String[] showNums2 = CommonMethod.getShowNums(24);
+        endHourPicker.setDisplayedValues(showNums2);
+        endHourPicker.setMinValue(0);
+        endHourPicker.setMaxValue(showNums.length - 1);
+        endHourPicker.setValue(0);   //默认边框宽度
+
+        String[] showNums3 = CommonMethod.getShowNums(60);
+        endMinutePicker.setDisplayedValues(showNums3);
+        endMinutePicker.setMinValue(0);
+        endMinutePicker.setMaxValue(showNums.length - 1);
+        endMinutePicker.setValue(0);   //默认边框宽度
+
     }
 
-    private void bindEvent() {
+
+    @Override
+    protected void bindEvent() {
         startHourPicker.setOnValueChangeListenerInScrolling(new NumberPickerView.OnValueChangeListenerInScrolling() {
             @Override
             public void onValueChangeInScrolling(NumberPickerView picker, int oldVal, int newVal) {
-                startHour = oldVal;
+                shour = oldVal;
             }
         });
         startMinutePicker.setOnValueChangeListenerInScrolling(new NumberPickerView.OnValueChangeListenerInScrolling() {
             @Override
             public void onValueChangeInScrolling(NumberPickerView picker, int oldVal, int newVal) {
-                startMinute = oldVal;
+                sminute = oldVal;
             }
         });
 
         endHourPicker.setOnValueChangeListenerInScrolling(new NumberPickerView.OnValueChangeListenerInScrolling() {
             @Override
             public void onValueChangeInScrolling(NumberPickerView picker, int oldVal, int newVal) {
-                endHour = oldVal;
+                fhour = oldVal;
             }
         });
         endMinutePicker.setOnValueChangeListenerInScrolling(new NumberPickerView.OnValueChangeListenerInScrolling() {
             @Override
             public void onValueChangeInScrolling(NumberPickerView picker, int oldVal, int newVal) {
-                endMinute = oldVal;
+                fminute = oldVal;
             }
         });
-    }
 
+        tvSure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimeBean.LinkTimeBean linkTimeBean = new TimeBean.LinkTimeBean(shour+"", sminute+"", fhour+"", fminute+"");
+                EventBus.getDefault().post(linkTimeBean);
+                dismiss();
+//                LogUtils.e("fancycyshour:"+shour+"  sminute:"+sminute+"   fhour"+fhour+"    fminute:"+fminute);
+            }
+        });
+        tvCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
+
+
+    }
 }
