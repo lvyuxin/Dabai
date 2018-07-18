@@ -104,9 +104,9 @@ public class ScenceListActivity extends BaseActivity {
             public void confirmHandle() {
                 super.confirmHandle();
                 //场景列表
-
             }
         });
+
         chooseOperationDialog.setCallBackIml(new CallBackIml(){
             @Override
             public void callBack(int position) {

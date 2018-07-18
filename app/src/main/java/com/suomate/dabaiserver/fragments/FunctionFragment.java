@@ -10,9 +10,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.activity.function.FuntionDeviceListActivity;
 import com.suomate.dabaiserver.activity.function.ScenceListActivity;
-import com.suomate.dabaiserver.adapter.classifyListAdapter;
+import com.suomate.dabaiserver.adapter.function.FunctionListAdapter;
 import com.suomate.dabaiserver.base.fragment.BaseFragment;
-import com.suomate.dabaiserver.bean.ClassifyListBean;
+import com.suomate.dabaiserver.bean.FunctionClassifyBean;
 import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.utils.UrlUtils;
 import com.suomate.dabaiserver.utils.config.Content;
@@ -30,8 +30,8 @@ public class FunctionFragment extends BaseFragment {
     RecyclerView recycler;
     @BindView(R.id.tb)
     TitleBar tb;
-    private classifyListAdapter adapter;
-    private List<ClassifyListBean.DataBean> list = new ArrayList<>();
+    private FunctionListAdapter adapter;
+    private List<FunctionClassifyBean> list = new ArrayList<>();
 
     @Override
     protected int bindLayout() {
@@ -42,46 +42,50 @@ public class FunctionFragment extends BaseFragment {
     protected void initViews() {
         super.initViews();
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new classifyListAdapter(R.layout.item_test, list);
+        adapter = new FunctionListAdapter(R.layout.item_function_list, list, getContext());
         recycler.setAdapter(adapter);
         requestData();
         bindEvent();
     }
 
-
     private void bindEvent() {
-
         //添加场景的入口
         tb.setOnRightMenuClickListener(new TitleBar.RightMenuListener() {
             @Override
             public void onMenuClick() {
-                startActivity(ScenceListActivity.class,null);
+               showToast("点了添加！");
             }
         });
 
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Bundle bundle=new Bundle();
-                bundle.putString("classify_id",list.get(position).getClassify_id()+"");
-                bundle.putString("name",list.get(position).getClassify_name());
-                startActivity(FuntionDeviceListActivity.class,bundle);
+                if (list.get(position).getClassify_id() == -1) {
+                    startActivity(ScenceListActivity.class, null);
+                } else {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("classify_id", list.get(position).getClassify_id() + "");
+                    bundle.putString("name", list.get(position).getClassify_name());
+                    startActivity(FuntionDeviceListActivity.class, bundle);
+                }
             }
         });
 
     }
+
     private void requestData() {
-        AbstractRequest request = buildRequest(UrlUtils.CLASSIFY_LIST, Content.LIST_TYPE, RequestMethod.GET, ClassifyListBean.DataBean.class);
-        request.add("guid",getGuid());
+        AbstractRequest request = buildRequest(UrlUtils.CLASSIFY_DEVICE_LIST, Content.LIST_TYPE, RequestMethod.GET, FunctionClassifyBean.class);
+        request.add("guid", getGuid());
         executeNetwork(1, holdonMsg, request);
     }
+
     @Override
     protected <T> void mHandle200(int what, Result<T> result) {
         super.mHandle200(what, result);
         switch (what) {
             case 1:
                 result.getData();
-                list.addAll((List<ClassifyListBean.DataBean>) result.getData());
+                list.addAll((List<FunctionClassifyBean>) result.getData());
                 adapter.notifyDataSetChanged();
                 break;
         }

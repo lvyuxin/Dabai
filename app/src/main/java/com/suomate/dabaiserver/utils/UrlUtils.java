@@ -39,4 +39,10 @@ public class UrlUtils {
     public static final String SCENCE_DETAIL = BASEWEBSITE + "/a_new_dabai/public/index.php/sceneInfo/getSceneInfo";
     public static final String getIoDevice = BASEWEBSITE + "/a_new_dabai/public/index.php/linkage/getIoDevice";
     public static final String getSceneDeviceAccessClassify = BASEWEBSITE + "/a_new_dabai/public/index.php/sceneInfo/getSceneDeviceAccessClassify";
+    //面板
+    //单个面板的按键信息
+    public static final String getPanelNumberInfo = BASEWEBSITE + "/a_new_dabai/public/index.php/device/getPanelNumberInfo";
+    //功能一级//http://101.201.50.1:808/a_new_dabai/public/index.php/home/clasifyInfo?guid=123456975
+    public static final String CLASSIFY_DEVICE_LIST = BASEWEBSITE + "/a_new_dabai/public/index.php/home/clasifyInfo";
+
 }

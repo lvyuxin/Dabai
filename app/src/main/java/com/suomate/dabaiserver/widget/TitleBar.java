@@ -19,15 +19,16 @@ import com.suomate.dabaiserver.R;
  */
 
 public class TitleBar extends RelativeLayout implements View.OnClickListener {
-    private TextView tvTitle;
+    private TextView tvTitle, tvBack;
     private ImageView ivTitle;
     private TextView tvRightText;
     private ImageView ivRightIcon;
-    private String title;
+    private String title,backTitle;
     private LinearLayout llRightMenu;
     private CallBack callBack;
     private RightMenuListener menuListener;
     private View ivLine;
+    private TitleBackListener titleBackListener;
     public TitleBar(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView(context, attrs);
@@ -42,9 +43,11 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
         tvRightText = findViewById(R.id.tv_right_text);
         ivRightIcon = findViewById(R.id.iv_right_icon);
         llRightMenu = findViewById(R.id.ll_right_menu);
+        tvBack =findViewById(R.id.tv_back);
         ivLine=findViewById(R.id.tb_line);
         backIm.setOnClickListener(this);
         llRightMenu.setOnClickListener(this);
+        tvBack.setOnClickListener(this);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TitleBar);
 //        int bgColor = ta.getColor(R.styleable.TitleBar_backImg, getResources().getColor(R.color.app_bar_grey));
         title = ta.getString(R.styleable.TitleBar_textTitle);
@@ -58,6 +61,8 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
         boolean hasLine=ta.getBoolean(R.styleable.TitleBar_hasLine,true);
         int backImgId = ta.getResourceId(R.styleable.TitleBar_backImg, R.mipmap.icon_back);
         int titleSrc=ta.getResourceId(R.styleable.TitleBar_TitleSrc,R.mipmap.icon_config);
+        boolean hasTvBack=ta.getBoolean(R.styleable.TitleBar_hasTvBack,false);
+        backTitle=ta.getString(R.styleable.TitleBar_tvBack);
         backIm.setImageResource(backImgId);
         //设置title字体颜色
         tvTitle.setTextColor(titleTextColor);
@@ -81,10 +86,16 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
         }else{
             ivLine.setVisibility(GONE);
         }
+        if (hasTvBack) {
+            backIm.setVisibility(GONE);
+            tvBack.setVisibility(VISIBLE);
+        }else{
+            backIm.setVisibility(VISIBLE);
+            tvBack.setVisibility(GONE);
+        }
         //设置标题
         tvTitle.setText(title);
         ta.recycle();
-
     }
 
     @Override
@@ -103,6 +114,11 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
                     menuListener.onMenuClick();
                 }
                 break;
+            case R.id.tv_back:
+                if (titleBackListener!=null) {
+                    titleBackListener.ontitleBack();
+                }
+                break;
         }
     }
 
@@ -113,15 +129,26 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
     public void setBackListener(CallBack callBack) {
         this.callBack = callBack;
     }
+    public void setOnTitleBackListener(TitleBackListener titleBackListener) {
+        this.titleBackListener = titleBackListener;
+    }
+
 
     public interface RightMenuListener{
         void onMenuClick();
     }
 
+
+    public interface TitleBackListener{
+        void ontitleBack();
+    }
     public void setOnRightMenuClickListener(RightMenuListener menuListener){
         this.menuListener = menuListener;
     }
-
+    public void setBackTitle(String backTitle) {
+        this.backTitle = backTitle;
+        tvBack.setText(backTitle);
+    }
     public void setTextTitle(String title) {
         this.title = title;
         tvTitle.setText(title);

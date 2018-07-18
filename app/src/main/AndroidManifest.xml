@@ -42,7 +42,6 @@
         <activity android:name=".activity.configsetting.AreaSelectListActivity" />
         <activity android:name=".activity.configsetting.ClassifyDeviceListActivity" />
         <activity android:name=".activity.configsetting.EditNameActivity" />
-        <activity android:name=".activity.configsetting.DeviceSelectListActivity" />
         <activity android:name=".activity.configsetting.DeviceIconSelectActivity" />
         <activity android:name=".activity.configsetting.DeviceNextActivity" />
         <activity android:name=".activity.area.AreaDeviceListActivity" />

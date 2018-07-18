@@ -65,7 +65,7 @@ public abstract  class CustomDialog  extends Dialog{
     protected abstract void bindEvent();
 
     protected <T> void executeNetwork(int what, String message, AbstractRequest<T> request) {
-        CallServer.getInstance().addRequest(what, request, new ImpHttpResponseListener<T>(((BaseUIActivity) getContext()), message));
+        CallServer.getInstance().addRequest(what, request, new ImpHttpResponseListener<T>(((BaseUIActivity) getOwnerActivity()), message));
     }
 
     protected <T> void executeNetwork(int what, AbstractRequest<T> request) {
@@ -121,7 +121,6 @@ public abstract  class CustomDialog  extends Dialog{
                     break;
                 case Content.SERVER_WRONG://服务器异常
                     showToast("code:" + code + "\n" + "msg :" + tResult.getMessage());
-
                     mHandleFailed(what);
                     break;
                 case Content.REQUEST_BODY_NULL://请求包体为空

@@ -8,6 +8,15 @@ public class ConfigSingleDeviceBean {
     private int  port;
     private String name;
     private DeviceInfoBean deviceInfoBean;
+    private String iconType;
+
+    public String getIconType() {
+        return iconType;
+    }
+
+    public void setIconType(String iconType) {
+        this.iconType = iconType;
+    }
 
     public DeviceInfoBean getDeviceInfoBean() {
         return deviceInfoBean;

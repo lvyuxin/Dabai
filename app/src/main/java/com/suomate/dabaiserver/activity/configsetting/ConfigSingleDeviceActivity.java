@@ -40,7 +40,7 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
     private List<ConfigSingleDeviceBean> list = new ArrayList<>();
     private List<DeviceInfoBean> deviceInfoList = new ArrayList<>();
     private ConfigSingleDeviceAdapter adapter;
-    public static final int REQUEST_CODE=101;
+    public static final int REQUEST_CODE = 101;
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
@@ -77,7 +77,7 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
                     bundle.putInt("type", 2);
                     bundle.putString("title", list.get(position).getName());
                 }
-                startActivityForResult(ConfigAddDeviceActivity.class, bundle,REQUEST_CODE);
+                startActivityForResult(ConfigAddDeviceActivity.class, bundle, REQUEST_CODE);
             }
         });
 
@@ -96,6 +96,7 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
                         if (deviceInfoList.get(i).getPort() == list.get(i1).getPort()) {
                             list.get(i1).setDeviceInfoBean(deviceInfoList.get(i));
                             list.get(i1).setName(deviceInfoList.get(i).getArea_name() + "/" + deviceInfoList.get(i).getDevice_name());
+                            list.get(i1).setIconType(deviceInfoList.get(i).getDevice_icon());
                         }
                     }
                 }
@@ -125,8 +126,8 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
     public void getData() {
 
         View headerView = LayoutInflater.from(this).inflate(R.layout.config_device_header, null);
-        ImageView ivHead=headerView.findViewById(R.id.head_iv);
-        TextView tvHead=headerView.findViewById(R.id.head_tv);
+        ImageView ivHead = headerView.findViewById(R.id.head_iv);
+        TextView tvHead = headerView.findViewById(R.id.head_tv);
 
         adapter.addHeaderView(headerView);
         recycler.setAdapter(adapter);
@@ -137,7 +138,7 @@ public class ConfigSingleDeviceActivity extends BaseActivity {
         type = bundle.getInt("type", 0);
         title = bundle.getString("title");
         titleBar.setTextTitle(title);
-        tvHead.setText(DeviceUtils.getDeviceType(id,serial));
+        tvHead.setText(DeviceUtils.getDeviceType(id, serial));
         switch (type) {
             case Content.DEVICETYPE.SWITCH://开关执行模块
                 if (Content.SERIAL.SWITCH4.equals(serial) || Content.SERIAL.SWITCH4_OLD.equals(serial)) {

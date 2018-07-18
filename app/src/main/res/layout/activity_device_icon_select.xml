@@ -14,6 +14,8 @@
         android:orientation="vertical">
 
         <com.suomate.dabaiserver.widget.TitleBar
+            android:id="@+id/tb"
+            app:hasTvBack="true"
             android:layout_width="match_parent"
             android:layout_height="@dimen/title_bar_height"
             app:textTitle="@string/icon" />
@@ -30,6 +32,7 @@
             <ImageView
                 android:id="@+id/iv_sport_light"
                 style="@style/select_icon_iv"
+                android:layout_height="wrap_content"
                 android:background="@mipmap/icon_shedeng" />
 
             <ImageView
@@ -184,18 +187,14 @@
                 style="@style/select_icon_iv"
                 android:background="@mipmap/icon_panel4" />
 
-            <ImageView
-                android:id="@+id/iv_panel5"
-                style="@style/select_icon_iv"
-                android:background="@mipmap/icon_panel4" />
 
             <ImageView
-                android:id="@+id/iv_panel6"
+                android:id="@+id/iv_panel5"
                 style="@style/select_icon_iv"
                 android:background="@mipmap/icon_panel5" />
 
             <ImageView
-                android:id="@+id/iv_panel7"
+                android:id="@+id/iv_panel6"
                 style="@style/select_icon_iv"
                 android:background="@mipmap/icon_panel6" />
         </LinearLayout>

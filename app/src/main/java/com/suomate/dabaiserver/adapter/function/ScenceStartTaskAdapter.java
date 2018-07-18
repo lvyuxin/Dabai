@@ -61,12 +61,9 @@ public class ScenceStartTaskAdapter extends BaseQuickAdapter<ScenceStartTaskBean
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 dialog = new StartTaskDialog(context, R.style.detail_dialog_style, true,
-                        new CommonBean.StartTaskDialogBean(deviceOrSceneInfoList.get(position).getArea_name() + ContentStr.Symbol.dot + deviceOrSceneInfoList.get(position).getDevice_or_scene_name(), deviceOrSceneInfoList.get(position).getControl_type().trim()));
+                        new CommonBean.StartTaskDialogBean(deviceOrSceneInfoList.get(position).getArea_name() + ContentStr.Symbol.dot + deviceOrSceneInfoList.get(position).getDevice_or_scene_name(), deviceOrSceneInfoList.get(position).getControl_type().trim(),deviceOrSceneInfoList.get(position).getDevice_or_scene_id()+"",deviceOrSceneInfoList.get(position).getJson_type()));
                 dialog.show();
-
             }
         });
-
-
     }
 }

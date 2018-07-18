@@ -4,16 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.suomate.dabaiserver.R;
+import com.suomate.dabaiserver.activity.configsetting.DeviceIconSelectActivity;
 import com.suomate.dabaiserver.base.activity.BaseActivity;
 import com.suomate.dabaiserver.bean.AreaSelectListBean;
 import com.suomate.dabaiserver.bean.RequestInfoBean;
 import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.bean.TimeLaunchBean;
 import com.suomate.dabaiserver.utils.CallBackIml;
+import com.suomate.dabaiserver.utils.DeviceUtils;
 import com.suomate.dabaiserver.utils.LogUtils;
 import com.suomate.dabaiserver.utils.UrlUtils;
 import com.suomate.dabaiserver.utils.config.Content;
@@ -48,15 +51,17 @@ public class AddSceneActivity extends BaseActivity {
     TextView tvLink;
     @BindView(R.id.tv_link_detail)
     TextView tvLinkDetail;
-
+    @BindView(R.id.iv_icon)
+    ImageView ivIcon;
     private String area_id;
-    public static final int REQUEST_AREA = 90, REQUEST_TASK = 91, REQUEST_CONDITION = 92;
+    public static final int REQUEST_AREA = 90, REQUEST_TASK = 91, REQUEST_CONDITION = 92,REQUEST_CODE_ICON=93;
     private List<RequestInfoBean.ExecuteSelectDevice> selectList = new ArrayList<>();
     private String executeDevice;
     private int modeType;
     private String launchStr;
     private SelectAreaDialog selectAreaDialog;
     private List<AreaSelectListBean.DataBean> areaList = new ArrayList<>();
+    private String iconType;
 
     @Override
     protected int bindLayout() {
@@ -85,6 +90,7 @@ public class AddSceneActivity extends BaseActivity {
 //                startActivityForResult(AreaSelectListActivity.class, null, REQUEST_AREA);
 //            }
 //        });
+
     }
 
     private void requestData() {
@@ -151,7 +157,8 @@ public class AddSceneActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_icon:
-                showToast("点了图片！");
+                startActivityForResult(DeviceIconSelectActivity.class, null, REQUEST_CODE_ICON);
+                overridePendingTransition(R.anim.dialog_enter, 0);
                 break;
             case R.id.rl_area:
                 requestAreaData();
@@ -198,6 +205,13 @@ public class AddSceneActivity extends BaseActivity {
                             tvLink.setVisibility(View.VISIBLE);
                             break;
                     }
+                }
+                break;
+            case REQUEST_CODE_ICON:
+                if (resultCode == RESULT_OK) {
+                    data.getStringExtra("iconType");
+                    iconType=data.getStringExtra("iconType");
+                    DeviceUtils.setIcon(ivIcon,iconType);
                 }
                 break;
         }

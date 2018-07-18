@@ -53,6 +53,7 @@ public class ConfigAddDeviceActivity extends BaseActivity {
     private List<AreaSelectListBean.DataBean> areaList = new ArrayList<>();
     private int requestType;
     private int panel_number;
+    private String iconType;
 
     @Override
 
@@ -70,7 +71,7 @@ public class ConfigAddDeviceActivity extends BaseActivity {
         tvPort.setText("端口" + port);
         title = bundle.getString("title");
         tb.setTextTitle(title);
-        tvType.setText(DeviceUtils.getDeviceType(main_engine_id,serial));
+        tvType.setText(DeviceUtils.getDeviceType(main_engine_id, serial));
 
         requestType = bundle.getInt("type");
         if (requestType == 1) {
@@ -91,7 +92,6 @@ public class ConfigAddDeviceActivity extends BaseActivity {
             device_id = deviceInfo.getDevice_id() + "";
             tvControlType.setText(DeviceUtils.getControlTypeName(control_type));
         }
-
     }
 
     @Override
@@ -115,6 +115,7 @@ public class ConfigAddDeviceActivity extends BaseActivity {
                 break;
             case R.id.rl_icon:
                 startActivityForResult(DeviceIconSelectActivity.class, null, REQUEST_CODE_ICON);
+                overridePendingTransition(R.anim.dialog_enter, 0);
                 break;
             case R.id.rl_control_type://类型
                 Bundle bundle2 = new Bundle();
@@ -132,91 +133,95 @@ public class ConfigAddDeviceActivity extends BaseActivity {
     }
 
     private void requestAdd() {
-
         AbstractRequest request = buildRequest(UrlUtils.DEVICE_ADD, Content.STRING_TYPE, RequestMethod.POST, null);
         LogUtils.e(TAG, "guid:" + getGuid());
         request.add("guid", getGuid());
-        if (device_name != null) {
-            request.add("device_name", device_name);
-            if (area_id != null) {
-                request.add("area_id", area_id);
-                if (classify_id != null) {
-                    request.add("classify_id", classify_id);
+        if (iconType != null) {
+            request.add("device_icon", iconType);
+            if (device_name != null) {
+                request.add("device_name", device_name);
+                if (area_id != null) {
+                    request.add("area_id", area_id);
+                    if (classify_id != null) {
+                        request.add("classify_id", classify_id);
+                        if (control_type != null) {
+                            request.add("control_type", control_type);
+                            request.add("port", port);
+                            request.add("main_engine_id", main_engine_id);
+                            //乱填的
+                            request.add("type", serial);
+                            request.add("search_version", "011");//
+                            request.add("show_version", "无用");//无用
+                            request.add("is_thirdly", "0");
+                            request.add("address", getAddress());
+                            request.add("device_background_im", "");//
+                            request.add("panel_number", panel_number);//
 
-                    if (control_type != null) {
-                        request.add("control_type", control_type);
-                        request.add("port", port);
-                        request.add("main_engine_id", main_engine_id);
-                        //乱填的
-                        request.add("device_icon", "http://101.201.50.1:808");
-                        request.add("type", serial);
-                        request.add("search_version", "011");//
-                        request.add("show_version", "无用");//无用
-                        request.add("is_thirdly", "0");
-                        request.add("address", getAddress());
-                        request.add("device_background_im", "");//
-                        request.add("panel_number", panel_number);//
-
-                        LogUtils.d(TAG, "control_type:" + control_type);
-                        executeNetwork(1, "请稍后", request);
+                            LogUtils.d(TAG, "control_type:" + control_type);
+                            executeNetwork(1, "请稍后", request);
+                        } else {
+                            showToast("请选择类型！");
+                        }
                     } else {
-                        showToast("请选择类型！");
+                        showToast("请选择分组！");
                     }
                 } else {
-                    showToast("请选择分组！");
+                    showToast("请选择区域！");
                 }
+
             } else {
-                showToast("请选择区域！");
+                showToast("请给设备命名！");
             }
 
         } else {
-            showToast("请给设备命名！");
+            showToast("请选择图标！");
         }
-
-
     }
 
     private void requestUpdate() {
         AbstractRequest request = buildRequest(UrlUtils.DEVICE_UPDATE, Content.STRING_TYPE, RequestMethod.POST, null);
         request.add("guid", getGuid());
-        if (device_name != null) {
-            request.add("device_name", device_name);
-            if (area_id != null) {
-                request.add("area_id", area_id);
-                if (classify_id != null) {
-                    request.add("classify_id", classify_id);
+        if (iconType != null) {
+            request.add("device_icon", iconType);
+            if (device_name != null) {
+                request.add("device_name", device_name);
+                if (area_id != null) {
+                    request.add("area_id", area_id);
+                    if (classify_id != null) {
+                        request.add("classify_id", classify_id);
 
-                    if (control_type != null) {
-                        request.add("control_type", control_type);
-                        request.add("device_id", device_id);
-                        request.add("port", port);
-                        request.add("main_engine_id", main_engine_id);
-                        //乱填的
-                        request.add("device_icon", "http://101.201.50.1:808");
-                        request.add("type", serial);
-                        request.add("search_version", "011");//
-                        request.add("show_version", "无用");//无用
-                        request.add("is_thirdly", "0");
-                        request.add("address", getAddress());
-                        request.add("device_background_im", "");//
-                        request.add("panel_number", panel_number);//
-                        executeNetwork(2, "请稍后", request);
+                        if (control_type != null) {
+                            request.add("control_type", control_type);
+                            request.add("device_id", device_id);
+                            request.add("port", port);
+                            request.add("main_engine_id", main_engine_id);
+                            //乱填的
+
+                            request.add("type", serial);
+                            request.add("search_version", "011");//
+                            request.add("show_version", "无用");//无用
+                            request.add("is_thirdly", "0");
+                            request.add("address", getAddress());
+                            request.add("device_background_im", "");//
+                            request.add("panel_number", panel_number);//
+                            executeNetwork(2, "请稍后", request);
+                        } else {
+                            showToast("请选择类型！");
+                        }
                     } else {
-                        showToast("请选择类型！");
+                        showToast("请选择分组！");
                     }
                 } else {
-                    showToast("请选择分组！");
+                    showToast("请选择区域！");
                 }
             } else {
-                showToast("请选择区域！");
+                showToast("请给设备命名！");
+
             }
         } else {
-            showToast("请给设备命名！");
+            showToast("请选择图标！");
         }
-
     }
-
-
 
 
     @Override
@@ -294,7 +299,8 @@ public class ConfigAddDeviceActivity extends BaseActivity {
                 break;
             case REQUEST_CODE_ICON:
                 if (RESULT_OK == resultCode) {
-                    ivDeviceIcon.setImageResource(data.getIntExtra("imgSrc", 0));
+                    iconType = data.getStringExtra("iconType");
+                    DeviceUtils.setIcon(ivDeviceIcon, iconType);
                 }
                 break;
         }

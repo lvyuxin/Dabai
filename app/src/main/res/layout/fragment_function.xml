@@ -13,6 +13,7 @@
         app:hasIvTitle="true"
         app:TitleSrc="@mipmap/btn_gongneng_dianjihou"
         app:hasRightIcon="true"
+        app:hasLine="false"
         app:backImg="@mipmap/icon_more_select"
         app:rightIcon="@mipmap/icon_add"
         android:layout_height="@dimen/title_bar_height" />

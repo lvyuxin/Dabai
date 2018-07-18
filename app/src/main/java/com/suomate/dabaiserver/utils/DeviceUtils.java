@@ -1,5 +1,9 @@
 package com.suomate.dabaiserver.utils;
 
+import android.text.TextUtils;
+import android.widget.ImageView;
+
+import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.utils.config.ContentStr;
 
 /**
@@ -147,5 +151,94 @@ public class DeviceUtils {
         }
         return type;
     }
+
+    /**
+     * 根据type设置icon
+     * @param ivDeviceIcon
+     * @param icon_type
+     */
+    public static void setIcon(ImageView ivDeviceIcon, String icon_type) {
+
+        if (TextUtils.isEmpty(icon_type)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_moren);
+            return;
+        }
+        //1、照明 :ic_shoot_light(射灯)、ic_dimming_light(调光)、
+        // ic_lamp_with(灯带)、ic_switch_light、ic_normal_dimming_light(调光)、ic_droplight(吊灯)
+        if (icon_type.equals(ContentStr.IconType.ic_shoot_light)) {//射灯
+            ivDeviceIcon.setImageResource(R.mipmap.icon_shedeng);
+        } else if (icon_type.equals(ContentStr.IconType.ic_dimming_light)) {//调光
+            ivDeviceIcon.setImageResource(R.mipmap.icon_tiaoguang);
+        } else if (icon_type.equals(ContentStr.IconType.ic_lamp_with)) {//灯带
+            ivDeviceIcon.setImageResource(R.mipmap.icon_dengdai);
+        } else if (icon_type.equals(ContentStr.IconType.ic_switch_light)) {//普通灯
+            ivDeviceIcon.setImageResource(R.mipmap.icon_normal_light);
+        } else if (icon_type.equals(ContentStr.IconType.ic_normal_dimming_light)) {//调光
+            ivDeviceIcon.setImageResource(R.mipmap.icon_caideng);
+        } else if (icon_type.equals(ContentStr.IconType.ic_droplight)) {//调光
+            ivDeviceIcon.setImageResource(R.mipmap.icon_diaodeng);
+            //2、窗帘：ic_normal_curtain、ic_single_curtian,ic_double_curtains
+        } else if (icon_type.equals(ContentStr.IconType.ic_normal_curtain)) {//
+            ivDeviceIcon.setImageResource(R.mipmap.icon_chuanglian);
+        } else if (icon_type.equals(ContentStr.IconType.ic_double_curtains)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_double_chuanglian);
+        } else if (icon_type.equals(ContentStr.IconType.ic_single_curtian)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_single_chuagnlian);
+            //3、安防 ic_sensor ,ic_gas_alarm(燃气报警)、ic_sensor_normal、ic_smoke_alarm(烟雾报警)
+        }else if (icon_type.equals(ContentStr.IconType.ic_sensor)) {//
+            ivDeviceIcon.setImageResource(R.mipmap.icon_sensor);
+        } else if (icon_type.equals(ContentStr.IconType.ic_gas_alarm)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_gas);
+        } else if (icon_type.equals(ContentStr.IconType.ic_sensor_normal)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_sensor2);
+        } else if (icon_type.equals(ContentStr.IconType.ic_smoke_alarm)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_smoke_alarm);
+            //4、环境 ic_co2,ic_humidity（湿度）,ic_pm25,ic_tempture,ic_voc
+        }else if (icon_type.equals(ContentStr.IconType.ic_co2)) {//
+            ivDeviceIcon.setImageResource(R.mipmap.icon_co2);
+        } else if (icon_type.equals(ContentStr.IconType.ic_humidity)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_humidity);
+        } else if (icon_type.equals(ContentStr.IconType.ic_pm25)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_pm25);
+        } else if (icon_type.equals(ContentStr.IconType.ic_tempture)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_tempture);
+        }else if(icon_type.equals(ContentStr.IconType.ic_voc)){
+            ivDeviceIcon.setImageResource(R.mipmap.icon_voc);
+            //5、面板 ic_panel_key1,ic_panel_key2,ic_panel_key3,ic_panel_key4,ic_panel_key5,ic_panel_key6
+
+        }else if (icon_type.equals(ContentStr.IconType.ic_panel_key1)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_panel1);
+        } else if (icon_type.equals(ContentStr.IconType.ic_panel_key2)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_panel2);
+        } else if (icon_type.equals(ContentStr.IconType.ic_panel_key3)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_panel3);
+        } else if (icon_type.equals(ContentStr.IconType.ic_panel_key4)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_panel4);
+        }else if(icon_type.equals(ContentStr.IconType.ic_panel_key5)){
+            ivDeviceIcon.setImageResource(R.mipmap.icon_panel5);
+        }else if(icon_type.equals(ContentStr.IconType.ic_panel_key6)){
+            ivDeviceIcon.setImageResource(R.mipmap.icon_panel6);
+
+            //6、地暖 ic_floor_heating
+        }else if (icon_type.equals(ContentStr.IconType.ic_floor_heating)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_ground_wram);
+            //7、新风 ic_fresh_air
+        } else if (icon_type.equals(ContentStr.IconType.ic_fresh_air)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_fresh_air);
+            //8、电量 ic_electricity
+        } else if (icon_type.equals(ContentStr.IconType.ic_electricity)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_electricity);
+            //9、监控 ic_monitor
+        } else if (icon_type.equals(ContentStr.IconType.ic_monitor)) {
+            ivDeviceIcon.setImageResource(R.mipmap.icon_monitor);
+            //10、空调 ic_air_condition
+        }else if(icon_type.equals(ContentStr.IconType.ic_air_condition)){
+            ivDeviceIcon.setImageResource(R.mipmap.icon_air_condition);
+        }else{
+
+        }
+
+    }
+
 
 }

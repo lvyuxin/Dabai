@@ -13,6 +13,8 @@
         <attr name="hasRightIcon" format="boolean"/>
         <attr name="hasIvTitle" format="boolean"/>
         <attr name="hasLine" format="boolean"/>
+        <attr name="hasTvBack" format="boolean"/>
+        <attr name="tvBack" format="boolean"/>
     </declare-styleable>
     <declare-styleable name="EasyStatusView">
         <attr name="esv_loading" format="reference"/>

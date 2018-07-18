@@ -90,7 +90,6 @@ public class ScenceStartConditionActivity extends BaseActivity {
         EventBus.getDefault().register(this);
         setWindowStatusBarColor(R.color.title_color);
         intent = getIntent();
-
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         adapter = new SelectTimeAdapter(R.layout.item_select_time, weeksList);
         recyclerView.setAdapter(adapter);
@@ -125,7 +124,7 @@ public class ScenceStartConditionActivity extends BaseActivity {
         }
     }
 
-    @OnClick({  R.id.btn_cancle, R.id.btn_sure, R.id.link_time_rb, R.id.link_week_rb
+    @OnClick({R.id.btn_cancle, R.id.btn_sure, R.id.link_time_rb, R.id.link_week_rb
             , R.id.btn_submit})
     public void onClick(View v) {
         switch (v.getId()) {
@@ -139,7 +138,6 @@ public class ScenceStartConditionActivity extends BaseActivity {
 //                modeType = 2;
 //                new ChooseTimeDialog(this, R.style.basedialog_style, true).show();
 //                break;
-
             case R.id.btn_cancle:
                 break;
             case R.id.btn_sure:
@@ -152,7 +150,6 @@ public class ScenceStartConditionActivity extends BaseActivity {
                 linkWeekDialog = new LinkWeekDialog(this, R.style.detail_dialog_style, true);
                 linkWeekDialog.show();
                 break;
-
             case R.id.btn_submit:
                 getSelectedWeek();
                 break;
@@ -184,14 +181,13 @@ public class ScenceStartConditionActivity extends BaseActivity {
                 ioList.get(i).setIotype(2);
             } else if (ioList.get(i).getControl_type().equals(ContentStr.Control_type.gas)) {//燃气报警
                 ioList.get(i).setIotype(2);
-            }else {//
+            } else {//
                 ioList.get(i).setIotype(4);
             }
 
         }
         ioDeviceAdapter.notifyDataSetChanged();
     }
-
 
     private void setPickerShadowData() {
         String[] showNums = getShowNums(24);
@@ -232,7 +228,6 @@ public class ScenceStartConditionActivity extends BaseActivity {
         }
         return nums;
     }
-
     private void bindEvent() {
         tb.setOnRightMenuClickListener(new TitleBar.RightMenuListener() {
             @Override
@@ -272,21 +267,21 @@ public class ScenceStartConditionActivity extends BaseActivity {
         ioDeviceAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ioCurPosition=position;
+                ioCurPosition = position;
                 if (ioList.get(position).getControl_type().equals(ContentStr.Control_type.humanFeeling)) {
-                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(),Content.TYPE.TYPE_HUMAN_FEELING);
+                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(), Content.TYPE.TYPE_HUMAN_FEELING);
                     linkStateSelectDialog.show();
-                }else if(ioList.get(position).getControl_type().equals(ContentStr.Control_type.gas)){
-                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(),Content.TYPE.TYPE_GAS);
+                } else if (ioList.get(position).getControl_type().equals(ContentStr.Control_type.gas)) {
+                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(), Content.TYPE.TYPE_GAS);
                     linkStateSelectDialog.show();
-                }else if(ioList.get(position).getControl_type().equals(ContentStr.Control_type.smokeFeeling)){
-                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(),Content.TYPE.TYPE_SMOKE);
+                } else if (ioList.get(position).getControl_type().equals(ContentStr.Control_type.smokeFeeling)) {
+                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(), Content.TYPE.TYPE_SMOKE);
                     linkStateSelectDialog.show();
-                }else if(ioList.get(position).getControl_type().equals(ContentStr.Control_type.panel)){
-                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(),Content.TYPE.TYPE_IO_PANEL);
+                } else if (ioList.get(position).getControl_type().equals(ContentStr.Control_type.panel)) {
+                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(), Content.TYPE.TYPE_IO_PANEL);
                     linkStateSelectDialog.show();
-                }else if(ioList.get(position).getControl_type().equals(ContentStr.Control_type.intelligentPanel)){
-                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(),Content.TYPE.TYPE_INTELLIGENT_PANEL);
+                } else if (ioList.get(position).getControl_type().equals(ContentStr.Control_type.intelligentPanel)) {
+                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(), Content.TYPE.TYPE_INTELLIGENT_PANEL);
                     linkStateSelectDialog.show();
                 }
 
@@ -335,23 +330,19 @@ public class ScenceStartConditionActivity extends BaseActivity {
             }
         });
     }
-
     private void changeAllState(boolean state) {
         for (int i = 0; i < weeksList.size(); i++) {
             weeksList.get(i).setSelect(state);
         }
     }
-
     private void getSelectedWeek() {
         if (checkInstant.isChecked()) {//立刻启动模式
-            modeType=Content.TYPE.TYPE_INSTANT;
-        }else if(checkTime.isChecked()){
-            modeType=Content.TYPE.TYPE_TIME;
-        }else if(checkLink.isChecked()){
-            modeType=Content.TYPE.TYPE_LINK;
+            modeType = Content.TYPE.TYPE_INSTANT;
+        } else if (checkTime.isChecked()) {
+            modeType = Content.TYPE.TYPE_TIME;
+        } else if (checkLink.isChecked()) {
+            modeType = Content.TYPE.TYPE_LINK;
         }
-
-
         if (weeksList.get(0).isSelect()) {
             strWeek = weeksList.get(0).getType();
         } else {
@@ -369,7 +360,6 @@ public class ScenceStartConditionActivity extends BaseActivity {
         launchStr = JSON.toJSONString(bean);
 //        EventBus.getDefault().post(bean);
     }
-
     @Subscribe
     public void onMianThread(CustromScenceBean.StateBean stateBean) {
         ioList.get(ioCurPosition).setIotype(stateBean.getType());

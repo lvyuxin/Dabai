@@ -44,11 +44,12 @@ public class ContentStr {
         public static final String gas = "gas";
         public static final String smokeFeeling = "smokeFeeling";
         //io 面板
-        public static final String panel= "panel";
+        public static final String panel = "panel";
         //智能面板
         public static final String intelligentPanel = "intelligentPanel";
         public static final String electricityConversion = "electricityConversion";
-
+        public static final String airCondition = "airCondition";
+        public static final String fictitiousDevice = "fictitiousDevice";
     }
 
 
@@ -87,10 +88,56 @@ public class ContentStr {
         public static final String electricityConversion = "电量";//电量
 
     }
+
     public final static class Symbol {
         public static final String dot = "•";
         public static final String triangle_open = "▼";
         public static final String triangle_close = "▲";
+    }
+//
+
+
+    public final static class IconType {
+        //1、照明 :ic_shoot_light(射灯)、ic_dimming_light(调光)、
+        // ic_lamp_with(灯带)、ic_switch_light、ic_normal_dimming_light(调光)、ic_droplight(吊灯)
+        public static final String ic_shoot_light = "ic_shoot_light";
+        public static final String ic_dimming_light = "ic_dimming_light";
+        public static final String ic_lamp_with = "ic_lamp_with";
+        public static final String ic_switch_light = "ic_switch_light";
+        public static final String ic_normal_dimming_light = "ic_normal_dimming_light";
+        public static final String ic_droplight = "ic_droplight";
+        //2、窗帘：ic_normal_curtain、ic_single_curtian,ic_double_curtains
+        public static final String ic_normal_curtain = "ic_normal_curtain";
+        public static final String ic_single_curtian = "ic_single_curtian";
+        public static final String ic_double_curtains = "ic_double_curtains";
+        //3、安防 ic_sensor ,ic_gas_alarm(燃气报警)、ic_sensor_normal、ic_smoke_alarm(烟雾报警)
+        public static final String ic_sensor = "ic_sensor";
+        public static final String ic_gas_alarm = "ic_gas_alarm";
+        public static final String ic_sensor_normal = "ic_sensor_normal";
+        public static final String ic_smoke_alarm = "ic_smoke_alarm";
+        //4、环境 ic_co2,ic_humidity（湿度）,ic_pm25,ic_tempture,ic_voc
+        public static final String ic_co2 = "ic_co2";
+        public static final String ic_humidity = "ic_humidity";
+        public static final String ic_pm25 = "ic_pm25";
+        public static final String ic_tempture = "ic_tempture";
+        public static final String ic_voc = "ic_voc";
+        //5、面板 ic_panel_key1,ic_panel_key2,ic_panel_key3,ic_panel_key4,ic_panel_key5,ic_panel_key6
+        public static final String ic_panel_key1 = "ic_panel_key1";
+        public static final String ic_panel_key2 = "ic_panel_key2";
+        public static final String ic_panel_key3 = "ic_panel_key3";
+        public static final String ic_panel_key4 = "ic_panel_key4";
+        public static final String ic_panel_key5 = "ic_panel_key5";
+        public static final String ic_panel_key6 = "ic_panel_key6";
+        //6、地暖 ic_floor_heating
+        public static final String ic_floor_heating = "ic_floor_heating";
+        //7、新风 ic_fresh_air
+        public static final String ic_fresh_air = "ic_fresh_air";
+        //8、电量 ic_electricity
+        public static final String ic_electricity = "ic_electricity";
+        //9、监控 ic_monitor
+        public static final String ic_monitor = "ic_monitor";
+        //10、空调 ic_air_condition
+        public static final String ic_air_condition = "ic_air_condition";
 
     }
 }

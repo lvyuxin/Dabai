@@ -6,12 +6,17 @@ import android.view.View;
 
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.base.activity.BaseActivity;
+import com.suomate.dabaiserver.utils.config.ContentStr;
+import com.suomate.dabaiserver.widget.TitleBar;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class DeviceIconSelectActivity extends BaseActivity {
+    @BindView(R.id.tb)
+    TitleBar tb;
     private String sportLight, dimming, lightwith, normallight, colorfullight, hanglight;
-    private int type;
+    private String iconType;
     private int imgSrc;
     Intent intent;
 
@@ -22,8 +27,19 @@ public class DeviceIconSelectActivity extends BaseActivity {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
+        setWindowStatusBarColor(R.color.black);
         super.initViews(savedInstanceState);
         intent = getIntent();
+        bindEvent();
+    }
+
+    private void bindEvent() {
+        tb.setOnTitleBackListener(new TitleBar.TitleBackListener() {
+            @Override
+            public void ontitleBack() {
+                finish();
+            }
+        });
     }
 
     @OnClick({R.id.iv_sport_light, R.id.iv_dimming, R.id.iv_lightwith, R.id.iv_normal_light, R.id.iv_colorful_light, R.id.iv_hanging_light,
@@ -36,137 +52,110 @@ public class DeviceIconSelectActivity extends BaseActivity {
     public void onClick(View view) {
 //        showToast("点了");
         switch (view.getId()) {
+            //1、照明 :ic_shoot_light(射灯)、ic_dimming_light(调光)、
+            // ic_lamp_with(灯带)、ic_switch_light、ic_normal_dimming_light(调光)、ic_droplight(吊灯)
             case R.id.iv_sport_light:
-                type = 1;
-                imgSrc = R.mipmap.icon_shedeng;
-
+                iconType = ContentStr.IconType.ic_shoot_light;
                 break;
             case R.id.iv_dimming:
-                imgSrc = R.mipmap.icon_tiaoguang;
-                type = 1;
+                iconType = ContentStr.IconType.ic_dimming_light;
                 break;
             case R.id.iv_normal_light:
-                imgSrc = R.mipmap.icon_normal_light;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_switch_light;
                 break;
             case R.id.iv_colorful_light:
-                imgSrc = R.mipmap.icon_caideng;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_normal_dimming_light;
                 break;
             case R.id.iv_hanging_light:
-                imgSrc = R.mipmap.icon_diaodeng;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_droplight;
                 break;
+            case R.id.iv_lightwith:
+                iconType = ContentStr.IconType.ic_lamp_with;
+                break;
+            //2、窗帘：ic_normal_curtain、ic_single_curtian,ic_double_curtains
             case R.id.iv_curtain:
-                imgSrc = R.mipmap.icon_chuanglian;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_normal_curtain;
                 break;
             case R.id.iv_double_curtain:
-                imgSrc = R.mipmap.icon_double_chuanglian;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_double_curtains;
                 break;
             case R.id.iv_single_curtain:
-                type = 1;
-                imgSrc = R.mipmap.icon_single_chuagnlian;
-
+                iconType = ContentStr.IconType.ic_double_curtains;
                 break;
+            //3、安防 ic_sensor ,ic_gas_alarm(燃气报警)、ic_sensor_normal、ic_smoke_alarm(烟雾报警)
             case R.id.iv_sensor1:
-                imgSrc = R.mipmap.icon_sensor;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_sensor;
                 break;
             case R.id.iv_gas:
-                imgSrc = R.mipmap.icon_gas;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_gas_alarm;
                 break;
             case R.id.iv_sensor2:
-                imgSrc = R.mipmap.icon_sensor2;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_sensor_normal;
                 break;
             case R.id.iv_smoke_alarm:
-                imgSrc = R.mipmap.icon_smoke_alarm;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_smoke_alarm;
                 break;
-//环境
+            //4、环境 ic_co2,ic_humidity（湿度）,ic_pm25,ic_tempture,ic_voc
             case R.id.iv_co2:
-                imgSrc = R.mipmap.icon_co2;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_co2;
                 break;
             case R.id.iv_humidity:
-                imgSrc = R.mipmap.icon_humidity;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_humidity;
                 break;
             case R.id.iv_pm25:
-                imgSrc = R.mipmap.icon_pm25;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_pm25;
                 break;
             case R.id.iv_tempture:
-                imgSrc = R.mipmap.icon_tempture;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_tempture;
                 break;
             case R.id.iv_voc:
-                imgSrc = R.mipmap.icon_voc;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_voc;
                 break;
-            //面板
-            case R.id.iv_panel1:
-                imgSrc = R.mipmap.icon_panel1;
+            //面板        //5、面板 ic_panel_key1,ic_panel_key2,ic_panel_key3,ic_panel_key4,ic_panel_key5,ic_panel_key6
 
-                type = 1;
+            case R.id.iv_panel1:
+                iconType = ContentStr.IconType.ic_panel_key1;
                 break;
             case R.id.iv_panel2:
-                imgSrc = R.mipmap.icon_panel2;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_panel_key2;
                 break;
             case R.id.iv_panel3:
-                imgSrc = R.mipmap.icon_panel3;
-
-                type = 1;
+                iconType = ContentStr.IconType.ic_panel_key3;
                 break;
             case R.id.iv_panel4:
-                imgSrc = R.mipmap.icon_panel4;
-
+                iconType = ContentStr.IconType.ic_panel_key4;
                 break;
             case R.id.iv_panel5:
-                imgSrc = R.mipmap.icon_panel5;
-
+                iconType = ContentStr.IconType.ic_panel_key5;
                 break;
             case R.id.iv_panel6:
-                imgSrc = R.mipmap.icon_panel6;
+                iconType = ContentStr.IconType.ic_panel_key6;
                 break;
-            //其他
+            //6、地暖 ic_floor_heating
             case R.id.iv_ground_warm:
-                imgSrc = R.mipmap.icon_ground_wram;
+                iconType = ContentStr.IconType.ic_floor_heating;
                 break;
             case R.id.iv_fresh_air:
-                imgSrc = R.mipmap.icon_fresh_air;
+                iconType = ContentStr.IconType.ic_fresh_air;
                 break;
             case R.id.iv_eletricity:
-                imgSrc = R.mipmap.icon_electricity;
+                iconType = ContentStr.IconType.ic_electricity;
                 break;
             case R.id.iv_monitor:
-                imgSrc = R.mipmap.icon_monitor;
+                iconType = ContentStr.IconType.ic_monitor;
                 break;
             case R.id.iv_air_condition:
-                imgSrc = R.mipmap.icon_air_condition;
+                iconType = ContentStr.IconType.ic_air_condition;
                 break;
         }
-        intent.putExtra("imgSrc", imgSrc);
+        intent.putExtra("iconType", iconType);
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0,R.anim.dialog_exit);
     }
 }

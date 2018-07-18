@@ -113,4 +113,11 @@ public class Content {
 
 
     }
+    public final static class JSON_TYPE {
+        public final static int SCENCE = 1;
+        public final static int SCENCE_TIME = 2;
+        public final static int DEVICE = 3;
+
+
+    }
 }
