@@ -20,7 +20,13 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/item_device_check"
             android:text="全选" />
-
+        <TextView
+            android:text="11111"
+            android:id="@+id/item_excute_device_detail"
+            style="@style/normal_tv"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true" />
     </RelativeLayout>
 
 </LinearLayout>

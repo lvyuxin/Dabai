@@ -11,7 +11,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.adapter.function.SelectTimeAdapter;
 import com.suomate.dabaiserver.bean.TimeBean;
-import com.suomate.dabaiserver.utils.LogUtils;
 import com.suomate.dabaiserver.widget.dialog.base.BaseDialog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -28,7 +27,7 @@ public class LinkWeekDialog extends BaseDialog {
     private SelectTimeAdapter adapter;
     private List<TimeBean> list;
     private TextView tvCancle,tvSure;
-    private String strWeek="";
+    private String strWeek="1,2,3,4,5,6,0";
 
     public LinkWeekDialog(@NonNull Context context, int themeResId, boolean isShowBottom) {
         super(context,themeResId,isShowBottom);
@@ -68,6 +67,7 @@ public class LinkWeekDialog extends BaseDialog {
 
             }
         });
+
         tvSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,7 +119,6 @@ public class LinkWeekDialog extends BaseDialog {
             }
             strWeek= strWeek.substring(0, strWeek.lastIndexOf(","));
         }
-        LogUtils.e("fancystrWeek:"+strWeek);
         EventBus.getDefault().post(strWeek);
     }
 

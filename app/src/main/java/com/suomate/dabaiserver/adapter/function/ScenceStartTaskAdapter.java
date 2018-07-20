@@ -15,6 +15,7 @@ import com.suomate.dabaiserver.utils.CallBackIml;
 import com.suomate.dabaiserver.utils.config.ContentStr;
 import com.suomate.dabaiserver.widget.dialog.StartTaskDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,10 +23,11 @@ import java.util.List;
  */
 
 public class ScenceStartTaskAdapter extends BaseQuickAdapter<ScenceStartTaskBean, BaseViewHolder> {
-    private ItemStartTaskAdapter adapter;
+    public static ItemStartTaskAdapter adapter;
     private Context context;
     private CallBackIml callBackIml;
     private StartTaskDialog dialog;
+    private String deviceName;
 
 
     public void setCallBackIml(CallBackIml callBackIml) {
@@ -41,11 +43,26 @@ public class ScenceStartTaskAdapter extends BaseQuickAdapter<ScenceStartTaskBean
     protected void convert(BaseViewHolder helper, ScenceStartTaskBean item) {
         helper.setText(R.id.scence_device_name, item.getClassify_name());
         helper.setText(R.id.scence_device_percent, item.getPercent());
-        final List<ScenceStartTaskBean.DeviceOrSceneInfoBean> deviceOrSceneInfoList = item.getDeviceOrSceneInfo();
+        final List<ScenceStartTaskBean.DeviceOrSceneInfoBean> deviceOrSceneInfoList = new ArrayList<>();
+        ScenceStartTaskBean.DeviceOrSceneInfoBean bean;
+
+        for (int i = 0; i < item.getDeviceOrSceneInfo().size(); i++) {
+            bean = item.getDeviceOrSceneInfo().get(i);
+            if (bean.getControl_type().trim().equals(ContentStr.Control_type.fictitiousDevice)) {
+                deviceOrSceneInfoList.add(new ScenceStartTaskBean.DeviceOrSceneInfoBean(bean.getDevice_or_scene_id(),bean.getControl_type(),bean.getJson_type(),bean.getDevice_or_scene_name(),bean.getDetail(),bean.getPort()));
+//                LogUtils.e("fancycydetail:"+bean.getDetail());
+            }else{
+//                LogUtils.e("fancycydetail:"+bean.getDetail());
+                deviceOrSceneInfoList.add(new ScenceStartTaskBean.DeviceOrSceneInfoBean(bean.getDevice_or_scene_id(),bean.getControl_type(),bean.getJson_type(),bean.getArea_name()+ ContentStr.Symbol.dot+ bean.getDevice_or_scene_name(),bean.getDetail(),bean.getPort()));
+            }
+        }
+
         adapter = new ItemStartTaskAdapter(R.layout.item_item_scence_task, deviceOrSceneInfoList);
+//        LogUtils.e("fancycylist:"+ JSON.toJSONString(deviceOrSceneInfoList));
         RecyclerView recycler = helper.getView(R.id.item_recylcer);
         recycler.setLayoutManager(new LinearLayoutManager(context));
         recycler.setAdapter(adapter);
+
         adapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
@@ -61,7 +78,8 @@ public class ScenceStartTaskAdapter extends BaseQuickAdapter<ScenceStartTaskBean
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 dialog = new StartTaskDialog(context, R.style.detail_dialog_style, true,
-                        new CommonBean.StartTaskDialogBean(deviceOrSceneInfoList.get(position).getArea_name() + ContentStr.Symbol.dot + deviceOrSceneInfoList.get(position).getDevice_or_scene_name(), deviceOrSceneInfoList.get(position).getControl_type().trim(),deviceOrSceneInfoList.get(position).getDevice_or_scene_id()+"",deviceOrSceneInfoList.get(position).getJson_type()));
+                        new CommonBean.StartTaskDialogBean(deviceOrSceneInfoList.get(position).getName(), deviceOrSceneInfoList.get(position).getControl_type().trim(),
+                                deviceOrSceneInfoList.get(position).getDevice_or_scene_id() + "", deviceOrSceneInfoList.get(position).getJson_type(),deviceOrSceneInfoList.get(position).getPort(),deviceOrSceneInfoList.get(position).getDetail()));
                 dialog.show();
             }
         });

@@ -7,7 +7,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.bean.ScenceStartTaskBean;
-import com.suomate.dabaiserver.utils.config.ContentStr;
 
 import java.util.List;
 
@@ -22,9 +21,10 @@ public class ItemStartTaskAdapter extends BaseQuickAdapter<ScenceStartTaskBean.D
 
     @Override
     protected void convert(BaseViewHolder helper, ScenceStartTaskBean.DeviceOrSceneInfoBean item) {
-        helper.setText(R.id.item_device_name, item.getArea_name() + ContentStr.Symbol.dot + item.getDevice_or_scene_name());
+        helper.setText(R.id.item_device_name, item.getName());
         CheckBox checkBox = helper.getView(R.id.item_device_check);
         checkBox.setChecked(item.isSelect());
         helper.addOnClickListener(R.id.item_device_check);
+        helper.setText(R.id.item_excute_device_detail,item.getDetail());
     }
 }

@@ -29,7 +29,6 @@
             <CheckBox
                 android:id="@+id/check_instant_start"
                 style="@style/btn_stick"
-                android:button="@null"
                 android:layout_marginRight="10dp" />
 
             <TextView
@@ -53,8 +52,6 @@
             <CheckBox
                 android:id="@+id/check_time_start"
                 style="@style/btn_stick"
-                android:button="@null"
-                android:layout_height="14dp"
                 android:layout_marginRight="10dp" />
 
             <TextView
@@ -217,7 +214,6 @@
 
             <CheckBox
                 android:id="@+id/check_link_start"
-                android:button="@null"
                 style="@style/btn_stick"
                 android:layout_marginRight="10dp" />
 

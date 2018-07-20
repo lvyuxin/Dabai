@@ -234,11 +234,41 @@ public class DeviceUtils {
             //10、空调 ic_air_condition
         }else if(icon_type.equals(ContentStr.IconType.ic_air_condition)){
             ivDeviceIcon.setImageResource(R.mipmap.icon_air_condition);
-        }else{
+        }else {
 
         }
+    }
 
+    public static String  getWeek( String strWeek) {
+        String[] strings = strWeek.split(",");
+        String week="";
+        for (int i = 0; i < strings.length; i++) {
+            if (strings[i].equals("1")) {
+                week = week + "周一 ";
+            } else if (strings[i].equals("2")) {
+                week = week + "周二 ";
+            } else if (strings[i].equals("3")) {
+                week = week + "周三 ";
+            } else if (strings[i].equals("4")) {
+                week = week + "周四 ";
+            } else if (strings[i].equals("5")) {
+                week = week + "周五 ";
+            } else if (strings[i].equals("6")) {
+                week = week + "周六 ";
+            } else if (strings[i].equals("7")) {
+                week = week + "周日 ";
+            }
+        }
+        return week;
     }
 
 
+    public static String  getTime( String   time) {
+
+        if (time.length()==1) {
+            time="0"+time;
+        }
+        return time;
+
+    }
 }

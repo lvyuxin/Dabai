@@ -17,7 +17,6 @@
             android:id="@+id/tb"
             android:layout_width="match_parent"
             android:layout_height="@dimen/title_bar_height"
-            app:rightText="@string/add_secene"
             app:textTitle="场景添加" />
 
         <TextView
@@ -29,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/item_config_bg"
+            android:background="@color/black_tansparent"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -39,7 +38,7 @@
 
                 <TextView
                     android:id="@+id/tv_icon"
-                    style="@style/host_tv"
+                    style="@style/normal_tv"
                     android:padding="20dp"
                     android:text="图标" />
 
@@ -59,21 +58,18 @@
 
                 <TextView
                     android:id="@+id/tv_nominate"
-                    style="@style/host_tv"
+                    style="@style/normal_tv"
                     android:padding="20dp"
                     android:text="命名" />
 
                 <EditText
                     android:id="@+id/scene_name_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    style="@style/et_normal"
                     android:layout_marginLeft="50dp"
                     android:layout_toRightOf="@+id/tv_nominate"
                     android:background="@null"
                     android:hint="请输入名字"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/grey_black_tv2" />
+                    />
             </RelativeLayout>
 
 
@@ -84,7 +80,7 @@
 
                 <TextView
                     android:id="@+id/tv_area"
-                    style="@style/host_tv"
+                    style="@style/normal_tv"
                     android:padding="20dp"
                     android:text="区域" />
 
@@ -98,21 +94,137 @@
                     android:text="请选择区域 ▼" />
             </RelativeLayout>
         </LinearLayout>
-
-        <TextView
-            style="@style/host_tv"
-            android:layout_margin="10dp"
-            android:text="启动条件" />
-
         <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <TextView
+                style="@style/host_tv"
+                android:layout_margin="10dp"
+                android:text="启动条件" />
 
+            <ImageView
+                android:id="@+id/iv_small_condition_add"
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_add"/>
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/ll_add_condition"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/item_config_bg">
+            android:background="@color/black_tansparent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:id="@+id/rl_condition_instance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/condition_instance"
+                    style="@style/normal_tv"
+                    android:layout_centerVertical="true"
+                    android:text="立即启动" />
+
+                <ImageView
+                    android:id="@+id/iv_delete_instance"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@mipmap/icon_delete" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_condition_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/condition_time"
+                    style="@style/normal_tv"
+                    android:text="定时启动" />
+
+
+                <ImageView
+                    android:id="@+id/iv_delete_time"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@mipmap/icon_delete" />
+
+                <TextView
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@+id/condition_time"
+                    android:id="@+id/condition_time_detail"
+                    style="@style/normal_tv_little"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="11111111111" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_condition_link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/condition_link"
+                    style="@style/normal_tv"
+                    android:text="联动启动" />
+
+                <ImageView
+                    android:id="@+id/iv_delete_link"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@mipmap/icon_delete" />
+
+
+                <TextView
+                    android:id="@+id/condition_link_detail"
+                    style="@style/normal_tv_little"
+                    android:layout_below="@+id/condition_link"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp"
+                    android:text="111111" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_condition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/black_tansparent">
 
             <ImageView
-                android:id="@+id/iv_add"
+                android:id="@+id/iv_add_condition"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
@@ -123,7 +235,7 @@
 
             <TextView
                 style="@style/host_tv"
-                android:layout_below="@+id/iv_add"
+                android:layout_below="@+id/iv_add_condition"
                 android:layout_centerHorizontal="true"
                 android:layout_margin="20dp"
                 android:text="请至少添加一个启动"
@@ -131,59 +243,73 @@
                 android:visibility="visible" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_instant"
                 style="@style/normal_tv"
                 android:padding="10dp"
-                android:text="立刻启动" />
+                android:text="立刻启动"
+                android:visibility="gone" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_time"
                 style="@style/normal_tv"
                 android:layout_below="@+id/tv_instant"
                 android:padding="10dp"
-                android:text="定时启动" />
+                android:text="定时启动"
+                android:visibility="gone" />
 
 
             <TextView
-                android:visibility="gone"
-                android:layout_marginTop="-10dp"
                 android:id="@+id/tv_time_detail"
                 style="@style/normal_tv_little"
                 android:layout_below="@+id/tv_time"
+                android:layout_marginTop="-10dp"
                 android:paddingLeft="10dp"
-                android:text="cccc" />
+                android:text="cccc"
+                android:visibility="gone" />
 
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_link"
                 style="@style/normal_tv"
                 android:layout_below="@+id/tv_time_detail"
                 android:padding="10dp"
-                android:text="联动启动" />
+                android:text="联动启动"
+                android:visibility="gone" />
 
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/tv_link_detail"
                 style="@style/normal_tv_little"
                 android:layout_below="@+id/tv_link"
-                android:paddingLeft="10dp"
                 android:layout_marginTop="-10dp"
-                android:text="cccc" />
+                android:paddingLeft="10dp"
+                android:text="cccc"
+                android:visibility="gone" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <TextView
+                style="@style/host_tv"
+                android:layout_margin="10dp"
+                android:text="执行任务" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/iv_small_link_add"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_add"/>
         </RelativeLayout>
 
-        <TextView
-            style="@style/host_tv"
-            android:layout_margin="10dp"
-            android:text="执行任务" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/item_config_bg">
+            android:background="@color/black_tansparent">
 
             <ImageView
                 android:id="@+id/iv_task_add1"
@@ -205,13 +331,13 @@
                 android:visibility="visible" />
 
         </RelativeLayout>
+
         <Button
             android:id="@+id/btn_finish"
             style="@style/normal_button_stroke"
-            android:layout_margin="20dp"
             android:layout_gravity="center_horizontal"
-            android:text="完成"
-         />
+            android:layout_margin="20dp"
+            android:text="完成" />
 
     </LinearLayout>
 

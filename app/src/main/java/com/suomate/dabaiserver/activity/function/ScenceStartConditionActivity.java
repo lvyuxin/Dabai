@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
 import com.alibaba.fastjson.JSON;
@@ -21,6 +21,7 @@ import com.suomate.dabaiserver.bean.IoBean;
 import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.bean.TimeBean;
 import com.suomate.dabaiserver.bean.TimeLaunchBean;
+import com.suomate.dabaiserver.utils.DeviceUtils;
 import com.suomate.dabaiserver.utils.LogUtils;
 import com.suomate.dabaiserver.utils.UrlUtils;
 import com.suomate.dabaiserver.utils.config.Content;
@@ -35,6 +36,7 @@ import com.yanzhenjie.nohttp.RequestMethod;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,10 +68,11 @@ public class ScenceStartConditionActivity extends BaseActivity {
 
     private SelectTimeAdapter adapter;
     private String hour, minute1;
-    private int modeType;
+    //    private int modeType;
+    private int intstantType, timeType, linkType;
     private int chooseMin, chooseHour;
     private List<TimeBean> weeksList = new ArrayList<>();
-    private String strWeek = "", launchStr = "";
+    private String strWeek = "", timeLaunchStr = "";
     private LinkSelectTimeDialog linkSelectTimeDialog;
     private LinkWeekDialog linkWeekDialog;
     private String strLinkTime;
@@ -78,8 +81,7 @@ public class ScenceStartConditionActivity extends BaseActivity {
     private CheckBox checkBox;
     private LinkStateSelectDialog linkStateSelectDialog;
     private int ioCurPosition;
-
-
+    private TimeBean.LinkTimeBean linkTimeBean = new TimeBean.LinkTimeBean();
     @Override
     protected int bindLayout() {
         return R.layout.activity_scence_start_mudle;
@@ -95,7 +97,6 @@ public class ScenceStartConditionActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
         ioRecycler.setLayoutManager(new LinearLayoutManager(this));
-
         ioDeviceAdapter = new IoDeviceAdapter(R.layout.item_io_layout, ioList);
         ioRecycler.setAdapter(ioDeviceAdapter);
         requestIoTypeData();
@@ -118,6 +119,20 @@ public class ScenceStartConditionActivity extends BaseActivity {
         switch (what) {
             case 1:
                 ioList.addAll((List<IoBean>) result.getData());
+
+//        //io设备类添加默认状态
+//        for (int i = 0; i < ioList.size(); i++) {
+//            if (ioList.get(i).getControl_type().equals(ContentStr.Control_type.humanFeeling)) {//人感
+//                ioList.get(i).setIotype(Content.TYPE.TRIGGER);
+//            } else if (ioList.get(i).getControl_type().equals(ContentStr.Control_type.smokeFeeling)) {//烟感
+//                ioList.get(i).setIotype(Content.TYPE.TRIGGER);
+//            } else if (ioList.get(i).getControl_type().equals(ContentStr.Control_type.gas)) {//燃气报警
+//                ioList.get(i).setIotype(Content.TYPE.TRIGGER);
+//            } else {//
+//                ioList.get(i).setIotype(Content.TYPE.TRIGGER);
+//            }
+//
+//        }
                 ioDeviceAdapter.notifyDataSetChanged();
                 break;
 
@@ -137,7 +152,7 @@ public class ScenceStartConditionActivity extends BaseActivity {
 //            case R.id.tv_time_start:
 //                modeType = 2;
 //                new ChooseTimeDialog(this, R.style.basedialog_style, true).show();
-//                break;
+//                break
             case R.id.btn_cancle:
                 break;
             case R.id.btn_sure:
@@ -151,15 +166,15 @@ public class ScenceStartConditionActivity extends BaseActivity {
                 linkWeekDialog.show();
                 break;
             case R.id.btn_submit:
-                getSelectedWeek();
+                submitData();
                 break;
         }
     }
 
     @Subscribe
     public void onEventMainThread(TimeBean.LinkTimeBean linkTimeBean) {
-        launchStr = JSON.toJSONString(linkTimeBean);
-        LogUtils.e("launchStr:" + launchStr);
+        timeLaunchStr = JSON.toJSONString(linkTimeBean);
+        LogUtils.e("launchStr:" + timeLaunchStr);
     }
 
     private void setData() {
@@ -173,20 +188,6 @@ public class ScenceStartConditionActivity extends BaseActivity {
         weeksList.add(new TimeBean("星期天", true, "0"));
         adapter.notifyDataSetChanged();
 
-        //io设备类添加默认状态
-        for (int i = 0; i < ioList.size(); i++) {
-            if (ioList.get(i).getControl_type().equals(ContentStr.Control_type.humanFeeling)) {//人感
-                ioList.get(i).setIotype(2);
-            } else if (ioList.get(i).getControl_type().equals(ContentStr.Control_type.smokeFeeling)) {//烟感
-                ioList.get(i).setIotype(2);
-            } else if (ioList.get(i).getControl_type().equals(ContentStr.Control_type.gas)) {//燃气报警
-                ioList.get(i).setIotype(2);
-            } else {//
-                ioList.get(i).setIotype(4);
-            }
-
-        }
-        ioDeviceAdapter.notifyDataSetChanged();
     }
 
     private void setPickerShadowData() {
@@ -228,16 +229,8 @@ public class ScenceStartConditionActivity extends BaseActivity {
         }
         return nums;
     }
-    private void bindEvent() {
-        tb.setOnRightMenuClickListener(new TitleBar.RightMenuListener() {
-            @Override
-            public void onMenuClick() {
-                getIntent().putExtra("type", modeType);
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-        });
 
+    private void bindEvent() {
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -295,75 +288,121 @@ public class ScenceStartConditionActivity extends BaseActivity {
                     case R.id.check:
                         checkBox = (CheckBox) view;
                         ioList.get(position).setSelect(checkBox.isChecked());
-//                        LogUtils.e("fancycheckBox:"+checkBox.isChecked());
                         break;
                 }
             }
         });
 
-        checkInstant.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    checkTime.setChecked(false);
-                    checkLink.setChecked(false);
-                }
-
-            }
-        });
-        checkTime.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    checkInstant.setChecked(false);
-                    checkLink.setChecked(false);
-                }
-            }
-        });
-        checkLink.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    checkTime.setChecked(false);
-                    checkLink.setChecked(false);
-                }
-            }
-        });
     }
+
     private void changeAllState(boolean state) {
         for (int i = 0; i < weeksList.size(); i++) {
             weeksList.get(i).setSelect(state);
         }
     }
-    private void getSelectedWeek() {
-        if (checkInstant.isChecked()) {//立刻启动模式
-            modeType = Content.TYPE.TYPE_INSTANT;
-        } else if (checkTime.isChecked()) {
-            modeType = Content.TYPE.TYPE_TIME;
-        } else if (checkLink.isChecked()) {
-            modeType = Content.TYPE.TYPE_LINK;
-        }
-        if (weeksList.get(0).isSelect()) {
-            strWeek = weeksList.get(0).getType();
+
+    private void submitData() {
+        Bundle bundle = new Bundle();
+        if (checkInstant.isChecked()) {
+            intstantType = Content.TYPE.TYPE_INSTANT;
         } else {
-            for (int i = 1; i < weeksList.size(); i++) {
-                if (weeksList.get(i).isSelect()) {
-                    strWeek = strWeek + weeksList.get(i).getType() + ",";
+            intstantType = 0;
+        }
+        /**
+         * 定时启动
+         */
+        if (checkTime.isChecked()) {
+            timeType = Content.TYPE.TYPE_TIME;
+            if (weeksList.get(0).isSelect()) {
+                strWeek = weeksList.get(0).getType();
+            } else {
+                for (int i = 1; i < weeksList.size(); i++) {
+                    if (weeksList.get(i).isSelect()) {
+                        strWeek = strWeek + weeksList.get(i).getType() + ",";
+                    }
+                }
+                strWeek = strWeek.substring(0, strWeek.lastIndexOf(","));
+            }
+
+            TimeLaunchBean bean = new TimeLaunchBean();
+            bean.setHour(DeviceUtils.getTime(chooseHour + ""));
+            bean.setMinute(DeviceUtils.getTime(chooseMin + ""));
+            bean.setWeek(strWeek);
+//            timeLaunchStr = JSON.toJSONString(bean);
+            bundle.putSerializable("timeLaunchBean", bean);
+        } else {
+            timeType = 0;
+        }
+/**
+ * 联动启动
+ */
+        if (checkLink.isChecked()) {
+            linkType = Content.TYPE.TYPE_LINK;
+            if (TextUtils.isEmpty(linkTimeBean.getFhour()) || TextUtils.isEmpty(linkTimeBean.getFminute()) ||
+                    TextUtils.isEmpty(linkTimeBean.getShour()) || TextUtils.isEmpty(linkTimeBean.getSminute())) {
+                showToast("请选择时间");
+                return;
+            } else {
+                if (TextUtils.isEmpty(linkTimeBean.getWeek())) {
+                    showToast("请选择周天数");
+                    return;
+                } else {
+                    bundle.putSerializable("linkTimeBean", linkTimeBean);
                 }
             }
-            strWeek = strWeek.substring(0, strWeek.lastIndexOf(","));
+
+            List<TimeBean.LinkLanchDevice> linkLanchDeviceList = new ArrayList<>();
+            for (int i = 0; i < ioList.size(); i++) {
+                if (ioList.get(i).isSelect()) {
+                    linkLanchDeviceList.add(new TimeBean.LinkLanchDevice(ioList.get(i).getDevice_id(), ioList.get(i).getIotype(), ioList.get(i).getPanel_number(),ioList.get(i).getDevice_name()));
+                }
+            }
+            if (linkLanchDeviceList.size() <= 0) {
+                showToast("请选择联动触发设备");
+                return;
+            } else {
+                bundle.putSerializable("linkLanchDeviceList", (Serializable) linkLanchDeviceList);
+//                String toJSONString = JSONArray.toJSONString(linkLanchDeviceList);
+            }
+        } else {
+            linkType = 0;
         }
-        TimeLaunchBean bean = new TimeLaunchBean();
-        bean.setHour(chooseHour + "");
-        bean.setMinute(chooseMin + "");
-        bean.setWeek(strWeek);
-        launchStr = JSON.toJSONString(bean);
-//        EventBus.getDefault().post(bean);
+
+
+        if (intstantType == 0 && timeType == 0 && linkType == 0) {
+            showToast("请至少选择一种启动方式");
+            return;
+        }
+        bundle.putInt("intstantType", intstantType);
+        bundle.putInt("timeType", timeType);
+        bundle.putInt("linkType", linkType);
+        intent.putExtras(bundle);
+        setResult(RESULT_OK, intent);
+        finish();
+
     }
+
     @Subscribe
     public void onMianThread(CustromScenceBean.StateBean stateBean) {
         ioList.get(ioCurPosition).setIotype(stateBean.getType());
         ioDeviceAdapter.notifyDataSetChanged();
+    }
+
+    @Subscribe
+    public void onMianThread1(TimeBean.LinkTimeBean linkTimeBean1) {
+        this.linkTimeBean = linkTimeBean1;
+        linkTimeBean.setFhour(linkTimeBean1.getFhour());
+        linkTimeBean.setFminute(linkTimeBean1.getFminute());
+        linkTimeBean.setShour(linkTimeBean1.getShour());
+        linkTimeBean.setSminute(linkTimeBean1.getSminute());
+//        LogUtils.e("fancylinkTimeBean:"+JSON.toJSONString(linkTimeBean));
+
+    }
+
+    @Subscribe
+    public void onMianThread2(String strWeek) {
+        linkTimeBean.setWeek(strWeek);
+        LogUtils.e("fancylinkTimeBean:" + JSON.toJSONString(linkTimeBean));
     }
 
     @Override

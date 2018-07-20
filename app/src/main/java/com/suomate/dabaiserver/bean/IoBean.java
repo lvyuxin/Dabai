@@ -49,7 +49,7 @@ public class IoBean {
     private String val;
     //自定义属性
     private boolean isSelect;
-    private int iotype;//装态判断 1 代表无人  2代表有人
+    private int iotype=17;//装态判断  触发17，不触发18 ,长按19
 
     public boolean isSelect() {
         return isSelect;

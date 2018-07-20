@@ -25,7 +25,20 @@ public class ContentStr {
         public static final String CLOSE_FRESH_AIR = "SET;2;";//关闭新风
 
     }
+    public final static class Control_Order {//SET;1;{254.0.6.1};$0D$0A
+        //场景
+        public static final String scence_lose_efficacy = "00000003";
+        public static final String scence_execute= "00000001";//
+        public static final String scence_take_efficacy = "00000004";
+        //开关 、虚拟按键、
+        public static final String open_light = "00000000";//打开开关灯
+        public static final String close_light = "00000001";//开关灯
+        // 调光
+//        public static final String open_light = "00000000";//打开开关灯
+//        public static final String close_light = "00000001";//开关灯
+//
 
+    }
     public final static class Control_type {//SET;1;{254.0.6.1};$0D$0A
         public static final String switchLight = "switchLight";
         public static final String electricDoor = "electricDoor";
@@ -35,7 +48,7 @@ public class ContentStr {
         public static final String colorDimmerLight = "colorDimmerLight";
         public static final String newWind = "newWind";
 
-        public static final String floorHeating = "floorHeating";
+        public static final String floorHeating = "floorHeating";//floorHeating
         public static final String curtains = "curtains";//单轨
         public static final String windowCurtains = "windowCurtains";//双轨
 
@@ -90,7 +103,7 @@ public class ContentStr {
     }
 
     public final static class Symbol {
-        public static final String dot = "•";
+        public static final String dot = " • ";
         public static final String triangle_open = "▼";
         public static final String triangle_close = "▲";
     }

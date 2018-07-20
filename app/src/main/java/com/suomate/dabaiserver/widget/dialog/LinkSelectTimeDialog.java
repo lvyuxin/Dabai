@@ -21,7 +21,7 @@ import cn.carbswang.android.numberpickerview.library.NumberPickerView;
 public class LinkSelectTimeDialog extends BaseDialog {
     private NumberPickerView startHourPicker, startMinutePicker, endHourPicker, endMinutePicker;
     private TextView tvCancel,tvSure;
-    private int  shour,sminute,fhour,fminute;
+    private int  shour=0,sminute=0,fhour=23,fminute=59;
 
     public LinkSelectTimeDialog(@NonNull Context context, int themeResId, boolean isShowBottom) {
         super(context, themeResId, isShowBottom);
@@ -63,20 +63,19 @@ public class LinkSelectTimeDialog extends BaseDialog {
         String[] showNums1 = CommonMethod.getShowNums(60);
         startMinutePicker.setDisplayedValues(showNums1);
         startMinutePicker.setMinValue(0);
-        startMinutePicker.setMaxValue(showNums.length - 1);
+        startMinutePicker.setMaxValue(showNums1.length - 1);
         startMinutePicker.setValue(0);   //默认边框宽度
 
         String[] showNums2 = CommonMethod.getShowNums(24);
         endHourPicker.setDisplayedValues(showNums2);
         endHourPicker.setMinValue(0);
-        endHourPicker.setMaxValue(showNums.length - 1);
-        endHourPicker.setValue(0);   //默认边框宽度
-
+        endHourPicker.setMaxValue(showNums2.length - 1);
+        endHourPicker.setValue(23);   //默认边框宽度
         String[] showNums3 = CommonMethod.getShowNums(60);
         endMinutePicker.setDisplayedValues(showNums3);
         endMinutePicker.setMinValue(0);
-        endMinutePicker.setMaxValue(showNums.length - 1);
-        endMinutePicker.setValue(0);   //默认边框宽度
+        endMinutePicker.setMaxValue(showNums3.length - 1);
+        endMinutePicker.setValue(59);   //默认边框宽度
 
     }
 
@@ -124,7 +123,6 @@ public class LinkSelectTimeDialog extends BaseDialog {
                 dismiss();
             }
         });
-
 
     }
 }

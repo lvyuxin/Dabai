@@ -56,7 +56,7 @@
         <TextView
             android:id="@+id/tv_right_text"
             style="@style/normal_tv"
-            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
             android:paddingRight="20dp" />
     </LinearLayout>
 

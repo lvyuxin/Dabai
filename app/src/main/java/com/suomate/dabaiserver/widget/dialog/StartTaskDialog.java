@@ -17,6 +17,8 @@ import com.suomate.dabaiserver.utils.net.AbstractRequest;
 import com.suomate.dabaiserver.widget.dialog.base.BaseDialog1;
 import com.yanzhenjie.nohttp.RequestMethod;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +35,9 @@ public class StartTaskDialog extends BaseDialog1 {
     private List<CustromScenceBean.StateBean> stateList3;
     private List<CustromScenceBean.StateBean> stateList4;
     private String[] values;
-    private int curPosition;
+    private int curPosition, curPosition2, curPosition3, curPosition4;
     private int type;
-    private NumberPickerView pickerView, pickerView2, pickerView3, pickerView4;
+    public NumberPickerView pickerView, pickerView2, pickerView3, pickerView4;
     private RelativeLayout rl2, rl3, rl4;
     private TextView tvleft, tvMid, tvRight, tvEnd;
     private List<CommonBean.PanelNumberBean> panelNumberBeanList;
@@ -43,6 +45,7 @@ public class StartTaskDialog extends BaseDialog1 {
 
     public StartTaskDialog(@NonNull Context context, int themeResId, boolean isShowBottom, Object object) {
         super(context, themeResId, isShowBottom, object);
+        startTaskDialogBean = (CommonBean.StartTaskDialogBean) object;
         setDialogTitle(startTaskDialogBean.getTitle());
     }
 
@@ -68,22 +71,21 @@ public class StartTaskDialog extends BaseDialog1 {
         tvleft = findViewById(R.id.tv1);
         tvEnd = findViewById(R.id.tv4);
         startTaskDialogBean = (CommonBean.StartTaskDialogBean) object;
-        if (startTaskDialogBean.getJson_type()== Content.JSON_TYPE.SCENCE) {//场景
+        if (startTaskDialogBean.getJson_type() == Content.JSON_TYPE.SCENCE) {//场景
             tvleft.setText("状态");
-            setRlVisible(false,false,false);
-            stateList.add(new CustromScenceBean.StateBean(1,"失效"));
-            stateList.add(new CustromScenceBean.StateBean(2,"执行"));
-            stateList.add(new CustromScenceBean.StateBean(3,"生效"));
-            setPickerShadowData(stateList,pickerView);
-        }else if(startTaskDialogBean.getJson_type()== Content.JSON_TYPE.SCENCE_TIME){//定时场景
+            setRlVisible(false, false, false);
+            stateList.add(new CustromScenceBean.StateBean(1, "失效"));
+            stateList.add(new CustromScenceBean.StateBean(2, "执行"));
+            stateList.add(new CustromScenceBean.StateBean(3, "生效"));
+            setPickerShadowData(stateList, pickerView);
+        } else if (startTaskDialogBean.getJson_type() == Content.JSON_TYPE.SCENCE_TIME) {//定时场景
             tvleft.setText("状态");
-            setRlVisible(false,false,false);
-            stateList.add(new CustromScenceBean.StateBean(1,"失效"));
-            stateList.add(new CustromScenceBean.StateBean(2,"执行"));
-            stateList.add(new CustromScenceBean.StateBean(3,"生效"));
-            setPickerShadowData(stateList,pickerView);
+            setRlVisible(false, false, false);
+            stateList.add(new CustromScenceBean.StateBean(1, "失效"));
+            stateList.add(new CustromScenceBean.StateBean(2, "执行"));
+            stateList.add(new CustromScenceBean.StateBean(3, "生效"));
+            setPickerShadowData(stateList, pickerView);
         }
-
         if (ContentStr.Control_type.switchLight.equals(startTaskDialogBean.getControl_type()) || ContentStr.Control_type.electricDoor.equals(startTaskDialogBean.getControl_type()) || ContentStr.Control_type.electromagneticlock.equals(startTaskDialogBean.getControl_type())) {//开关灯
             stateList.add(new CustromScenceBean.StateBean(1, "开"));
             stateList.add(new CustromScenceBean.StateBean(2, "关"));
@@ -107,11 +109,14 @@ public class StartTaskDialog extends BaseDialog1 {
             //状态
             stateList.add(new CustromScenceBean.StateBean(1, "开"));
             stateList.add(new CustromScenceBean.StateBean(2, "关"));
+            setRlVisible(true, false, false);
+
             //温度
             for (int i = 18; i <= 35; i++) {
                 stateList2.add(new CustromScenceBean.StateBean(i, i + ""));
             }
-
+            setPickerShadowData(stateList, pickerView);
+            setPickerShadowData(stateList2, pickerView2);
             /**
              * 单轨道窗帘
              */
@@ -126,22 +131,22 @@ public class StartTaskDialog extends BaseDialog1 {
 
         } else if (ContentStr.Control_type.humanFeeling.equals(startTaskDialogBean.getControl_type())) {
             tvleft.setText("状态");
-            setRlVisible(false,false,false);
+            setRlVisible(false, false, false);
             stateList.add(new CustromScenceBean.StateBean(1, "无人"));
             stateList.add(new CustromScenceBean.StateBean(2, "有人"));
-            setPickerShadowData(stateList,pickerView);
+            setPickerShadowData(stateList, pickerView);
         } else if (ContentStr.Control_type.gas.equals(startTaskDialogBean.getControl_type())) {
             tvleft.setText("状态");
-            setRlVisible(false,false,false);
+            setRlVisible(false, false, false);
             stateList.add(new CustromScenceBean.StateBean(1, "无燃气泄漏"));
             stateList.add(new CustromScenceBean.StateBean(2, "有燃气泄漏"));
-            setPickerShadowData(stateList,pickerView);
+            setPickerShadowData(stateList, pickerView);
         } else if (ContentStr.Control_type.smokeFeeling.equals(startTaskDialogBean.getControl_type())) {
             tvleft.setText("状态");
-            setRlVisible(false,false,false);
+            setRlVisible(false, false, false);
             stateList.add(new CustromScenceBean.StateBean(1, "无烟雾报警"));
             stateList.add(new CustromScenceBean.StateBean(2, "有烟雾报警"));
-            setPickerShadowData(stateList,pickerView);
+            setPickerShadowData(stateList, pickerView);
         } else if (ContentStr.Control_type.panel.equals(startTaskDialogBean.getControl_type())) {//面板信息
             setPanel();
         } else if (ContentStr.Control_type.intelligentPanel.equals(startTaskDialogBean.getControl_type())) {
@@ -155,7 +160,7 @@ public class StartTaskDialog extends BaseDialog1 {
             /**
              * 虚拟键
              */
-        } else if(ContentStr.Control_type.fictitiousDevice.equals(startTaskDialogBean.getControl_type())){//虚拟端口
+        } else if (ContentStr.Control_type.fictitiousDevice.equals(startTaskDialogBean.getControl_type())) {//虚拟端口
             stateList.add(new CustromScenceBean.StateBean(1, "开"));
             stateList.add(new CustromScenceBean.StateBean(2, "关"));
             setRlVisible(false, false, false);
@@ -200,18 +205,18 @@ public class StartTaskDialog extends BaseDialog1 {
         setRlVisible(true, true, false);
         panelNumberBeanList = new ArrayList<>();
         for (int i = 0; i < panelNumberBeanList.size(); i++) {
-            stateList.add(new CustromScenceBean.StateBean(i+1,"按键"+i+"："+ panelNumberBeanList.get(i).getName()));
+            stateList.add(new CustromScenceBean.StateBean(i + 1, "按键" + i + "：" + panelNumberBeanList.get(i).getName()));
         }
-        stateList2.add(new CustromScenceBean.StateBean(1,"长按"));
-        stateList2.add(new CustromScenceBean.StateBean(2,"按下"));
-        stateList2.add(new CustromScenceBean.StateBean(3,"生效"));
+        stateList2.add(new CustromScenceBean.StateBean(1, "长按"));
+        stateList2.add(new CustromScenceBean.StateBean(2, "按下"));
+        stateList2.add(new CustromScenceBean.StateBean(3, "生效"));
 
-        stateList3.add(new CustromScenceBean.StateBean(1,"失效"));
-        stateList3.add(new CustromScenceBean.StateBean(2,"生效"));
-        stateList3.add(new CustromScenceBean.StateBean(3,"执行"));
+        stateList3.add(new CustromScenceBean.StateBean(1, "失效"));
+        stateList3.add(new CustromScenceBean.StateBean(2, "生效"));
+        stateList3.add(new CustromScenceBean.StateBean(3, "执行"));
         requestPanelInfo();
-        setPickerShadowData(stateList2,pickerView2);
-        setPickerShadowData(stateList3,pickerView3);
+        setPickerShadowData(stateList2, pickerView2);
+        setPickerShadowData(stateList3, pickerView3);
 
     }
 
@@ -310,7 +315,7 @@ public class StartTaskDialog extends BaseDialog1 {
         stateList2.add(new CustromScenceBean.StateBean(9, "90%"));
         stateList2.add(new CustromScenceBean.StateBean(10, "100%"));
         //延时
-        for (int i = 0; i < 60; i++) {
+        for (int i = 1; i < 61; i++) {
             stateList3.add(new CustromScenceBean.StateBean(i, i + "s"));
         }
         setPickerShadowData(stateList, pickerView);
@@ -353,7 +358,7 @@ public class StartTaskDialog extends BaseDialog1 {
         }
     }
 
-    private void setPickerShadowData(List<CustromScenceBean.StateBean> stateList, NumberPickerView pickerView) {
+    private void setPickerShadowData(List<CustromScenceBean.StateBean> stateList, final NumberPickerView pickerView) {
         if (stateList.size() > 0) {
             values = new String[stateList.size()];
             for (int i = 0; i < stateList.size(); i++) {
@@ -367,7 +372,16 @@ public class StartTaskDialog extends BaseDialog1 {
         pickerView.setOnValueChangeListenerInScrolling(new NumberPickerView.OnValueChangeListenerInScrolling() {
             @Override
             public void onValueChangeInScrolling(NumberPickerView picker, int oldVal, int newVal) {
-                curPosition = oldVal;
+                if (picker == pickerView) {
+                    curPosition = oldVal;
+                } else if (picker == pickerView2) {
+                    curPosition2 = oldVal;
+                } else if (picker == pickerView3) {
+                    curPosition3 = oldVal;
+                } else if (picker == pickerView4) {
+                    curPosition4 = oldVal;
+                }
+
             }
         });
     }
@@ -382,7 +396,7 @@ public class StartTaskDialog extends BaseDialog1 {
         if (panelNumberBeanList.size() > 0) {
             values = new String[panelNumberBeanList.size()];
             for (int i = 0; i < panelNumberBeanList.size(); i++) {
-                values[i] = panelNumberBeanList.get(i).getName() ;
+                values[i] = panelNumberBeanList.get(i).getName();
             }
             pickerView.setDisplayedValues(values);
             pickerView.setMinValue(0);
@@ -403,9 +417,84 @@ public class StartTaskDialog extends BaseDialog1 {
         tvSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                submitData();
                 dismiss();
             }
         });
+
+    }
+
+    private void submitData() {
+        if (startTaskDialogBean.getJson_type() == Content.JSON_TYPE.SCENCE || startTaskDialogBean.getJson_type() == Content.JSON_TYPE.SCENCE_TIME) {//场景
+            setValue(1);
+        } else if (ContentStr.Control_type.switchLight.equals(startTaskDialogBean.getControl_type()) ||
+                ContentStr.Control_type.electricDoor.equals(startTaskDialogBean.getControl_type()) || ContentStr.Control_type.colorDimmerLight.equals(startTaskDialogBean.getControl_type()) ||
+                ContentStr.Control_type.electromagneticlock.equals(startTaskDialogBean.getControl_type())) {//开关灯
+            setValue(1);
+        } else if (ContentStr.Control_type.dimmerLight.equals(startTaskDialogBean.getControl_type())) {
+            setValue(3);
+        } else if (ContentStr.Control_type.newWind.equals(startTaskDialogBean.getControl_type())) {
+            setValue(3);
+            /**
+             * 地暖
+             */
+        } else if (ContentStr.Control_type.floorHeating.equals(startTaskDialogBean.getControl_type())) {
+            setValue(2);
+            /**
+             * 单轨道窗帘
+             */
+        } else if (ContentStr.Control_type.curtains.equals(startTaskDialogBean.getControl_type())) {
+            setValue(3);
+
+            /**
+             * 双轨
+             */
+        } else if (ContentStr.Control_type.windowCurtains.equals(startTaskDialogBean.getControl_type())) {
+            setValue(3);
+
+        } else if (ContentStr.Control_type.gas.equals(startTaskDialogBean.getControl_type()) || ContentStr.Control_type.smokeFeeling.equals(startTaskDialogBean.getControl_type()) || ContentStr.Control_type.humanFeeling.equals(startTaskDialogBean.getControl_type())) {
+            setValue(1);
+        } else if (ContentStr.Control_type.panel.equals(startTaskDialogBean.getControl_type()) || ContentStr.Control_type.intelligentPanel.equals(startTaskDialogBean.getControl_type())) {//面板信息
+            setValue(1);
+        } else if (ContentStr.Control_type.electricityConversion.equals(startTaskDialogBean.getControl_type())) {
+            /**
+             * 空调
+             */
+        } else if (ContentStr.Control_type.airCondition.equals(startTaskDialogBean.getControl_type())) {
+            setValue(4);
+            /**
+             * 虚拟键
+             */
+        } else if (ContentStr.Control_type.fictitiousDevice.equals(startTaskDialogBean.getControl_type())) {//虚拟端口
+            setValue(1);
+        }
+
+        EventBus.getDefault().post(startTaskDialogBean);
+//        LogUtils.e("fancycybean1:"+ JSON.toJSONString(startTaskDialogBean));
+    }
+
+    public void setValue(int number) {
+        switch (number) {
+            case 1:
+                startTaskDialogBean.setValue1(curPosition + 1);
+                break;
+            case 2:
+                startTaskDialogBean.setValue1(curPosition + 1);
+                startTaskDialogBean.setValue2(curPosition2 + 1);
+                break;
+            case 3:
+                startTaskDialogBean.setValue1(curPosition + 1);
+                startTaskDialogBean.setValue2(curPosition2 + 1);
+                startTaskDialogBean.setValue3(curPosition3 + 1);
+                break;
+            case 4:
+                startTaskDialogBean.setValue1(curPosition + 1);
+                startTaskDialogBean.setValue2(curPosition2 + 1);
+                startTaskDialogBean.setValue3(curPosition3 + 1);
+                startTaskDialogBean.setValue4(curPosition4 + 1);
+                break;
+        }
+
 
     }
 }

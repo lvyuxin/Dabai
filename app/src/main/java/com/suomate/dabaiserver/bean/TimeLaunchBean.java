@@ -1,10 +1,12 @@
 package com.suomate.dabaiserver.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by fanxi on 2018/7/8.
  */
 
-public class TimeLaunchBean {
+public class TimeLaunchBean implements Serializable {
 
     /**
      * hour : 12

@@ -94,6 +94,51 @@ public class ScenceStartTaskBean {
         private boolean is_use;
         //自定义是否选中
         private boolean isSelect;
+        private String name;
+        private String detail="";
+
+//        public DeviceOrSceneInfoBean(int device_or_scene_id, int port, String control_type, int json_type, String name, String detail) {
+//            this.device_or_scene_id = device_or_scene_id;
+//            this.port = port;
+//            this.control_type = control_type;
+//            this.json_type = json_type;
+//            this.name = name;
+//            this.detail = detail;
+//        }
+//        public DeviceOrSceneInfoBean(int device_or_scene_id, String control_type, int json_type, String name) {
+//            this.device_or_scene_id = device_or_scene_id;
+//            this.control_type = control_type;
+//            this.json_type = json_type;
+//            this.name = name;
+//        }
+
+        public DeviceOrSceneInfoBean(int device_or_scene_id, String control_type, int json_type, String name, String detail,int port) {
+            this.device_or_scene_id = device_or_scene_id;
+            this.control_type = control_type;
+            this.json_type = json_type;
+            this.name = name;
+            this.detail = detail;
+            this.port=port;
+        }
+
+        public DeviceOrSceneInfoBean() {
+        }
+
+        public String getDetail() {
+            return detail;
+        }
+
+        public void setDetail(String detail) {
+            this.detail = detail;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
 
         public boolean isSelect() {
             return isSelect;

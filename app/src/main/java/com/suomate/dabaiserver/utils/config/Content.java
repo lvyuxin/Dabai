@@ -107,6 +107,15 @@ public class Content {
         public final static int TYPE_INSTANT= 1;
         public final static int TYPE_TIME= 2;
         public final static int TYPE_LINK= 3;
+        //联动设备
+        public final static int TRIGGER= 17;
+        public final static int NOT_TRIGGER= 18;
+        public final static int LONG_PRESS= 19;
+        //jsontype
+        public final static int Scence= 1;
+        public final static int TimeScence= 2;
+        public final static int Device= 3;
+
 
 //        public final static int CLASSIFY = 2;
 //        public final static int NOMINATE = 3;
