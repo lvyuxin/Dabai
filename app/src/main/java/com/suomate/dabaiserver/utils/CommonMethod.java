@@ -193,4 +193,18 @@ public class CommonMethod {
         return nums;
     }
 
+    /**
+     * 检验email输入的合法性
+     * @param emaile
+     * @return
+     */
+
+    public static boolean checkEmaile(String emaile){
+        String RULE_EMAIL = "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$";
+        Pattern p = Pattern.compile(RULE_EMAIL);
+
+        Matcher m = p.matcher(emaile);
+
+        return m.matches();
+    }
 }

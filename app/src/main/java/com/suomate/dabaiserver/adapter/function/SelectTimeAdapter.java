@@ -15,7 +15,6 @@ import java.util.List;
  */
 
 public class SelectTimeAdapter extends BaseQuickAdapter<TimeBean,BaseViewHolder> {
-
     public SelectTimeAdapter(int layoutResId, @Nullable List<TimeBean> data) {
         super(layoutResId, data);
     }

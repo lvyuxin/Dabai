@@ -36,6 +36,7 @@ public class UrlUtils {
     public static final String SCENCE_TIME_LIST = BASEWEBSITE + "/a_new_dabai/public/index.php/sceneInfo/timerInfo";
     public static final String DELETE_SCENCE = BASEWEBSITE + "/a_new_dabai/public/index.php/scene/delete";
     public static final String ADD_TIME_SCENCE = BASEWEBSITE + "/a_new_dabai/public/index.php/timer/addT";
+    public static final String addLinkage = BASEWEBSITE + "/a_new_dabai/public/index.php/linkage/addLinkage";
     public static final String SCENCE_DETAIL = BASEWEBSITE + "/a_new_dabai/public/index.php/sceneInfo/getSceneInfo";
     public static final String getIoDevice = BASEWEBSITE + "/a_new_dabai/public/index.php/linkage/getIoDevice";
     public static final String getSceneDeviceAccessClassify = BASEWEBSITE + "/a_new_dabai/public/index.php/sceneInfo/getSceneDeviceAccessClassify";
@@ -43,6 +44,11 @@ public class UrlUtils {
     //单个面板的按键信息
     public static final String getPanelNumberInfo = BASEWEBSITE + "/a_new_dabai/public/index.php/device/getPanelNumberInfo";
     //功能一级//http://101.201.50.1:808/a_new_dabai/public/index.php/home/clasifyInfo?guid=123456975
+//    http://101.201.50.1:808/a_new_dabai/public/index.php/main/bindEmail
+    public static final String bindEmail = BASEWEBSITE + "/a_new_dabai/public/index.php/main/bindEmail";
+    //绑定邮箱
     public static final String CLASSIFY_DEVICE_LIST = BASEWEBSITE + "/a_new_dabai/public/index.php/home/clasifyInfo";
+
+    //    public static final String
 
 }

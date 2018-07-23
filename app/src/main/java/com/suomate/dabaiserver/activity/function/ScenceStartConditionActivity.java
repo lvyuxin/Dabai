@@ -25,11 +25,9 @@ import com.suomate.dabaiserver.utils.DeviceUtils;
 import com.suomate.dabaiserver.utils.LogUtils;
 import com.suomate.dabaiserver.utils.UrlUtils;
 import com.suomate.dabaiserver.utils.config.Content;
-import com.suomate.dabaiserver.utils.config.ContentStr;
 import com.suomate.dabaiserver.utils.net.AbstractRequest;
 import com.suomate.dabaiserver.widget.TitleBar;
 import com.suomate.dabaiserver.widget.dialog.LinkSelectTimeDialog;
-import com.suomate.dabaiserver.widget.dialog.LinkStateSelectDialog;
 import com.suomate.dabaiserver.widget.dialog.LinkWeekDialog;
 import com.yanzhenjie.nohttp.RequestMethod;
 
@@ -65,23 +63,17 @@ public class ScenceStartConditionActivity extends BaseActivity {
     CheckBox checkTime;
     @BindView(R.id.check_link_start)
     CheckBox checkLink;
-
     private SelectTimeAdapter adapter;
-    private String hour, minute1;
-    //    private int modeType;
     private int intstantType, timeType, linkType;
     private int chooseMin, chooseHour;
     private List<TimeBean> weeksList = new ArrayList<>();
     private String strWeek = "", timeLaunchStr = "";
     private LinkSelectTimeDialog linkSelectTimeDialog;
     private LinkWeekDialog linkWeekDialog;
-    private String strLinkTime;
     private List<IoBean> ioList = new ArrayList<>();
     private IoDeviceAdapter ioDeviceAdapter;
-    private CheckBox checkBox;
-    private LinkStateSelectDialog linkStateSelectDialog;
-    private int ioCurPosition;
     private TimeBean.LinkTimeBean linkTimeBean = new TimeBean.LinkTimeBean();
+
     @Override
     protected int bindLayout() {
         return R.layout.activity_scence_start_mudle;
@@ -97,7 +89,7 @@ public class ScenceStartConditionActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
         ioRecycler.setLayoutManager(new LinearLayoutManager(this));
-        ioDeviceAdapter = new IoDeviceAdapter(R.layout.item_io_layout, ioList);
+        ioDeviceAdapter = new IoDeviceAdapter(R.layout.item_io_device, ioList, this);
         ioRecycler.setAdapter(ioDeviceAdapter);
         requestIoTypeData();
         setData();
@@ -112,14 +104,12 @@ public class ScenceStartConditionActivity extends BaseActivity {
         executeNetwork(1, request);
     }
 
-
     @Override
     protected <T> void mHandle200(int what, Result<T> result) {
         super.mHandle200(what, result);
         switch (what) {
             case 1:
                 ioList.addAll((List<IoBean>) result.getData());
-
 //        //io设备类添加默认状态
 //        for (int i = 0; i < ioList.size(); i++) {
 //            if (ioList.get(i).getControl_type().equals(ContentStr.Control_type.humanFeeling)) {//人感
@@ -131,7 +121,6 @@ public class ScenceStartConditionActivity extends BaseActivity {
 //            } else {//
 //                ioList.get(i).setIotype(Content.TYPE.TRIGGER);
 //            }
-//
 //        }
                 ioDeviceAdapter.notifyDataSetChanged();
                 break;
@@ -257,41 +246,7 @@ public class ScenceStartConditionActivity extends BaseActivity {
         /**
          * 每个item的点击事件
          */
-        ioDeviceAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ioCurPosition = position;
-                if (ioList.get(position).getControl_type().equals(ContentStr.Control_type.humanFeeling)) {
-                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(), Content.TYPE.TYPE_HUMAN_FEELING);
-                    linkStateSelectDialog.show();
-                } else if (ioList.get(position).getControl_type().equals(ContentStr.Control_type.gas)) {
-                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(), Content.TYPE.TYPE_GAS);
-                    linkStateSelectDialog.show();
-                } else if (ioList.get(position).getControl_type().equals(ContentStr.Control_type.smokeFeeling)) {
-                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(), Content.TYPE.TYPE_SMOKE);
-                    linkStateSelectDialog.show();
-                } else if (ioList.get(position).getControl_type().equals(ContentStr.Control_type.panel)) {
-                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(), Content.TYPE.TYPE_IO_PANEL);
-                    linkStateSelectDialog.show();
-                } else if (ioList.get(position).getControl_type().equals(ContentStr.Control_type.intelligentPanel)) {
-                    linkStateSelectDialog = new LinkStateSelectDialog(ScenceStartConditionActivity.this, R.style.detail_dialog_style, true, ioList.get(position).getDevice_name(), Content.TYPE.TYPE_INTELLIGENT_PANEL);
-                    linkStateSelectDialog.show();
-                }
 
-            }
-        });
-
-        ioDeviceAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                switch (view.getId()) {
-                    case R.id.check:
-                        checkBox = (CheckBox) view;
-                        ioList.get(position).setSelect(checkBox.isChecked());
-                        break;
-                }
-            }
-        });
 
     }
 
@@ -352,13 +307,26 @@ public class ScenceStartConditionActivity extends BaseActivity {
             }
 
             List<TimeBean.LinkLanchDevice> linkLanchDeviceList = new ArrayList<>();
+//            for (int i = 0; i < ioList.size(); i++) {
+//                if (ioList.get(i).isSelect()) {
+//                    linkLanchDeviceList.add(new TimeBean.LinkLanchDevice(ioList.get(i).getDevice_id(), ioList.get(i).getIotype(), ioList.get(i).getPanel_number(), ioList.get(i).getDevice_name()));
+//                }
+//            }
+
+            List<IoBean.DeviceOrSceneInfoBean> infoBeans;
             for (int i = 0; i < ioList.size(); i++) {
-                if (ioList.get(i).isSelect()) {
-                    linkLanchDeviceList.add(new TimeBean.LinkLanchDevice(ioList.get(i).getDevice_id(), ioList.get(i).getIotype(), ioList.get(i).getPanel_number(),ioList.get(i).getDevice_name()));
+                infoBeans = ioList.get(i).getDeviceOrSceneInfo();
+                for (int i1 = 0; i1 < infoBeans.size(); i1++) {
+                    if (infoBeans.get(i1).isSelect()) {
+                        linkLanchDeviceList.add(new TimeBean.LinkLanchDevice(infoBeans.get(i1).getDevice_or_scene_id(), infoBeans.get(i1).getIotype(), infoBeans.get(i1).getPanel_number(), infoBeans.get(i1).getDevice_or_scene_name()));
+                    }
+//                    if (infoBeans.get(i1).getJson_type()==stateBean.getJsonType() && infoBeans.get(i1).getDevice_or_scene_id()==stateBean.getDeviceId()) {
+//                        infoBeans.get(i1).setIotype(stateBean.getVal());
+//                    }
                 }
             }
             if (linkLanchDeviceList.size() <= 0) {
-                showToast("请选择联动触发设备");
+                showToast("请选择触发联动设备");
                 return;
             } else {
                 bundle.putSerializable("linkLanchDeviceList", (Serializable) linkLanchDeviceList);
@@ -367,7 +335,6 @@ public class ScenceStartConditionActivity extends BaseActivity {
         } else {
             linkType = 0;
         }
-
 
         if (intstantType == 0 && timeType == 0 && linkType == 0) {
             showToast("请至少选择一种启动方式");
@@ -384,7 +351,16 @@ public class ScenceStartConditionActivity extends BaseActivity {
 
     @Subscribe
     public void onMianThread(CustromScenceBean.StateBean stateBean) {
-        ioList.get(ioCurPosition).setIotype(stateBean.getType());
+//        ioList.get(ioCurPosition).setIotype(stateBean.getType());
+        List<IoBean.DeviceOrSceneInfoBean> infoBeans;
+        for (int i = 0; i < ioList.size(); i++) {
+            infoBeans = ioList.get(i).getDeviceOrSceneInfo();
+            for (int i1 = 0; i1 < infoBeans.size(); i1++) {
+                if (infoBeans.get(i1).getJson_type() == stateBean.getJsonType() && infoBeans.get(i1).getDevice_or_scene_id() == stateBean.getDeviceId()) {
+                    infoBeans.get(i1).setIotype(stateBean.getVal());
+                }
+            }
+        }
         ioDeviceAdapter.notifyDataSetChanged();
     }
 
@@ -395,14 +371,13 @@ public class ScenceStartConditionActivity extends BaseActivity {
         linkTimeBean.setFminute(linkTimeBean1.getFminute());
         linkTimeBean.setShour(linkTimeBean1.getShour());
         linkTimeBean.setSminute(linkTimeBean1.getSminute());
-//        LogUtils.e("fancylinkTimeBean:"+JSON.toJSONString(linkTimeBean));
 
     }
 
     @Subscribe
     public void onMianThread2(String strWeek) {
         linkTimeBean.setWeek(strWeek);
-        LogUtils.e("fancylinkTimeBean:" + JSON.toJSONString(linkTimeBean));
+//        LogUtils.e("fancylinkTimeBean:" + JSON.toJSONString(linkTimeBean));
     }
 
     @Override

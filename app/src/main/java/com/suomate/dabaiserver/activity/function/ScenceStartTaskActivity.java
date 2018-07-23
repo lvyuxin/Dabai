@@ -1,13 +1,16 @@
 package com.suomate.dabaiserver.activity.function;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 
 import com.alibaba.fastjson.JSON;
 import com.suomate.dabaiserver.R;
@@ -16,6 +19,7 @@ import com.suomate.dabaiserver.base.activity.BaseActivity;
 import com.suomate.dabaiserver.bean.CommonBean;
 import com.suomate.dabaiserver.bean.Result;
 import com.suomate.dabaiserver.bean.ScenceStartTaskBean;
+import com.suomate.dabaiserver.utils.CallBackIml;
 import com.suomate.dabaiserver.utils.CommonMethod;
 import com.suomate.dabaiserver.utils.LogUtils;
 import com.suomate.dabaiserver.utils.UrlUtils;
@@ -27,6 +31,7 @@ import com.yanzhenjie.nohttp.RequestMethod;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +45,10 @@ public class ScenceStartTaskActivity extends BaseActivity {
     private List<ScenceStartTaskBean> list = new ArrayList<>();
     private int allCount, selectCount;
     private CheckBox checkAll;
+    private List<CommonBean.ExecuteDeviceBean> selectList = new ArrayList<>();
+    private int curPosition;
+    ScenceStartTaskBean.DeviceOrSceneInfoBean bean;
+    private EditText etMsg, etApp, etEmail;
 
     @Override
     protected int bindLayout() {
@@ -53,13 +62,36 @@ public class ScenceStartTaskActivity extends BaseActivity {
         super.initViews(savedInstanceState);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ScenceStartTaskAdapter(R.layout.item_scence_task, list, this);
-
         initRecycler();
         bindEvent();
         requestTaskData();
+
     }
 
     private void bindEvent() {
+//        final ScenceStartTaskBean.DeviceOrSceneInfoBean[] bean = new ScenceStartTaskBean.DeviceOrSceneInfoBean[1];
+
+        adapter.setCallBackIml(new CallBackIml() {
+            @Override
+            public void callBack(Object obj) {
+                super.callBack(obj);
+                bean = (ScenceStartTaskBean.DeviceOrSceneInfoBean) obj;
+                List<ScenceStartTaskBean.DeviceOrSceneInfoBean> beans;
+                for (int i = 0; i < list.size(); i++) {
+                    beans = list.get(i).getDeviceOrSceneInfo();
+                    for (int i1 = 0; i1 < beans.size(); i1++) {
+                        if (beans.get(i1).getJson_type() == bean.getJson_type() && beans.get(i1).getDevice_or_scene_id() == bean.getDevice_or_scene_id()) {
+                            beans.get(i1).setSelect(bean.isSelect());
+                        }
+
+                    }
+                }
+
+            }
+        });
+
+
+//        adapter.setoncl
 
 //        //判断全选装态
 //        adapter.setCallBackIml(new CallBackIml(){
@@ -90,13 +122,17 @@ public class ScenceStartTaskActivity extends BaseActivity {
 
     private void initRecycler() {
         View header = LayoutInflater.from(this).inflate(R.layout.header_scence_task, null);
+        etMsg = header.findViewById(R.id.et_msg);
+        etApp = header.findViewById(R.id.et_app);
+        etEmail = header.findViewById(R.id.et_email);
+
         View footer = LayoutInflater.from(this).inflate(R.layout.item_scence_task_footer, null);
         Button btnSubmit = footer.findViewById(R.id.footer_submit_btn);
         //提交数据
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {//判断哪些是选中的
-
+                submitData();
             }
         });
 
@@ -127,6 +163,53 @@ public class ScenceStartTaskActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    private void submitData() {
+        if (TextUtils.isEmpty(etApp.getText().toString())) {
+            showToast("app推送不能为空！");
+            return;
+        }
+        if (TextUtils.isEmpty(etMsg.getText().toString())) {
+            showToast("推送内容不能为空！");
+            return;
+        }
+
+        if (TextUtils.isEmpty(etEmail.getText().toString())) {
+            showToast("推送内容不能为空！");
+            return;
+        }
+        if (!CommonMethod.checkEmaile(etEmail.getText().toString())) {
+            showToast("邮箱格式不正确！");
+            return;
+        } else {
+//            AbstractRequest request = buildRequest(UrlUtils.bindEmail, Content.STRING_TYPE, RequestMethod.GET, null);
+//            request.add("guid", getGuid());
+//            request.add("email",etEmail.getText().toString());
+//            executeNetwork(2,request);
+        }
+
+
+        List<ScenceStartTaskBean.DeviceOrSceneInfoBean> beans;
+        for (int i = 0; i < list.size(); i++) {
+            beans = list.get(i).getDeviceOrSceneInfo();
+            for (int i1 = 0; i1 < beans.size(); i1++) {
+                if (beans.get(i1).isSelect()) {
+                    selectList.add(new CommonBean.ExecuteDeviceBean(beans.get(i1).getDevice_or_scene_id() + "",
+                            beans.get(i1).getVal(), 0, beans.get(i1).getType(), beans.get(i1).getAddress()
+                            , beans.get(i1).getArea_name() + ContentStr.Symbol.dot + beans.get(i1).getDevice_or_scene_name(), beans.get(i1).getDetail()));
+                }
+            }
+        }
+        Intent intent = getIntent();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("selectList", (Serializable) selectList);
+        bundle.putString("msg", etMsg.getText().toString());
+        bundle.putString("app", etApp.getText().toString());
+        bundle.putString("email", etEmail.getText().toString());
+        intent.putExtras(bundle);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
     private void requestTaskData() {
         AbstractRequest request = buildRequest(UrlUtils.getSceneDeviceAccessClassify, Content.LIST_TYPE, RequestMethod.GET, ScenceStartTaskBean.class);
         request.add("guid", getGuid());
@@ -135,7 +218,7 @@ public class ScenceStartTaskActivity extends BaseActivity {
 
     @Subscribe
     public void onEventMainThread1(CommonBean.StartTaskDialogBean startTaskDialogBean) {
-        LogUtils.e("fancycytype:"+JSON.toJSONString(startTaskDialogBean));
+        LogUtils.e("fancycytype:" + JSON.toJSONString(startTaskDialogBean));
         if (startTaskDialogBean.getJson_type() == Content.JSON_TYPE.SCENCE || startTaskDialogBean.getJson_type() == Content.JSON_TYPE.SCENCE_TIME) {//场景
             switch (startTaskDialogBean.getValue1()) {
                 case 1://失效
@@ -170,10 +253,10 @@ public class ScenceStartTaskActivity extends BaseActivity {
             String start = "1000";
             String time = CommonMethod.getHexStringValue(startTaskDialogBean.getValue2() - 1);
             String percent = CommonMethod.getHexStringValue(startTaskDialogBean.getValue3());
-            if (startTaskDialogBean.getValue3()==0) {
+            if (startTaskDialogBean.getValue3() == 0) {
                 startTaskDialogBean.setDetail("关");
-            }else{
-                startTaskDialogBean.setDetail("开"+startTaskDialogBean.getValue3()*10+"%");
+            } else {
+                startTaskDialogBean.setDetail("开" + startTaskDialogBean.getValue3() * 10 + "%");
             }
 
             setValue(startTaskDialogBean, start + time + percent);
@@ -392,7 +475,7 @@ public class ScenceStartTaskActivity extends BaseActivity {
     }
 
     private void setValue(CommonBean.StartTaskDialogBean startTaskDialogBean, String order) {
-        LogUtils.e("fancycystartTaskDialogBean"+ JSON.toJSONString(startTaskDialogBean));
+        LogUtils.e("fancycystartTaskDialogBean" + JSON.toJSONString(startTaskDialogBean));
         List<ScenceStartTaskBean.DeviceOrSceneInfoBean> beans;
         for (int i = 0; i < list.size(); i++) {
             beans = list.get(i).getDeviceOrSceneInfo();
@@ -402,7 +485,6 @@ public class ScenceStartTaskActivity extends BaseActivity {
                     beans.get(i1).setVal(order);
                     beans.get(i1).setDetail(startTaskDialogBean.getDetail());
                     LogUtils.e("fancycydetail1:" + beans.get(i1).getDetail());
-
                 }
             }
         }
@@ -422,6 +504,9 @@ public class ScenceStartTaskActivity extends BaseActivity {
             case 1:
                 list.addAll((List<ScenceStartTaskBean>) result.getData());
                 adapter.notifyDataSetChanged();
+                break;
+            case 2:
+
                 break;
         }
     }

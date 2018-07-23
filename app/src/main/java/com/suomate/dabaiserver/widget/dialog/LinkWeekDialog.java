@@ -119,6 +119,7 @@ public class LinkWeekDialog extends BaseDialog {
             }
             strWeek= strWeek.substring(0, strWeek.lastIndexOf(","));
         }
+//        LogUtils.e("fancystrWeek:"+strWeek);
         EventBus.getDefault().post(strWeek);
     }
 

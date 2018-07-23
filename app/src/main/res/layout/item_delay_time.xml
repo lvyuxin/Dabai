@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/normal_item_height"
+    android:layout_margin="10dp"
+    android:background="@color/black_tansparent"
+    android:padding="10dp">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/delay_name"
+            style="@style/normal_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/delay_time"
+
+                style="@style/normal_tv"
+                android:text="延时：0s" />
+
+            <!--<Button-->
+                <!--android:textColor="@color/black"-->
+                <!--android:id="@+id/btn_delay_time"-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="25dp"-->
+                <!--android:text="▼"-->
+
+                <!--/>-->
+
+            <ImageView
+                android:id="@+id/iv_task_delete"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_delete"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

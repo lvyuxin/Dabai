@@ -6,7 +6,9 @@ import android.view.View;
 
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.bean.CustromScenceBean;
+import com.suomate.dabaiserver.bean.IoBean;
 import com.suomate.dabaiserver.utils.config.Content;
+import com.suomate.dabaiserver.utils.config.ContentStr;
 import com.suomate.dabaiserver.widget.dialog.base.BaseDialog1;
 
 import org.greenrobot.eventbus.EventBus;
@@ -26,39 +28,40 @@ public class LinkStateSelectDialog extends BaseDialog1 {
     private String[] values;
     private CustromScenceBean.StateBean stateBean;
     private int curPosition;
-    private int type;
+    private IoBean.DeviceOrSceneInfoBean deviceOrSceneInfoBean;
 
-    public LinkStateSelectDialog(@NonNull Context context, int themeResId, boolean isShowBottom, String title, int type) {
-
-        super(context, themeResId, isShowBottom, title);
-        this.type = type;
+    public LinkStateSelectDialog(@NonNull Context context, int themeResId, boolean isShowBottom, Object object) {
+        super(context, themeResId, isShowBottom, object);
+        deviceOrSceneInfoBean= (IoBean.DeviceOrSceneInfoBean) object;
+        pickerView = findViewById(R.id.picker);
         setData();
     }
 
+
     private void setData() {
         stateList = new ArrayList<>();
-        switch (type) {
-            case Content.TYPE.TYPE_HUMAN_FEELING:
-                stateList.add(new CustromScenceBean.StateBean(1, "无人"));
-                stateList.add(new CustromScenceBean.StateBean(2, "有人"));
+        switch (deviceOrSceneInfoBean.getControl_type()) {
+            case ContentStr.Control_type.humanFeeling:
+                stateList.add(new CustromScenceBean.StateBean(Content.TYPE.NOT_TRIGGER, "无人",deviceOrSceneInfoBean.getJson_type(),deviceOrSceneInfoBean.getDevice_or_scene_id()));
+                stateList.add(new CustromScenceBean.StateBean(Content.TYPE.TRIGGER, "有人",deviceOrSceneInfoBean.getJson_type(),deviceOrSceneInfoBean.getDevice_or_scene_id()));
                 break;
-            case Content.TYPE.TYPE_GAS:
-                stateList.add(new CustromScenceBean.StateBean(1, "无燃气泄漏"));
-                stateList.add(new CustromScenceBean.StateBean(2, "有燃气泄漏"));
+            case ContentStr.Control_type.gas:
+                stateList.add(new CustromScenceBean.StateBean(Content.TYPE.NOT_TRIGGER, "无燃气泄漏",deviceOrSceneInfoBean.getJson_type(),deviceOrSceneInfoBean.getDevice_or_scene_id()));
+                stateList.add(new CustromScenceBean.StateBean(Content.TYPE.TRIGGER, "有燃气泄漏",deviceOrSceneInfoBean.getJson_type(),deviceOrSceneInfoBean.getDevice_or_scene_id()));
                 break;
-            case Content.TYPE.TYPE_SMOKE:
-                stateList.add(new CustromScenceBean.StateBean(1, "无烟雾报警"));
-                stateList.add(new CustromScenceBean.StateBean(2, "有烟雾报警"));
+            case ContentStr.Control_type.smokeFeeling:
+                stateList.add(new CustromScenceBean.StateBean(Content.TYPE.NOT_TRIGGER, "无烟雾报警",deviceOrSceneInfoBean.getJson_type(),deviceOrSceneInfoBean.getDevice_or_scene_id()));
+                stateList.add(new CustromScenceBean.StateBean(Content.TYPE.TRIGGER, "有烟雾报警",deviceOrSceneInfoBean.getJson_type(),deviceOrSceneInfoBean.getDevice_or_scene_id()));
                 break;
-            case Content.TYPE.TYPE_IO_PANEL:
-                stateList.add(new CustromScenceBean.StateBean(1, "按下"));
-                stateList.add(new CustromScenceBean.StateBean(2, "释放"));
-                stateList.add(new CustromScenceBean.StateBean(3, "长按"));
+            case ContentStr.Control_type.panel:
+                stateList.add(new CustromScenceBean.StateBean(Content.TYPE.NOT_TRIGGER, "按下",deviceOrSceneInfoBean.getJson_type(),deviceOrSceneInfoBean.getDevice_or_scene_id()));
+                stateList.add(new CustromScenceBean.StateBean(Content.TYPE.TRIGGER, "释放",deviceOrSceneInfoBean.getJson_type(),deviceOrSceneInfoBean.getDevice_or_scene_id()));
+                stateList.add(new CustromScenceBean.StateBean(Content.TYPE.LONG_PRESS, "长按",deviceOrSceneInfoBean.getJson_type(),deviceOrSceneInfoBean.getDevice_or_scene_id()));
                 break;
-            case Content.TYPE.TYPE_INTELLIGENT_PANEL:
-                stateList.add(new CustromScenceBean.StateBean(1, "按下"));
-                stateList.add(new CustromScenceBean.StateBean(2, "释放"));
-                stateList.add(new CustromScenceBean.StateBean(3, "长按"));
+            case ContentStr.Control_type.intelligentPanel:
+                stateList.add(new CustromScenceBean.StateBean(Content.TYPE.NOT_TRIGGER, "按下",deviceOrSceneInfoBean.getJson_type(),deviceOrSceneInfoBean.getDevice_or_scene_id()));
+                stateList.add(new CustromScenceBean.StateBean(Content.TYPE.TRIGGER, "释放",deviceOrSceneInfoBean.getJson_type(),deviceOrSceneInfoBean.getDevice_or_scene_id()));
+                stateList.add(new CustromScenceBean.StateBean(Content.TYPE.LONG_PRESS, "长按",deviceOrSceneInfoBean.getJson_type(),deviceOrSceneInfoBean.getDevice_or_scene_id()));
                 break;
         }
         if (stateList.size() > 0) {

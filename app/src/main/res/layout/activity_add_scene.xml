@@ -68,8 +68,7 @@
                     android:layout_marginLeft="50dp"
                     android:layout_toRightOf="@+id/tv_nominate"
                     android:background="@null"
-                    android:hint="请输入名字"
-                    />
+                    android:hint="请输入名字" />
             </RelativeLayout>
 
 
@@ -94,9 +93,11 @@
                     android:text="请选择区域 ▼" />
             </RelativeLayout>
         </LinearLayout>
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
+
             <TextView
                 style="@style/host_tv"
                 android:layout_margin="10dp"
@@ -104,24 +105,24 @@
 
             <ImageView
                 android:id="@+id/iv_small_condition_add"
-                android:visibility="gone"
-                android:layout_alignParentRight="true"
-                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_add"/>
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:src="@mipmap/icon_add"
+                android:visibility="gone" />
         </RelativeLayout>
-
 
 
         <LinearLayout
             android:id="@+id/ll_add_condition"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/black_tansparent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
+
             <RelativeLayout
                 android:id="@+id/rl_condition_instance"
                 android:layout_width="match_parent"
@@ -145,6 +146,7 @@
                     android:layout_marginRight="20dp"
                     android:background="@mipmap/icon_delete" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_condition_time"
                 android:layout_width="match_parent"
@@ -169,12 +171,12 @@
                     android:background="@mipmap/icon_delete" />
 
                 <TextView
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_below="@+id/condition_time"
                     android:id="@+id/condition_time_detail"
                     style="@style/normal_tv_little"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/condition_time"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
                     android:gravity="center_vertical"
                     android:text="11111111111" />
             </RelativeLayout>
@@ -206,11 +208,11 @@
                 <TextView
                     android:id="@+id/condition_link_detail"
                     style="@style/normal_tv_little"
-                    android:layout_below="@+id/condition_link"
                     android:layout_height="20dp"
+                    android:layout_below="@+id/condition_link"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical"
-                    android:layout_marginBottom="10dp"
                     android:text="111111" />
             </RelativeLayout>
 
@@ -247,6 +249,7 @@
                 style="@style/normal_tv"
                 android:padding="10dp"
                 android:text="立刻启动"
+                android:layout_marginBottom="10dp"
                 android:visibility="gone" />
 
             <TextView
@@ -286,26 +289,30 @@
                 android:text="cccc"
                 android:visibility="gone" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
+
             <TextView
                 style="@style/host_tv"
                 android:layout_margin="10dp"
                 android:text="执行任务" />
 
+
             <ImageView
-                android:visibility="gone"
-                android:id="@+id/iv_small_link_add"
-                android:layout_alignParentRight="true"
-                android:layout_margin="10dp"
+                android:id="@+id/iv_task_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/icon_add"/>
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:src="@mipmap/icon_add"
+                android:visibility="gone" />
         </RelativeLayout>
 
 
         <RelativeLayout
+            android:id="@+id/rl_task"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -331,6 +338,11 @@
                 android:visibility="visible" />
 
         </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
 
         <Button
             android:id="@+id/btn_finish"

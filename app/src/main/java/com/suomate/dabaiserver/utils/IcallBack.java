@@ -15,12 +15,13 @@ public interface IcallBack {
     void callBack(String str);
 
     void callBack(JSONObject obj);
-
+    void callBack(Object obj);
     void callBack(Bitmap bitmap);
 
     void confirmHandle();
 
     void callBack(int position);
+    void callBack(int postion,boolean isSelect);
     void callBack(String  id,String name);
     void callBack(boolean boo);
 

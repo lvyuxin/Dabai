@@ -108,7 +108,7 @@ public class Content {
         public final static int TYPE_TIME= 2;
         public final static int TYPE_LINK= 3;
         //联动设备
-        public final static int TRIGGER= 17;
+        public final static int TRIGGER= 17;//按下
         public final static int NOT_TRIGGER= 18;
         public final static int LONG_PRESS= 19;
         //jsontype

@@ -6,20 +6,34 @@ package com.suomate.dabaiserver.bean;
 
 public class CustromScenceBean {
     public static class  StateBean{
-        private int type;
+        private int val;
         private String name;
+        private int  jsonType;
+        private int deviceId;
 
-        public StateBean(int type, String name) {
-            this.type = type;
+        public StateBean(int val, String name) {
+            this.val = val;
             this.name = name;
         }
 
-        public int getType() {
-            return type;
+        public StateBean(int val, String name, int jsonType, int deviceId) {
+            this.val = val;
+            this.name = name;
+            this.jsonType=jsonType;
+            this.deviceId=deviceId;
+        }
+        public int getJsonType() {
+            return jsonType;
+        }
+        public int getDeviceId() {
+            return deviceId;
+        }
+        public int getVal() {
+            return val;
         }
 
-        public void setType(int type) {
-            this.type = type;
+        public void setVal(int val) {
+            this.val = val;
         }
 
         public String getName() {

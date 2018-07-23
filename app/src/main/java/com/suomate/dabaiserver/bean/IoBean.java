@@ -1,5 +1,7 @@
 package com.suomate.dabaiserver.bean;
 
+import java.util.List;
+
 /**
  * Created by fanxi on 2018/7/12.
  */
@@ -7,82 +9,16 @@ package com.suomate.dabaiserver.bean;
 public class IoBean {
 
     /**
-     * device_id : 109
-     * area_id : 7
      * classify_id : 10
-     * device_name : 人感1
-     * port : 1
-     * main_engine_id : 62
-     * device_icon : http://101.201.50.1:808
-     * type : MI0606A
-     * search_version : 0
-     * show_version : 无用
-     * is_thirdly : 0
-     * address : {254.0.62.1};
-     * device_background_img : null
-     * guid : 123456975
-     * control_type : humanFeeling
-     * panel_number : 0
-     * other_guid : null
-     * is_fictitious : 0
-     * val : 17
+     * classify_name : 人感
+     * count : 3
+     * deviceOrSceneInfo : [{"device_or_scene_id":109,"port":1,"main_engine_id":"62","device_or_scene_name":"人感1","area_name":"测试区域","type":"MI0606A","control_type":"humanFeeling","panel_number":0,"json_type":3,"val":"00000001"},{"device_or_scene_id":117,"port":2,"main_engine_id":"62","device_or_scene_name":"人感2","area_name":"测试一下","type":"MI0606A","control_type":"humanFeeling","panel_number":0,"json_type":3,"val":"00000001"},{"device_or_scene_id":125,"port":3,"main_engine_id":"62","device_or_scene_name":"安卓人感","area_name":"美女","type":"MI0606A","control_type":"humanFeeling","panel_number":0,"json_type":3,"val":"00000001"}]
      */
 
-    private int device_id;
-    private int area_id;
     private int classify_id;
-    private String device_name;
-    private int port;
-    private String main_engine_id;
-    private String device_icon;
-    private String type;
-    private String search_version;
-    private String show_version;
-    private int is_thirdly;
-    private String address;
-    private Object device_background_img;
-    private int guid;
-    private String control_type="";
-    private int panel_number;
-    private Object other_guid;
-    private int is_fictitious;
-    private String val;
-    //自定义属性
-    private boolean isSelect;
-    private int iotype=17;//装态判断  触发17，不触发18 ,长按19
-
-    public boolean isSelect() {
-        return isSelect;
-    }
-
-
-    public int getIotype() {
-        return iotype;
-    }
-
-    public void setIotype(int iotype) {
-        this.iotype = iotype;
-    }
-
-    public void setSelect(boolean select) {
-        isSelect = select;
-    }
-
-    public int getDevice_id() {
-        return device_id;
-    }
-
-    public void setDevice_id(int device_id) {
-        this.device_id = device_id;
-    }
-
-    public int getArea_id() {
-        return area_id;
-    }
-
-    public void setArea_id(int area_id) {
-        this.area_id = area_id;
-    }
+    private String classify_name;
+    private int count;
+    private List<DeviceOrSceneInfoBean> deviceOrSceneInfo;
 
     public int getClassify_id() {
         return classify_id;
@@ -92,131 +28,152 @@ public class IoBean {
         this.classify_id = classify_id;
     }
 
-    public String getDevice_name() {
-        return device_name;
+    public String getClassify_name() {
+        return classify_name;
     }
 
-    public void setDevice_name(String device_name) {
-        this.device_name = device_name;
+    public void setClassify_name(String classify_name) {
+        this.classify_name = classify_name;
     }
 
-    public int getPort() {
-        return port;
+    public int getCount() {
+        return count;
     }
 
-    public void setPort(int port) {
-        this.port = port;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-    public String getMain_engine_id() {
-        return main_engine_id;
+    public List<DeviceOrSceneInfoBean> getDeviceOrSceneInfo() {
+        return deviceOrSceneInfo;
     }
 
-    public void setMain_engine_id(String main_engine_id) {
-        this.main_engine_id = main_engine_id;
+    public void setDeviceOrSceneInfo(List<DeviceOrSceneInfoBean> deviceOrSceneInfo) {
+        this.deviceOrSceneInfo = deviceOrSceneInfo;
     }
 
-    public String getDevice_icon() {
-        return device_icon;
-    }
+    public static class DeviceOrSceneInfoBean {
+        /**
+         * device_or_scene_id : 109
+         * port : 1
+         * main_engine_id : 62
+         * device_or_scene_name : 人感1
+         * area_name : 测试区域
+         * type : MI0606A
+         * control_type : humanFeeling
+         * panel_number : 0
+         * json_type : 3
+         * val : 00000001
+         */
 
-    public void setDevice_icon(String device_icon) {
-        this.device_icon = device_icon;
-    }
+        private int device_or_scene_id;
+        private int port;
+        private String main_engine_id;
+        private String device_or_scene_name;
+        private String area_name;
+        private String type;
+        private String control_type;
+        private int panel_number;
+        private int json_type;
+        private String val;
+        //自定义
+        private int iotype=17;//17为按下 18 19
+        private boolean isSelect;
 
-    public String getType() {
-        return type;
-    }
+        public int getIotype() {
+            return iotype;
+        }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+        public boolean isSelect() {
+            return isSelect;
+        }
 
-    public String getSearch_version() {
-        return search_version;
-    }
+        public void setSelect(boolean select) {
+            isSelect = select;
+        }
 
-    public void setSearch_version(String search_version) {
-        this.search_version = search_version;
-    }
+        public void setIotype(int iotype) {
+            this.iotype = iotype;
+        }
 
-    public String getShow_version() {
-        return show_version;
-    }
+        public int getDevice_or_scene_id() {
+            return device_or_scene_id;
+        }
 
-    public void setShow_version(String show_version) {
-        this.show_version = show_version;
-    }
+        public void setDevice_or_scene_id(int device_or_scene_id) {
+            this.device_or_scene_id = device_or_scene_id;
+        }
 
-    public int getIs_thirdly() {
-        return is_thirdly;
-    }
+        public int getPort() {
+            return port;
+        }
 
-    public void setIs_thirdly(int is_thirdly) {
-        this.is_thirdly = is_thirdly;
-    }
+        public void setPort(int port) {
+            this.port = port;
+        }
 
-    public String getAddress() {
-        return address;
-    }
+        public String getMain_engine_id() {
+            return main_engine_id;
+        }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+        public void setMain_engine_id(String main_engine_id) {
+            this.main_engine_id = main_engine_id;
+        }
 
-    public Object getDevice_background_img() {
-        return device_background_img;
-    }
+        public String getDevice_or_scene_name() {
+            return device_or_scene_name;
+        }
 
-    public void setDevice_background_img(Object device_background_img) {
-        this.device_background_img = device_background_img;
-    }
+        public void setDevice_or_scene_name(String device_or_scene_name) {
+            this.device_or_scene_name = device_or_scene_name;
+        }
 
-    public int getGuid() {
-        return guid;
-    }
+        public String getArea_name() {
+            return area_name;
+        }
 
-    public void setGuid(int guid) {
-        this.guid = guid;
-    }
+        public void setArea_name(String area_name) {
+            this.area_name = area_name;
+        }
 
-    public String getControl_type() {
-        return control_type;
-    }
+        public String getType() {
+            return type;
+        }
 
-    public void setControl_type(String control_type) {
-        this.control_type = control_type;
-    }
+        public void setType(String type) {
+            this.type = type;
+        }
 
-    public int getPanel_number() {
-        return panel_number;
-    }
+        public String getControl_type() {
+            return control_type;
+        }
 
-    public void setPanel_number(int panel_number) {
-        this.panel_number = panel_number;
-    }
+        public void setControl_type(String control_type) {
+            this.control_type = control_type;
+        }
 
-    public Object getOther_guid() {
-        return other_guid;
-    }
+        public int getPanel_number() {
+            return panel_number;
+        }
 
-    public void setOther_guid(Object other_guid) {
-        this.other_guid = other_guid;
-    }
+        public void setPanel_number(int panel_number) {
+            this.panel_number = panel_number;
+        }
 
-    public int getIs_fictitious() {
-        return is_fictitious;
-    }
+        public int getJson_type() {
+            return json_type;
+        }
 
-    public void setIs_fictitious(int is_fictitious) {
-        this.is_fictitious = is_fictitious;
-    }
+        public void setJson_type(int json_type) {
+            this.json_type = json_type;
+        }
 
-    public String getVal() {
-        return val;
-    }
+        public String getVal() {
+            return val;
+        }
 
-    public void setVal(String val) {
-        this.val = val;
+        public void setVal(String val) {
+            this.val = val;
+        }
     }
 }

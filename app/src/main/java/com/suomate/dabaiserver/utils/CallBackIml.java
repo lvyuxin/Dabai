@@ -30,6 +30,11 @@ public class CallBackIml implements IcallBack{
     }
 
     @Override
+    public void callBack(Object obj) {
+
+    }
+
+    @Override
     public void callBack(Bitmap bitmap) {
 
     }
@@ -43,6 +48,12 @@ public class CallBackIml implements IcallBack{
     public void callBack(int position) {
 
     }
+
+    @Override
+    public void callBack(int postion, boolean isSelect) {
+
+    }
+
 
     @Override
     public void callBack(boolean boo) {

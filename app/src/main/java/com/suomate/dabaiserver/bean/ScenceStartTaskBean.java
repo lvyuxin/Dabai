@@ -96,6 +96,8 @@ public class ScenceStartTaskBean {
         private boolean isSelect;
         private String name;
         private String detail="";
+        private int delay;
+        private String address;
 
 //        public DeviceOrSceneInfoBean(int device_or_scene_id, int port, String control_type, int json_type, String name, String detail) {
 //            this.device_or_scene_id = device_or_scene_id;
@@ -112,13 +114,30 @@ public class ScenceStartTaskBean {
 //            this.name = name;
 //        }
 
-        public DeviceOrSceneInfoBean(int device_or_scene_id, String control_type, int json_type, String name, String detail,int port) {
+        public DeviceOrSceneInfoBean(int device_or_scene_id, String control_type, int json_type, String name, String detail,int port,String address) {
             this.device_or_scene_id = device_or_scene_id;
             this.control_type = control_type;
             this.json_type = json_type;
             this.name = name;
             this.detail = detail;
             this.port=port;
+            this.address=address;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public int getDelay() {
+            return delay;
+        }
+
+        public void setDelay(int delay) {
+            this.delay = delay;
         }
 
         public DeviceOrSceneInfoBean() {

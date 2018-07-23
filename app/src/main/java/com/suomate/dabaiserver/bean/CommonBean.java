@@ -1,5 +1,7 @@
 package com.suomate.dabaiserver.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by fanxi on 2018/7/16.
  */
@@ -148,7 +150,7 @@ public class CommonBean {
         }
     }
 
-    public static class ExecuteDeviceBean {
+    public static class ExecuteDeviceBean  implements Serializable{
 
         /**
          * device_or_scene_id : 62
@@ -163,6 +165,35 @@ public class CommonBean {
         private int delay;
         private String type;
         private String address;
+        //自定义展示
+        private String name;
+        private String detail;
+
+        public ExecuteDeviceBean(String device_or_scene_id, String val, int delay, String type, String address,String name,String detail) {
+            this.device_or_scene_id = device_or_scene_id;
+            this.val = val;
+            this.delay = delay;
+            this.type = type;
+            this.address = address;
+            this.name=name;
+            this.detail=detail;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getDetail() {
+            return detail;
+        }
+
+        public void setDetail(String detail) {
+            this.detail = detail;
+        }
 
         public String getDevice_or_scene_id() {
             return device_or_scene_id;
