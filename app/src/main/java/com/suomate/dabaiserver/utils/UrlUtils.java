@@ -27,7 +27,7 @@ public class UrlUtils {
     public static final String AREA_DEVICE = BASEWEBSITE + "/a_new_dabai/public/index.php/device/getDeciceAccessArea";
     public static final String AREA_DEVICE_DELETE = BASEWEBSITE + "/a_new_dabai/public/index.php/device/delete";
     //控制开关的接口
-    public static final String SEND_ORDER = BASEWEBSITE1 + "/se.....ndMsg";
+    public static final String SEND_ORDER = BASEWEBSITE1 + "/sendMsg";
     //功能部分
     public static final String FUNCTION_DEVICE_LIST = BASEWEBSITE + "/a_new_dabai/public/index.php/device/getDeciceAccessClassify";
     //一键添加场景功能
@@ -48,7 +48,5 @@ public class UrlUtils {
     public static final String bindEmail = BASEWEBSITE + "/a_new_dabai/public/index.php/main/bindEmail";
     //绑定邮箱
     public static final String CLASSIFY_DEVICE_LIST = BASEWEBSITE + "/a_new_dabai/public/index.php/home/clasifyInfo";
-
-    //    public static final String
 
 }

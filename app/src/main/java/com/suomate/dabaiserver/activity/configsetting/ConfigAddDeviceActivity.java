@@ -80,6 +80,8 @@ public class ConfigAddDeviceActivity extends BaseActivity {
             tvName.setText(deviceInfo.getDevice_name());
             tvArea.setText(deviceInfo.getArea_name());
             tvClassify.setText(deviceInfo.getClassify_name());
+            iconType=deviceInfo.getDevice_icon();
+            DeviceUtils.setIcon(ivDeviceIcon,iconType);
             if (deviceInfo.getPanel_number() != 0) {
                 tvControlType.setText(DeviceUtils.getControlTypeName(deviceInfo.getControl_type(), deviceInfo.getPanel_number()));
             } else {

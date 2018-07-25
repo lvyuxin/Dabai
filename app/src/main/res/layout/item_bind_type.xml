@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/normal_item_height"
+    android:layout_margin="7dp"
+    android:background="@color/item_config_bg">
+
+    <TextView
+        android:id="@+id/bind_type_tv"
+        style="@style/normal_tv"
+        android:layout_centerInParent="true"
+        android:text="d"/>
+
+</RelativeLayout>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_theme"
+    android:orientation="vertical"
+    tools:context="com.suomate.dabaiserver.activity.Device.PanelActivity">
+
+    <com.suomate.dabaiserver.widget.TitleBar
+        android:id="@+id/tb"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        app:hasRightIcon="true"
+        app:rightIcon="@mipmap/icon_more" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/panel_btn1"
+            style="@style/panel_btn_stroke"
+            android:layout_height="@dimen/panel_btn_height" />
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/panel_btn2"
+            style="@style/panel_btn_stroke"
+            android:layout_height="@dimen/panel_btn_height" />
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/panel_btn3"
+            style="@style/panel_btn_stroke"
+            android:layout_height="@dimen/panel_btn_height" />
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl4"
+            android:layout_width="@dimen/panel_btn_width"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/panel_3btn_left"
+                style="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/panel_btn_height"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="20dp"
+                android:background="@mipmap/img_mbaj_zuo"
+                android:gravity="center"
+                android:text="全开"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/panel_3btn_right"
+                style="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/panel_btn_height"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
+                android:background="@mipmap/img_mbaj_you"
+                android:gravity="center"
+                android:text="1222222"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl5"
+            android:visibility="gone"
+            android:layout_width="@dimen/panel_btn_width"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/panel_4btn_left"
+                style="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/panel_btn_height"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="20dp"
+                android:background="@mipmap/img_mbaj_zuo"
+                android:gravity="center"
+                android:text="全开"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/panel_4btn_right"
+                style="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/panel_btn_height"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="20dp"
+                android:background="@mipmap/img_mbaj_you"
+                android:gravity="center"
+                android:text="1222222"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/panel_bottom_btn"
+            style="@style/panel_btn_stroke"
+            android:visibility="gone"
+            android:layout_height="@dimen/panel_btn_height" />
+    </LinearLayout>
+</LinearLayout>

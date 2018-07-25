@@ -1,10 +1,12 @@
 package com.suomate.dabaiserver.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by lenovo on 2018/7/2.
  */
 
-public class AreaDeviceEntity {
+public class AreaDeviceEntity implements Serializable {
     private int device_id;
     private int area_id;
     private int classify_id;
@@ -19,20 +21,20 @@ public class AreaDeviceEntity {
     private String address;
     private String device_background_img;
     private int guid;
-    private Object control_type;
-    private Object panel_number;
+    private String control_type;
+    private int  panel_number;
     private Object other_guid;
     private String area_name;
     private String classify_name;
     //自定义属性
-    private Boolean Open=false;
+    private boolean isSelect;
 
-    public Boolean isOpen() {
-        return Open;
+    public boolean isSelect() {
+        return isSelect;
     }
 
-    public void setOpen(Boolean open) {
-        Open = open;
+    public void setSelect(boolean select) {
+        isSelect = select;
     }
 
     public int getDevice_id() {
@@ -151,15 +153,15 @@ public class AreaDeviceEntity {
         return control_type;
     }
 
-    public void setControl_type(Object control_type) {
+    public void setControl_type(String  control_type) {
         this.control_type = control_type;
     }
 
-    public Object getPanel_number() {
+    public int  getPanel_number() {
         return panel_number;
     }
 
-    public void setPanel_number(Object panel_number) {
+    public void setPanel_number(int  panel_number) {
         this.panel_number = panel_number;
     }
 

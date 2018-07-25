@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_img_height"
+    android:paddingLeft="@dimen/item_padding"
+    android:paddingRight="@dimen/item_padding">
+
+    <ImageView
+        android:id="@+id/img_area"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/moren_img" />
+
+    <TextView
+        android:id="@+id/item_area_name"
+        style="@style/normal_tv"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:id="@+id/rl1"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/icon_small_tempture" />
+
+        <TextView
+            style="@style/normal_tv_little"
+            android:layout_marginLeft="10dp"
+            android:text="28°C " />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/rl2"
+        android:layout_toRightOf="@+id/rl1"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/icon_small_humidty" />
+
+        <TextView
+            style="@style/normal_tv_little"
+            android:layout_marginLeft="10dp"
+            android:text="30% " />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_toRightOf="@+id/rl2"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/icon_small_environment" />
+
+        <TextView
+            style="@style/normal_tv_little"
+            android:layout_marginLeft="10dp"
+            android:text="66pm " />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -52,7 +52,10 @@
         <activity android:name=".activity.function.ScenceStartConditionActivity" />
         <activity android:name=".activity.function.ScenceListActivity" />
         <activity android:name=".activity.function.ScenceDetailActivity" />
-        <activity android:name=".activity.function.ScenceStartTaskActivity"></activity>
+        <activity android:name=".activity.function.ScenceStartTaskActivity" />
+        <activity android:name=".activity.Device.PanelActivity" />
+        <activity android:name=".activity.Device.PanelBindTypeListActivity" />
+        <activity android:name=".activity.Device.PanelBindDeviceActivity"></activity>
     </application>
 
 </manifest>

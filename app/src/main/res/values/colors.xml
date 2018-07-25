@@ -18,6 +18,7 @@
     <color name="background_theme">#1D1D1D</color>
     <color name="line_bg">#484848</color>
     <color name="grey_line">#484848</color>
+    <color name="grey_dot">#BFB9B9</color>
     <!--&lt;!&ndash;配置部分专用的颜色&ndash;&gt; #1fff-->
     <color name="item_config_bg">#ff333333</color>
     <color name="black_tansparent">#3000</color>

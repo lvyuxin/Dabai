@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.suomate.dabaiserver.R;
-import com.suomate.dabaiserver.adapter.AreaSelectListAdapter;
+import com.suomate.dabaiserver.adapter.area.AreaSelectListAdapter;
 import com.suomate.dabaiserver.base.activity.BaseActivity;
 import com.suomate.dabaiserver.bean.AreaSelectListBean;
 import com.suomate.dabaiserver.bean.Result;

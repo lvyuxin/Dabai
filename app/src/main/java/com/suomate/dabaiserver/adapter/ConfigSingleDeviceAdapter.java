@@ -38,4 +38,6 @@ public class ConfigSingleDeviceAdapter extends BaseQuickAdapter<ConfigSingleDevi
         }
         helper.setText(R.id.tv_occupyed,item.getName());
     }
+
+
 }

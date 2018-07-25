@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_theme"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    tools:context="com.suomate.dabaiserver.activity.Device.PanelBindDeviceActivity">
+
+    <com.suomate.dabaiserver.widget.TitleBar
+        android:id="@+id/tb"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        app:hasLine="true" />
+
+    <TextView
+        style="@style/normal_tv"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:text="按键命名" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/low_item_height"
+        android:layout_marginTop="10dp"
+        android:background="@color/item_config_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/normal_tv"
+            android:padding="@dimen/normal_padding"
+            android:text="命名" />
+
+        <EditText
+            android:id="@+id/et_name"
+            style="@style/et_normal" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/normal_tv"
+        android:layout_marginBottom="@dimen/normal_padding"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:text="对象选择" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/item_config_bg" />
+
+    <TextView
+        style="@style/normal_tv"
+        android:layout_marginBottom="@dimen/normal_padding"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:text="模式选择" />
+
+    <RelativeLayout
+        android:id="@+id/rl_excute_mode"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/low_item_height"
+        android:background="@color/item_config_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/normal_tv"
+            android:padding="@dimen/normal_padding"
+            android:text="ddddddd" />
+
+        <TextView
+            style="@style/normal_tv"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/normal_padding"
+            android:text="ddddddd" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/item_line" />
+
+    <RelativeLayout
+        android:id="@+id/rl_show_mode"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/low_item_height"
+        android:background="@color/item_config_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/normal_tv"
+            android:padding="@dimen/normal_padding"
+            android:text="ddddddd" />
+
+        <TextView
+            style="@style/normal_tv"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/normal_padding"
+            android:text="ddddddd" />
+
+    </RelativeLayout>
+</LinearLayout>

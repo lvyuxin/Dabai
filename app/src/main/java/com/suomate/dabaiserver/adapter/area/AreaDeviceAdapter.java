@@ -1,11 +1,14 @@
-package com.suomate.dabaiserver.adapter;
+package com.suomate.dabaiserver.adapter.area;
 
 import android.support.annotation.Nullable;
+import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.bean.AreaDeviceEntity;
+import com.suomate.dabaiserver.utils.DeviceUtils;
+import com.suomate.dabaiserver.utils.LogUtils;
 
 import java.util.List;
 
@@ -21,8 +24,11 @@ public class AreaDeviceAdapter extends BaseQuickAdapter<AreaDeviceEntity, BaseVi
     @Override
     protected void convert(BaseViewHolder helper, AreaDeviceEntity item) {
         helper.setText(R.id.area_device_name, item.getDevice_name());
-        helper.addOnClickListener(R.id.switch_btn);
+        ImageView ivIcon = helper.getView(R.id.area_device_iv);
+        DeviceUtils.setIcon(ivIcon, item.getDevice_icon());
+//        LogUtils.e("fancyicon:"+item.getDevice_icon());
+        helper.setChecked(R.id.check_switch,item.isSelect());
+        helper.addOnClickListener(R.id.check_switch);
 
     }
-
 }

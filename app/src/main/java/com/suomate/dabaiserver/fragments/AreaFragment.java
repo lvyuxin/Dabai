@@ -10,7 +10,7 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.suomate.dabaiserver.R;
 import com.suomate.dabaiserver.activity.area.AreaDeviceListActivity;
-import com.suomate.dabaiserver.adapter.AreaSelectListAdapter;
+import com.suomate.dabaiserver.adapter.area.AreaAdapter;
 import com.suomate.dabaiserver.base.fragment.BaseFragment;
 import com.suomate.dabaiserver.bean.AreaSelectListBean;
 import com.suomate.dabaiserver.bean.Result;
@@ -30,7 +30,7 @@ import butterknife.BindView;
 public class AreaFragment extends BaseFragment {
     @BindView(R.id.recycler)
     RecyclerView recycler;
-    private AreaSelectListAdapter adapter;
+    private AreaAdapter adapter;
     private List<AreaSelectListBean.DataBean> list = new ArrayList<>();
     @Override
     protected int bindLayout() {
@@ -41,13 +41,14 @@ public class AreaFragment extends BaseFragment {
     protected void initViews() {
         super.initViews();
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new AreaSelectListAdapter(R.layout.item_test, list);
+        adapter = new AreaAdapter(getContext(),R.layout.item_area, list);
         recycler.setAdapter(adapter);
         requestData();
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Bundle bundle=new Bundle();
+                bundle.putString("areaName",list.get(position).getArea_name());
                 bundle.putString("areaId",list.get(position).getArea_id()+"");
                 startActivity(AreaDeviceListActivity.class,bundle);
             }

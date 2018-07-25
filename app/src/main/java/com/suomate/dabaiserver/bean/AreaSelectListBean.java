@@ -54,7 +54,7 @@ public class AreaSelectListBean {
         private int area_id;
         private String area_name;
         private int guid;
-        private Object area_background_img;
+        private String area_background_img;
         private Object area_icon;
 
         public int getArea_id() {
@@ -81,11 +81,11 @@ public class AreaSelectListBean {
             this.guid = guid;
         }
 
-        public Object getArea_background_img() {
+        public String getArea_background_img() {
             return area_background_img;
         }
 
-        public void setArea_background_img(Object area_background_img) {
+        public void setArea_background_img(String area_background_img) {
             this.area_background_img = area_background_img;
         }
 
